@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/10 15:14:15 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/10 17:52:13 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,65 @@ void	init_window(t_data *data)
 
 void	raycasting(t_data	*data)
 {
-	int		x;
-	double	cameraX;
-	double	rayDirX;
-	double	rayDirY;
+	int			x;
+	t_player	player;
+	t_ray		ray;
 
-
+	player = data->player;
+	ray = data->ray;
 	x = -1;
 	while (++x < WIN_WIDTH)
 	{
-		cameraX = 2 * x / (double)WIN_WIDTH - 1;
-		double rayDirX = dirX + planeX * cameraX;
-		double rayDirY = dirY + planeY * cameraX;
+		ray.camerax = 2 * x / WIN_WIDTH - 1;
+		ray.raydirx = player.dirx + player.planex * ray.camerax;
+		ray.raydiry = player.diry + player.planey * ray.camerax;
+		ray.mapx = (int)player.posx;
+		ray.mapy = (int)player.posy;
+		ray.deltadistx = ft_abs(1 / ray.raydirx);
+		ray.deltadisty = ft_abs(1 / ray.raydiry);
+		ray.hit = 0;
+		if (ray.raydirx < 0)
+		{
+			ray.stepx = -1;
+			ray.sidedistx = (player.posx - ray.mapx) * ray.deltadistx;
+		}
+		else
+		{
+			ray.stepx = 1;
+			ray.sidedistx = (ray.mapx + 1.0 - player.posx) * ray.deltadistx;
+		}
+		if (ray.raydiry < 0)
+		{
+			ray.stepy = -1;
+			ray.sidedisty = (player.posy - ray.mapy) * ray.deltadisty;
+		}
+		else
+		{
+			ray.stepy = 1;
+			ray.sidedisty = (ray.mapy + 1.0 - player.posy) * ray.deltadisty;
+		}
+		// DDA
+		while (ray.hit == 0)
+		{
+			if (ray.sidedistx < ray.sidedisty)
+			{
+				ray.sidedistx += ray.deltadistx;
+				ray.mapx += ray.stepx;
+				ray.side = 0;
+			}
+			else
+			{
+				ray.sidedisty += ray.deltadisty;
+				ray.mapy += ray.stepy;
+				ray.side = 1;
+			}
+			if (worldMap[ray.mapx][ray.mapy] > 0)
+				ray.hit = 1;
+		}
+		if (ray.side == 0)
+			ray.perpwalldist = (ray.sidedistx - ray.deltadistx);
+		else
+			ray.perpwalldist = (ray.sidedisty - ray.deltadisty);
 	}
 }
 
@@ -73,26 +120,24 @@ int	done(void)
 	return (0);
 }
 
-// void	get_map(t_data *data)
-// {
-
-// }
-
 int	main(void)
 {
 	t_data	data;
 
-	get_map(&data);
+	//get_map(&data);
+	data.map = worldMap;
+	data.player.posx = 22;
+	data.player.posy = 12;
+	data.player.dirx = -1;
+	data.player.diry = 0;
+	data.player.planex = 0;
+	data.player.planey = 0.66;
+	data.time = 0;
+	data.oldtime = 0;
 	init_window(&data);
-	// double posX = 22, posY = 12; //x and y start position
-	// double dirX = -1, dirY = 0; //initial direction vector
-	// double planeX = 0, planeY = 0.66; //the 2d raycaster version of camera plane
-	// double time = 0; //time of current frame
-	// double oldTime = 0; //time of previous frame
 	//mlx_loop(data.mlx);
 	// while (!done())
 	// {
-
 	// }
 	while (1)
 		;
