@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/10 17:02:07 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/10 18:34:34 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,36 @@ static void	init_window(t_data *data)
 //	return (0);
 //}
 
-// void	get_map(t_data *data)
-// {
+int	**get_map(t_data data)
+{
+	return (NULL);
+}
 
-// }
+int	check_arg(int argc, char **argv, t_data *data)
+{
+	int	map_fd;
 
-int	main(void)
+	if (argc != 2)
+		return (EXIT_FAILURE);
+	map_fd = open(argv[1], O_RDONLY);
+	if (map_fd == -1)
+	{
+		ft_putstr_fd("Map path invalid\n", 2);
+		return (EXIT_FAILURE);
+	}
+	else
+		data->map_fd = map_fd;
+	return (EXIT_SUCCESS);
+
+}
+
+int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	//get_map(&data);
+	if (check_arg(argc, argv, &data) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	data->map = get_map(data);
 	init_window(&data);
 	mlx_hook(data.win, KEY_PRESS, KeyPressMask, &handle_key_input, &data);
 	mlx_hook(data.win, CLOSE_WINDOW, LeaveWindowMask, &quit_window, &data);
