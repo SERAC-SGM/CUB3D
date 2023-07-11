@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/10 18:28:15 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/11 15:23:50 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,13 @@ typedef struct s_data
 	void	*mlx;
 	void	*win;
 	int		**map;
-	char	*map_fd;
+	int		map_fd;
+	char	*path_texture_n;
+	char	*path_texture_s;
+	char	*path_texture_w;
+	char	*path_texture_e;
+	int		color_f;
+	int		color_c;
 }				t_data;
 
 #endif

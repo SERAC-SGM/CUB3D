@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/10 17:01:26 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/11 13:59:25 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,16 @@
 
 // Cub3D
 
-int	main(void);
+int		main(int argc, char **argv);
 void	exit_error(char *error, t_data *data);
 
 // Hooks
 
-int	handle_key_input(int keycode, t_data *data);
-int	quit_window(t_data *data);
+int		handle_key_input(int keycode, t_data *data);
+int		quit_window(t_data *data);
 
+// Parsing
+
+void	get_map_data(t_data *data);
 
 #endif
