@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/11 15:01:55 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/12 16:49:58 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,6 @@ int	encode_rgb(__uint8_t red, __uint8_t green, __uint8_t blue)
 	return (red << 16 | green << 8 | blue);
 }
 
-int	get_color(t_data *data)
-{
-	if (worldMap[data->ray.mapx][data->ray.mapy] == 1)
-		return (encode_rgb(255, 0, 0));
-	if (worldMap[data->ray.mapx][data->ray.mapy] == 2)
-		return (encode_rgb(0, 255, 0));
-	if (worldMap[data->ray.mapx][data->ray.mapy] == 3)
-		return (encode_rgb(0, 0, 255));
-	if (worldMap[data->ray.mapx][data->ray.mapy] == 4)
-		return (encode_rgb(255, 255, 255));
-	else
-		return (encode_rgb(127, 127, 127));
-}
 
 void	pixel_put_in_image(t_image *image, int x, int y, int color)
 {
@@ -69,14 +56,25 @@ void	pixel_put_in_image(t_image *image, int x, int y, int color)
 		i -= 8;
 	}
 }
+int	get_color(t_data *data)
+{
+	if (worldMap[data->ray.mapx][data->ray.mapy] == 1)
+		return (encode_rgb(255, 0, 0));
+	if (worldMap[data->ray.mapx][data->ray.mapy] == 2)
+		return (encode_rgb(0, 255, 0));
+	if (worldMap[data->ray.mapx][data->ray.mapy] == 3)
+		return (encode_rgb(0, 0, 255));
+	if (worldMap[data->ray.mapx][data->ray.mapy] == 4)
+		return (encode_rgb(255, 255, 255));
+	else
+		return (encode_rgb(127, 127, 127));
+}
 
 void	draw_line(int x, t_data *data)
 {
 	int	y;
 
 	y = -1;
-	// printf("start %d\n", data->ray.drawstart);
-	// printf("end %d\n", data->ray.drawend);
 	while (++y < WIN_HEIGHT)
 	{
 		if (y < data->ray.drawstart)
@@ -84,7 +82,7 @@ void	draw_line(int x, t_data *data)
 		else if (y >= data->ray.drawstart && y <= data->ray.drawend)
 			pixel_put_in_image(&data->img, x, y, data->TEMPCOLOR);
 		else if (y > data->ray.drawend)
-			pixel_put_in_image(&data->img, x, y, encode_rgb(0, 0, 0));
+			pixel_put_in_image(&data->img, x, y, encode_rgb(50, 50, 50));
 	}
 }
 
@@ -99,19 +97,13 @@ void	raycasting(t_data	*data)
 	x = -1;
 	while (++x < WIN_WIDTH)
 	{
-		ray.camerax = 2 * x / WIN_WIDTH - 1;
+		ray.camerax = 2 * x / (double)WIN_WIDTH - 1;
 		ray.raydirx = player.dirx + player.planex * ray.camerax;
 		ray.raydiry = player.diry + player.planey * ray.camerax;
 		ray.mapx = player.posx;
 		ray.mapy = player.posy;
-		if (ray.raydirx == 0)
-			ray.deltadistx = 1e30;
-		else
-		ray.deltadistx = ft_abs(1 / ray.raydirx);
-		if (ray.raydiry == 0)
-			ray.deltadisty = 1e30;
-		else
-			ray.deltadisty = ft_abs(1 / ray.raydiry);
+		ray.deltadistx = fabs(1 / ray.raydirx);
+		ray.deltadisty = fabs(1 / ray.raydiry);
 		ray.hit = 0;
 		if (ray.raydirx < 0)
 		{
@@ -161,10 +153,10 @@ void	raycasting(t_data	*data)
 		ray.drawend = ray.lineheight / 2 + WIN_HEIGHT / 2;
 		if (ray.drawend >= WIN_HEIGHT)
 			ray.drawend = WIN_HEIGHT - 1;
-		//data->TEMPCOLOR = get_color(data);
-		data->TEMPCOLOR = encode_rgb(0, 255, 0);
-		// if (ray.side)
-		// 	data->TEMPCOLOR = data->TEMPCOLOR / 2;
+		data->ray = ray;
+		data->TEMPCOLOR = get_color(data);
+		if (ray.side)
+			data->TEMPCOLOR = data->TEMPCOLOR / 2;
 		draw_line(x, data);
 	}
 }
@@ -181,8 +173,6 @@ int	main(void)
 {
 	t_data	data;
 
-	//get_map(&data);
-	//data.map = worldMap;
 	data.player.posx = 22;
 	data.player.posy = 12;
 	data.player.dirx = -1;
