@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/13 16:19:35 by mat              ###   ########.fr       */
+/*   Updated: 2023/07/13 17:03:01 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,27 +62,7 @@ void	print_map(t_map_data *mdata)
 	}
 }
 
-int	main(int argc, char **argv)
-{
-	t_data		data;
-	t_map_data	map_data;
 
-	data.mdata = &map_data;
-	if (check_arg(argc, argv, &data) == EXIT_FAILURE)
-		return (EXIT_FAILURE);
-	get_map_data(data.mdata);
-	print_map(data.mdata);
-	init_window(&data);
-	mlx_hook(data.win, KEY_PRESS, KeyPressMask, &handle_key_input, &data);
-	mlx_hook(data.win, CLOSE_WINDOW, LeaveWindowMask, &quit_window, &data);
-	mlx_loop(data.mlx);
-	return (0);
-}
-
-// void	fill(t_data *data)
-// {
-// 	int	x;
-// 	int	y;
 int	encode_rgb(__uint8_t red, __uint8_t green, __uint8_t blue)
 {
 	return (red << 16 | green << 8 | blue);
@@ -108,13 +88,13 @@ void	pixel_put_in_image(t_image *image, int x, int y, int color)
 }
 int	get_color(t_data *data)
 {
-	if (worldMap[data->ray.mapx][data->ray.mapy] == 1)
+	if (data->mdata->map[data->ray.mapx][data->ray.mapy] == 1)
 		return (encode_rgb(255, 0, 0));
-	if (worldMap[data->ray.mapx][data->ray.mapy] == 2)
+	if (data->mdata->map[data->ray.mapx][data->ray.mapy] == 2)
 		return (encode_rgb(0, 255, 0));
-	if (worldMap[data->ray.mapx][data->ray.mapy] == 3)
+	if (data->mdata->map[data->ray.mapx][data->ray.mapy] == 3)
 		return (encode_rgb(0, 0, 255));
-	if (worldMap[data->ray.mapx][data->ray.mapy] == 4)
+	if (data->mdata->map[data->ray.mapx][data->ray.mapy] == 4)
 		return (encode_rgb(255, 255, 255));
 	else
 		return (encode_rgb(127, 127, 127));
@@ -175,6 +155,7 @@ void	raycasting(t_data	*data)
 			ray.stepy = 1;
 			ray.sidedisty = (ray.mapy + 1.0 - player.posy) * ray.deltadisty;
 		}
+		printf("hola\n");
 		while (ray.hit == 0)
 		{
 			if (ray.sidedistx < ray.sidedisty)
@@ -189,9 +170,10 @@ void	raycasting(t_data	*data)
 				ray.mapy += ray.stepy;
 				ray.side = 1;
 			}
-			if (worldMap[ray.mapx][ray.mapy] > 0)
+			if (data->mdata->map[ray.mapx][ray.mapy] > 0)
 				ray.hit = 1;
 		}
+		printf("hola\n");
 		if (ray.side == 0)
 			ray.perpwalldist = (ray.sidedistx - ray.deltadistx);
 		else
@@ -211,18 +193,16 @@ void	raycasting(t_data	*data)
 	}
 }
 
-// int	render(t_data *data)
-// {
-// 	// if (!data->win)
-// 	// 	exit_error(E_MLX, data);
-// 	raycasting(data);
-// 	return (0);
-// }
-
-int	main(void)
+int	main(int argc, char **argv)
 {
-	t_data	data;
+	t_data		data;
+	t_map_data	map_data;
 
+	data.mdata = &map_data;
+	if (check_arg(argc, argv, &data) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	get_map_data(data.mdata);
+	print_map(data.mdata);
 	data.player.posx = 22;
 	data.player.posy = 12;
 	data.player.dirx = -1;
@@ -233,15 +213,51 @@ int	main(void)
 	data.oldtime = 0;
 	init_window(&data);
 	data.img.mlx_image = mlx_new_image(data.mlx, WIN_WIDTH, WIN_HEIGHT);
-	data.img.address = mlx_get_data_addr(data.img.mlx_image, &data.img.bits_per_pixel, &data.img.line_length, &data.img.endian);
+	data.img.address = mlx_get_data_addr(data.img.mlx_image,
+			&data.img.bits_per_pixel, &data.img.line_length, &data.img.endian);
 	if (!data.img.mlx_image || !data.img.address)
 		exit_error(E_MLX, &data);
-	while (1)
-	{
-		//mlx_loop_hook(data.mlx, &render, &data);
-		//render(&data);
-		raycasting(&data);
-		mlx_put_image_to_window(data.mlx, data.win, data.img.mlx_image, 0, 0);
-	}
+	printf("raycasting\n");
+	raycasting(&data);
+	printf("raycasting done\n");
+	mlx_put_image_to_window(data.mlx, data.win, data.img.mlx_image, 0, 0);
+	mlx_hook(data.win, KEY_PRESS, KeyPressMask, &handle_key_input, &data);
+	mlx_hook(data.win, CLOSE_WINDOW, LeaveWindowMask, &quit_window, &data);
+	mlx_loop(data.mlx);
 	return (0);
 }
+
+// int	render(t_data *data)
+// {
+// 	// if (!data->win)
+// 	// 	exit_error(E_MLX, data);
+// 	raycasting(data);
+// 	return (0);
+// }
+
+//int	main(void)
+//{
+//	t_data	data;
+
+//	data.player.posx = 22;
+//	data.player.posy = 12;
+//	data.player.dirx = -1;
+//	data.player.diry = 0;
+//	data.player.planex = 0;
+//	data.player.planey = 0.66;
+//	data.time = 0;
+//	data.oldtime = 0;
+//	init_window(&data);
+//	data.img.mlx_image = mlx_new_image(data.mlx, WIN_WIDTH, WIN_HEIGHT);
+//	data.img.address = mlx_get_data_addr(data.img.mlx_image, &data.img.bits_per_pixel, &data.img.line_length, &data.img.endian);
+//	if (!data.img.mlx_image || !data.img.address)
+//		exit_error(E_MLX, &data);
+//	while (1)
+//	{
+//		//mlx_loop_hook(data.mlx, &render, &data);
+//		//render(&data);
+//		raycasting(&data);
+//		mlx_put_image_to_window(data.mlx, data.win, data.img.mlx_image, 0, 0);
+//	}
+//	return (0);
+//}

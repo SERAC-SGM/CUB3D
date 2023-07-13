@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/13 16:16:32 by mat              ###   ########.fr       */
+/*   Updated: 2023/07/13 16:42:48 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ typedef struct s_data
 	t_image		img;
 	t_player	player;
 	t_ray		ray;
-	t_map_data	mdata;
+	t_map_data	*mdata;
 	double		time;
 	double		oldtime;
 	int			TEMPCOLOR;
