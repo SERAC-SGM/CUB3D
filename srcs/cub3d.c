@@ -3,31 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/11 15:27:06 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/12 21:13:06 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	exit_error(char *error, t_data *data)
-{
-	if (data->win)
-		mlx_destroy_window(data->mlx, data->win);
-	mlx_destroy_display(data->mlx);
-	if (data->mlx)
-		free(data->mlx);
-	data->win = NULL;
-	free(data->path_texture_n);
-	free(data->path_texture_s);
-	free(data->path_texture_e);
-	free(data->path_texture_w);
-	if (error)
-		ft_putstr_fd(error, 2);
-	exit(1);
-}
 
 static void	init_window(t_data *data)
 {
@@ -55,18 +38,40 @@ int	check_arg(int argc, char **argv, t_data *data)
 		return (EXIT_FAILURE);
 	}
 	else
-		data->map_fd = map_fd;
+		data->mdata->map_fd = map_fd;
 	return (EXIT_SUCCESS);
 
 }
 
+void	print_map(t_map_data *mdata)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < mdata->map_height)
+	{
+		j = 0;
+		while (j < mdata->map_width)
+		{
+			printf("%d", mdata->map[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+}
+
 int	main(int argc, char **argv)
 {
-	t_data	data;
+	t_data		data;
+	t_map_data	map_data;
 
+	data.mdata = &map_data;
 	if (check_arg(argc, argv, &data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	get_map_data(&data);
+	get_map_data(data.mdata);
+	print_map(data.mdata);
 	init_window(&data);
 	mlx_hook(data.win, KEY_PRESS, KeyPressMask, &handle_key_input, &data);
 	mlx_hook(data.win, CLOSE_WINDOW, LeaveWindowMask, &quit_window, &data);

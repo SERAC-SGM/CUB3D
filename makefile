@@ -88,7 +88,8 @@ vpath %.h $(DEPS_DIR)
 ############################### Path Sources ###################################
 #‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾#
 
-SRCS_DIR = ./srcs
+SRCS_DIR += ./srcs
+SRCS_DIR += ./srcs/parsing
 
 PATH_SRCS = $(SRCS_DIR)
 
@@ -99,6 +100,10 @@ PATH_SRCS = $(SRCS_DIR)
 SRCS += cub3d.c
 SRCS += hooks.c
 SRCS += parsing.c
+SRCS += get_color.c
+SRCS += get_textures.c
+SRCS += exit_and_free.c
+SRCS += parsing_utils.c
 
 #______________________________________________________________________________#
 ############################### Attribution ####################################
