@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/13 16:09:18 by mat              ###   ########.fr       */
+/*   Updated: 2023/07/13 16:11:58 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef struct s_data
 	void		*win;
 	t_player	player;
 	t_ray		ray;
-	int			**map;
+	t_map_data	mdata;
 	double		time;
 	double		oldtime;
 }				t_data;
