@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/13 16:19:35 by mat              ###   ########.fr       */
+/*   Updated: 2023/07/13 16:39:32 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ void	draw_line(int x, t_data *data)
 void	raycasting(t_data	*data)
 {
 	int			x;
+	int			i
 	t_player	player;
 	t_ray		ray;
 
@@ -203,6 +204,25 @@ void	raycasting(t_data	*data)
 		ray.drawend = ray.lineheight / 2 + WIN_HEIGHT / 2;
 		if (ray.drawend >= WIN_HEIGHT)
 			ray.drawend = WIN_HEIGHT - 1;
+		if (ray.side == 0)
+			ray.wallx = player.posy + ray.perpwalldist * ray.raydiry;
+		else
+			ray.wallx = player.posx + ray.perpwalldist * ray.raydirx;
+		ray.wallx -= floor(ray.wallx);
+		ray.texx = (int)(ray.wallx * (double)TEX_WIDTH);
+		if (ray.side == 0 && ray.raydirx > 0)
+			ray.texx = TEX_WIDTH - ray.texx - 1;
+		if (ray.side == 1 && ray.raydiry < 0)
+			ray.texx = TEX_WIDTH - ray.texx - 1;
+		ray.step = 1.0 * TEX_HEIGHT / ray.lineheight;
+		ray.texpos = (ray.drawstart - WIN_HEIGHT / 2 + ray.lineheight / 2) * ray.step;
+		i = ray.drawstart - 1;
+		while (++i < ray.drawend)
+		{
+			ray.texy = (int)ray.texpos & (TEX_HEIGHT - 1);
+			ray.texpos += ray.step;
+			data->TEMPCOLOR = 
+		}
 		data->ray = ray;
 		data->TEMPCOLOR = get_color(data);
 		if (ray.side)
