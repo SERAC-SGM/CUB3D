@@ -6,12 +6,48 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/12 18:38:43 by mat              ###   ########.fr       */
+/*   Updated: 2023/07/13 16:09:18 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+typedef struct s_player
+{
+	double	posx;
+	double	posy;
+	double	dirx;
+	double	diry;
+	double	planex;
+	double	planey;
+}			t_player;
+
+typedef struct s_ray
+{
+	double	camerax;
+	double	raydirx;
+	double	raydiry;
+	int		mapx;
+	int		mapy;
+	double	sidedistx;
+	double	sidedisty;
+	double	deltadistx;
+	double	deltadisty;
+	double	perpwalldist;
+	int		stepx;
+	int		stepy;
+	int		hit;
+	int		side;
+	int		lineheight;
+	int		drawstart;
+	int		drawend;
+	double	wallx;
+	int		texx;
+	int		texy;
+	double	step;
+	double	texpos;
+}			t_ray;
 
 typedef struct s_strlst
 {
@@ -46,7 +82,11 @@ typedef struct s_data
 {
 	void		*mlx;
 	void		*win;
-	t_map_data	*mdata;
+	t_player	player;
+	t_ray		ray;
+	int			**map;
+	double		time;
+	double		oldtime;
 }				t_data;
 
 #endif
