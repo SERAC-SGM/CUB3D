@@ -6,12 +6,21 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/13 16:11:58 by mat              ###   ########.fr       */
+/*   Updated: 2023/07/13 16:16:32 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+typedef struct s_image
+{
+	void	*mlx_image;
+	char	*address;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}			t_image;
 
 typedef struct s_player
 {
@@ -82,11 +91,13 @@ typedef struct s_data
 {
 	void		*mlx;
 	void		*win;
+	t_image		img;
 	t_player	player;
 	t_ray		ray;
 	t_map_data	mdata;
 	double		time;
 	double		oldtime;
+	int			TEMPCOLOR;
 }				t_data;
 
 #endif
