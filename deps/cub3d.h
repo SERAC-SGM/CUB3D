@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/12 21:19:50 by mat              ###   ########.fr       */
+/*   Updated: 2023/07/13 16:04:01 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,13 @@
 # define RIGHT_ARROW 65363
 # define ESCAPE 65307
 
-# define MAP_VOID	9
-# define MAP_WALL	1
-# define MAP_FLOOR	0
+# define MAP_VOID		9
+# define MAP_FLOOR		0
+# define MAP_WALL		1
+# define PLAYER_NORTH	2
+# define PLAYER_SOUTH	3
+# define PLAYER_EAST	4
+# define PLAYER_WEST	5
 
 # include "libft.h"
 # include "mlx.h"

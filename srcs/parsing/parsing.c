@@ -6,11 +6,24 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:51:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/12 21:21:04 by mat              ###   ########.fr       */
+/*   Updated: 2023/07/13 15:22:21 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int	get_player_orientation(char c)
+{
+	if (c == 'N')
+		return (PLAYER_NORTH);
+	else if (c == 'S')
+		return (PLAYER_SOUTH);
+	else if (c == 'E')
+		return (PLAYER_EAST);
+	else if (c == 'W')
+		return (PLAYER_WEST);
+	return (MAP_VOID);
+}
 
 static void	init_map(t_map_data *mdata)
 {
@@ -23,7 +36,7 @@ static void	init_map(t_map_data *mdata)
 		j = 0;
 		while (j < mdata->map_width)
 		{
-			mdata->map[i][j] = MAP_VOID;
+			mdata->map[i][j] = 6;
 			j++;
 		}
 		i++;
@@ -40,14 +53,17 @@ static void	fill_map(t_map_data *mdata)
 	while (mdata->map_strs != NULL)
 	{
 		j = 0;
-		while (mdata->map_strs->str[j] != '\0')
+		while (mdata->map_strs->str[j] != '\n')
 		{
 			if (mdata->map_strs->str[j] == ' ')
 				mdata->map[i][j] = MAP_VOID;
 			else if (mdata->map_strs->str[j] == '0')
 				mdata->map[i][j] = MAP_FLOOR;
 			else if (mdata->map_strs->str[j] == '1')
-				mdata->map[i][j] = MAP_FLOOR;
+				mdata->map[i][j] = MAP_WALL;
+			else
+				mdata->map[i][j] = 
+					get_player_orientation(mdata->map_strs->str[j]);
 			j++;
 		}
 		mdata->map_strs = mdata->map_strs->next;
