@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/13 17:28:10 by mat              ###   ########.fr       */
+/*   Updated: 2023/07/14 12:00:08 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,11 @@ int		quit_window(t_data *data);
 
 // Parsing
 
-void	get_map_data(t_map_data *mdata);
+int		get_map_data(t_data *data);
+
+// Mallocs
+
+int		malloc_structs(t_data *data);
 
 // Get_colors
 
@@ -74,6 +78,10 @@ void	test_colors(t_map_data *mdata, char *line, int *counter);
 // Get textures
 
 void	get_texture_path(t_map_data *mdata);
+
+// Get player
+
+int	get_player_data(t_data *data, char c, int i, int j);
 
 // Parsing utils
 

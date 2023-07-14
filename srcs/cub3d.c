@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/13 17:24:34 by mat              ###   ########.fr       */
+/*   Updated: 2023/07/14 12:30:23 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void	raycasting(t_data	*data)
 	t_player	player;
 	t_ray		ray;
 
-	player = data->player;
+	player = *data->player;
 	ray = data->ray;
 	x = -1;
 	while (++x < WIN_WIDTH)
@@ -163,15 +163,20 @@ void	raycasting(t_data	*data)
 				ray.sidedistx += ray.deltadistx;
 				ray.mapx += ray.stepx;
 				ray.side = 0;
+				printf("ray mapx : %d ray mapy : %d", ray.mapx, ray.mapy);
 			}
 			else
 			{
 				ray.sidedisty += ray.deltadisty;
 				ray.mapy += ray.stepy;
 				ray.side = 1;
+				printf("ray mapx : %d ray mapy : %d", ray.mapx, ray.mapy);
 			}
 			if (data->mdata->map[ray.mapx][ray.mapy] > 0)
+			{
 				ray.hit = 1;
+				printf("ray mapx : %d ray mapy : %d", ray.mapx, ray.mapy);
+			}
 		}
 		printf("hola\n");
 		if (ray.side == 0)
@@ -197,18 +202,21 @@ int	main(int argc, char **argv)
 {
 	t_data		data;
 	t_map_data	map_data;
+	t_player	player;
 
 	data.mdata = &map_data;
+	data.player = &player;
 	if (check_arg(argc, argv, &data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	get_map_data(data.mdata);
+	if (get_map_data(&data) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
 	print_map(data.mdata);
-	data.player.posx = 22;
-	data.player.posy = 12;
-	data.player.dirx = -1;
-	data.player.diry = 0;
-	data.player.planex = 0;
-	data.player.planey = 0.66;
+	data.player->posx = 8;
+	data.player->posy = 4;
+	data.player->dirx = 0;
+	data.player->diry = 1;
+	data.player->planex = 0;
+	data.player->planey = 0.66;
 	data.time = 0;
 	data.oldtime = 0;
 	init_window(&data);

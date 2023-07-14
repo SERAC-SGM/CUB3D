@@ -100,8 +100,10 @@ PATH_SRCS = $(SRCS_DIR)
 SRCS += cub3d.c
 SRCS += hooks.c
 SRCS += parsing.c
+SRCS += mallocs.c
 SRCS += get_color.c
 SRCS += get_textures.c
+SRCS += get_player.c
 SRCS += exit_and_free.c
 SRCS += parsing_utils.c
 
