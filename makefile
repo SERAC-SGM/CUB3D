@@ -91,6 +91,7 @@ vpath %.h $(DEPS_DIR)
 SRCS_DIR += ./srcs
 SRCS_DIR += ./srcs/parsing
 SRCS_DIR += ./srcs/debug
+SRCS_DIR += ./srcs/raycasting
 
 PATH_SRCS = $(SRCS_DIR)
 
@@ -108,6 +109,7 @@ SRCS += get_player.c
 SRCS += exit_and_free.c
 SRCS += parsing_utils.c
 SRCS += debug.c
+SRCS += raycasting.c
 
 #______________________________________________________________________________#
 ############################### Attribution ####################################

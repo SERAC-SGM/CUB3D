@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/14 13:58:19 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/14 15:40:25 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,48 +51,52 @@
 
 // Cub3D
 
-int		main(int argc, char **argv);
-void	exit_error(char *error, t_data *data);
+int			main(int argc, char **argv);
+void		exit_error(char *error, t_data *data);
 
 // Exit and free
 
-void	exit_error(char *error, t_data *data);
+void		exit_error(char *error, t_data *data);
 
 // Hooks
 
-int		handle_key_input(int keycode, t_data *data);
-int		quit_window(t_data *data);
+int			handle_key_input(int keycode, t_data *data);
+int			quit_window(t_data *data);
 
 // Parsing
 
-int		get_map_data(t_data *data);
+int			get_map_data(t_data *data);
 
 // Mallocs
 
-int		malloc_structs(t_data *data);
+int			malloc_structs(t_data *data);
 
 // Get_colors
 
-void	test_colors(t_map_data *mdata, char *line, int *counter);
+void		test_colors(t_map_data *mdata, char *line, int *counter);
 
 // Get textures
 
-void	get_texture_path(t_map_data *mdata);
+void		get_texture_path(t_map_data *mdata);
 
 // Get player
 
-int	get_player_data(t_data *data, char c, int i, int j);
+int			get_player_data(t_data *data, char c, int i, int j);
 
 // Parsing utils
 
 t_strlst	*ft_lstnew(void *content);
-void	ft_lstadd_back(t_strlst **lst, t_strlst *new);
-void	ft_lstclear(t_strlst **lst, void (*del)(void*));
+void		ft_lstadd_back(t_strlst **lst, t_strlst *new);
+void		ft_lstclear(t_strlst **lst, void (*del)(void*));
+
+// Raycasting
+void		raycasting(t_data	*data);
 
 // Debug
 
-void	print_map_data(t_map_data *mdata);
-void	print_map(t_map_data *mdata);
+void		print_player_data(t_player *player);
+void		print_map_data(t_map_data *mdata);
+void		print_map(t_map_data *mdata);
 
 
 //# define MAP_HEIGHT	24
@@ -115,7 +119,8 @@ void	print_map(t_map_data *mdata);
 //  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 //  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 //  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+//  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},	main(int argc, char **argv);
+void	
 //  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 //  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 //  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},

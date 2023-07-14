@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 14:16:27 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/14 14:19:42 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/14 14:31:17 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	print_player_data(t_player *player)
+{
+	printf("posx is %f\n", player->posx);
+	printf("posy is %f\n", player->posy);
+	printf("dirx is %f\n", player->dirx);
+	printf("diry is %f\n", player->diry);
+	printf("planex is %f\n", player->planex);
+	printf("planey is %f\n", player->planey);
+}
 
 void	print_map_data(t_map_data *mdata)
 {
