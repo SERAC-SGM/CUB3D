@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:51:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/14 14:08:21 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/14 14:26:29 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ static void	get_map_size(t_map_data *mdata)
 
 int	get_map_data(t_data *data)
 {
-	get_map_size(data->mdata);
 	get_texture_path(data->mdata);
+	get_map_size(data->mdata);
 	printf("F is %d\n", data->mdata->color_f);
 	printf("C is %d\n", data->mdata->color_c);
 	printf("NO is %s\n", data->mdata->path_texture_n);
