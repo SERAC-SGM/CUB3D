@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/14 11:35:18 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/14 18:32:17 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_map_data
 {
 	int			**map;
 	t_strlst	*map_strs;
+	t_strlst	*top;
 	int			map_fd;
 	char		*path_texture_n;
 	char		*path_texture_s;
@@ -97,7 +98,7 @@ typedef struct s_data
 	t_map_data	*mdata;
 	double		time;
 	double		oldtime;
-	int			TEMPCOLOR;
+	uint32_t	color;
 }				t_data;
 
 #endif

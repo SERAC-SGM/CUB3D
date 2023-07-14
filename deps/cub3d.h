@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/14 16:07:43 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/14 17:13:38 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,12 @@ void		print_map(t_map_data *mdata);
 //# define MAP_HEIGHT	24
 //# define MAP_WIDTH	24
 
-//# define TEX1 = "./raycaster/pics/bluestone.png"
-//# define TEX2 = "./raycaster/pics/greystone.png"
+# define TEX_WIDTH 64
+# define TEX0 = "./raycaster/pics/bluestone.png"
+# define TEX1 = "./raycaster/pics/greystone.png"
+# define TEX2 = "./raycaster/pics/redbrick.png"
+# define TEX3 = "./raycaster/pics/wood.png"
+
 
 //int worldMap[MAP_WIDTH][MAP_HEIGHT]=
 //{

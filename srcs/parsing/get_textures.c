@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_texture.c                                      :+:      :+:    :+:   */
+/*   get_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:13:59 by mat               #+#    #+#             */
-/*   Updated: 2023/07/12 12:15:01 by mat              ###   ########.fr       */
+/*   Updated: 2023/07/14 18:15:48 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,6 @@ void	get_texture_path(t_map_data *mdata)
 		store_texture(mdata, line, &counter);
 		free(line);
 	}
-	printf("counter is %d\n", counter);
+	//printf("counter is %d\n", counter);
 	return ;
 }
