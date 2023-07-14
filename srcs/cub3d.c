@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/14 12:30:23 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/14 13:40:22 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,12 +211,12 @@ int	main(int argc, char **argv)
 	if (get_map_data(&data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	print_map(data.mdata);
-	data.player->posx = 8;
-	data.player->posy = 4;
-	data.player->dirx = 0;
-	data.player->diry = 1;
-	data.player->planex = 0;
-	data.player->planey = 0.66;
+	//data.player->posx = 8;
+	//data.player->posy = 4;
+	//data.player->dirx = 0;
+	//data.player->diry = 1;
+	//data.player->planex = 0;
+	//data.player->planey = 0.66;
 	data.time = 0;
 	data.oldtime = 0;
 	init_window(&data);
