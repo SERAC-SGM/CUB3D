@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/14 16:07:43 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/14 18:11:42 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,14 @@
 # define CLOSE_WINDOW 17
 # define KEY_PRESS 2
 
-# define UP_ARROW 65362
-# define DOWN_ARROW 65364
 # define LEFT_ARROW 65361
 # define RIGHT_ARROW 65363
 # define ESCAPE 65307
+# define SPACE	32
+# define W_KEY	119
+# define S_KEY	115
+# define A_KEY	113
+# define D_KEY	100
 
 # define MAP_VOID		9
 # define MAP_FLOOR		0

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/14 15:44:32 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/14 18:46:31 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@ static void	init_window(t_data *data)
 	if (!data->win)
 		exit_error(E_MLX, data);
 }
+
+ int	render(t_data *data)
+ {
+ 	raycasting(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->img.mlx_image, 0, 0);
+ 	return (0);
+ }
 
 int	check_arg(int argc, char **argv, t_data *data)
 {
@@ -66,47 +73,12 @@ int	main(int argc, char **argv)
 			&data.img.bits_per_pixel, &data.img.line_length, &data.img.endian);
 	if (!data.img.mlx_image || !data.img.address)
 		exit_error(E_MLX, &data);
-	printf("raycasting\n");
 	raycasting(&data);
-	printf("raycasting done\n");
 	mlx_put_image_to_window(data.mlx, data.win, data.img.mlx_image, 0, 0);
+	mlx_loop_hook(data.mlx, &render, &data);
 	mlx_hook(data.win, KEY_PRESS, KeyPressMask, &handle_key_input, &data);
 	mlx_hook(data.win, CLOSE_WINDOW, LeaveWindowMask, &quit_window, &data);
 	mlx_loop(data.mlx);
 	return (0);
 }
 
-// int	render(t_data *data)
-// {
-// 	// if (!data->win)
-// 	// 	exit_error(E_MLX, data);
-// 	raycasting(data);
-// 	return (0);
-// }
-
-//int	main(void)
-//{
-//	t_data	data;
-
-//	data.player.posx = 22;
-//	data.player.posy = 12;
-//	data.player.dirx = -1;
-//	data.player.diry = 0;
-//	data.player.planex = 0;
-//	data.player.planey = 0.66;
-//	data.time = 0;
-//	data.oldtime = 0;
-//	init_window(&data);
-//	data.img.mlx_image = mlx_new_image(data.mlx, WIN_WIDTH, WIN_HEIGHT);
-//	data.img.address = mlx_get_data_addr(data.img.mlx_image, &data.img.bits_per_pixel, &data.img.line_length, &data.img.endian);
-//	if (!data.img.mlx_image || !data.img.address)
-//		exit_error(E_MLX, &data);
-//	while (1)
-//	{
-//		//mlx_loop_hook(data.mlx, &render, &data);
-//		//render(&data);
-//		raycasting(&data);
-//		mlx_put_image_to_window(data.mlx, data.win, data.img.mlx_image, 0, 0);
-//	}
-//	return (0);
-//}
