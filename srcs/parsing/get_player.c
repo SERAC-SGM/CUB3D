@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:56:28 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/14 13:40:07 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/14 14:04:08 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ int	get_player_data(t_data *data, char c, int i, int j)
 		data->player->dirx = -1;
 		data->player->diry = 0;
 	}
-	return (MAP_VOID);
+	return (MAP_FLOOR);
 }

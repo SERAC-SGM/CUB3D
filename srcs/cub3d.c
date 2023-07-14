@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/14 13:40:22 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/14 14:04:41 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,26 +42,6 @@ int	check_arg(int argc, char **argv, t_data *data)
 	return (EXIT_SUCCESS);
 
 }
-
-void	print_map(t_map_data *mdata)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < mdata->map_height)
-	{
-		j = 0;
-		while (j < mdata->map_width)
-		{
-			printf("%d", mdata->map[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-}
-
 
 int	encode_rgb(__uint8_t red, __uint8_t green, __uint8_t blue)
 {
@@ -155,7 +135,6 @@ void	raycasting(t_data	*data)
 			ray.stepy = 1;
 			ray.sidedisty = (ray.mapy + 1.0 - player.posy) * ray.deltadisty;
 		}
-		printf("hola\n");
 		while (ray.hit == 0)
 		{
 			if (ray.sidedistx < ray.sidedisty)
@@ -163,22 +142,16 @@ void	raycasting(t_data	*data)
 				ray.sidedistx += ray.deltadistx;
 				ray.mapx += ray.stepx;
 				ray.side = 0;
-				printf("ray mapx : %d ray mapy : %d", ray.mapx, ray.mapy);
 			}
 			else
 			{
 				ray.sidedisty += ray.deltadisty;
 				ray.mapy += ray.stepy;
 				ray.side = 1;
-				printf("ray mapx : %d ray mapy : %d", ray.mapx, ray.mapy);
 			}
 			if (data->mdata->map[ray.mapx][ray.mapy] > 0)
-			{
 				ray.hit = 1;
-				printf("ray mapx : %d ray mapy : %d", ray.mapx, ray.mapy);
-			}
 		}
-		printf("hola\n");
 		if (ray.side == 0)
 			ray.perpwalldist = (ray.sidedistx - ray.deltadistx);
 		else
@@ -211,12 +184,7 @@ int	main(int argc, char **argv)
 	if (get_map_data(&data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	print_map(data.mdata);
-	//data.player->posx = 8;
-	//data.player->posy = 4;
-	//data.player->dirx = 0;
-	//data.player->diry = 1;
-	//data.player->planex = 0;
-	//data.player->planey = 0.66;
+	print_map_data(data.mdata);
 	data.time = 0;
 	data.oldtime = 0;
 	init_window(&data);

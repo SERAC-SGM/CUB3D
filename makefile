@@ -90,6 +90,7 @@ vpath %.h $(DEPS_DIR)
 
 SRCS_DIR += ./srcs
 SRCS_DIR += ./srcs/parsing
+SRCS_DIR += ./srcs/debug
 
 PATH_SRCS = $(SRCS_DIR)
 
@@ -106,6 +107,7 @@ SRCS += get_textures.c
 SRCS += get_player.c
 SRCS += exit_and_free.c
 SRCS += parsing_utils.c
+SRCS += debug.c
 
 #______________________________________________________________________________#
 ############################### Attribution ####################################

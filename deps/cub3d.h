@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/14 12:00:08 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/14 13:58:19 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,11 @@ int	get_player_data(t_data *data, char c, int i, int j);
 t_strlst	*ft_lstnew(void *content);
 void	ft_lstadd_back(t_strlst **lst, t_strlst *new);
 void	ft_lstclear(t_strlst **lst, void (*del)(void*));
+
+// Debug
+
+void	print_map_data(t_map_data *mdata);
+void	print_map(t_map_data *mdata);
 
 
 //# define MAP_HEIGHT	24

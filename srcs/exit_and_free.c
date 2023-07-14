@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_and_free.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:50:07 by mat               #+#    #+#             */
-/*   Updated: 2023/07/12 17:50:48 by mat              ###   ########.fr       */
+/*   Updated: 2023/07/14 13:52:23 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,12 @@ void	exit_error(char *error, t_data *data)
 		free(data->mlx);
 	data->win = NULL;
 	free_map(data->mdata);
+	printf("hoalerfs\n");
 	free(data->mdata->path_texture_n);
 	free(data->mdata->path_texture_s);
 	free(data->mdata->path_texture_e);
 	free(data->mdata->path_texture_w);
+	printf("holaq2\n");
 	if (error)
 		ft_putstr_fd(error, 2);
 	exit(1);
