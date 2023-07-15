@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/15 18:28:19 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/15 19:13:10 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ static void	init_window(t_data *data)
 {
 	data->mlx = mlx_init();
 	if (!data->mlx)
-		exit_error(E_MLX, data);
+		exit_error(E_MLX, "init failed", data);
 	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
 	if (!data->win)
-		exit_error(E_MLX, data);
+		exit_error(E_MLX, "window creation failed", data);
 }
 
 int	render(t_data *data)
 {
 	raycasting(data);
 	move_player(data);
-	rotate_player(data);
+	rotate_player_left(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.mlx_image, 0, 0);
 	return (0);
 }
@@ -64,19 +64,6 @@ void	init_data(t_data *data, t_map_data *mdata, t_player *player)
 	data->player = player;
 }
 
-void	get_texture(t_data *data)
-{
-	data->texture[0].img = mlx_xpm_file_to_image(data->mlx, "textures/greystone.xpm", &data->texture[0].width, &data->texture[0].height);
-	data->texture[1].img = mlx_xpm_file_to_image(data->mlx, "textures/colorstone.xpm", &data->texture[1].width, &data->texture[1].height);
-	data->texture[2].img = mlx_xpm_file_to_image(data->mlx, "textures/bluestone.xpm", &data->texture[2].width, &data->texture[2].height);
-	data->texture[3].img = mlx_xpm_file_to_image(data->mlx, "textures/purplestone.xpm", &data->texture[3].width, &data->texture[3].height);
-	if (!data->texture[0].img || !data->texture[1].img || !data->texture[2].img || !data->texture[3].img)
-		exit_error("TEXTURE NOT FOUND\n", data);
-	data->texture[0].address = (unsigned int *)mlx_get_data_addr(data->texture[0].img, &data->texture[0].bits_per_pixel, &data->texture[0].line_length, &data->texture[0].endian);
-	data->texture[1].address = (unsigned int *)mlx_get_data_addr(data->texture[1].img, &data->texture[1].bits_per_pixel, &data->texture[1].line_length, &data->texture[1].endian);
-	data->texture[2].address = (unsigned int *)mlx_get_data_addr(data->texture[2].img, &data->texture[2].bits_per_pixel, &data->texture[2].line_length, &data->texture[2].endian);
-	data->texture[3].address = (unsigned int *)mlx_get_data_addr(data->texture[3].img, &data->texture[3].bits_per_pixel, &data->texture[3].line_length, &data->texture[3].endian);
-}
 
 int	main(int argc, char **argv)
 {
@@ -95,7 +82,7 @@ int	main(int argc, char **argv)
 	data.img.address = mlx_get_data_addr(data.img.mlx_image,
 			&data.img.bits_per_pixel, &data.img.line_length, &data.img.endian);
 	if (!data.img.mlx_image || !data.img.address)
-		exit_error(E_MLX, &data);
+		exit_error(E_MLX, "image creation failed", &data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img.mlx_image, 0, 0);
 	mlx_loop_hook(data.mlx, &render, &data);
 	mlx_hook(data.win, KEY_PRESS, KeyPressMask, &handle_key_press, &data);

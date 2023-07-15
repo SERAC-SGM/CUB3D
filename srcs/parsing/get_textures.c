@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:13:59 by mat               #+#    #+#             */
-/*   Updated: 2023/07/15 18:16:02 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/15 19:20:39 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,22 @@ static void	store_texture(t_map_data *mdata, char *line, int *counter)
 	if (ft_strncmp(line, "NO .", 4) == 0)
 	{
 		(*counter)++;
-		mdata->path_texture_n = trim_path(line);
+		mdata->texture_path[0] = trim_path(line);
 	}
 	else if (ft_strncmp(line, "SO .", 4) == 0)
 	{
 		(*counter)++;
-		mdata->path_texture_s = trim_path(line);
+		mdata->texture_path[2] = trim_path(line);
 	}
 	else if (ft_strncmp(line, "WE .", 4) == 0)
 	{
 		(*counter)++;
-		mdata->path_texture_w = trim_path(line);
+		mdata->texture_path[1] = trim_path(line);
 	}
 	else if (ft_strncmp(line, "EA .", 4) == 0)
 	{
 		(*counter)++;
-		mdata->path_texture_e = trim_path(line);
+		mdata->texture_path[3] = trim_path(line);
 	}
 	else
 	{

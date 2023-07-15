@@ -6,19 +6,27 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/15 18:12:24 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/15 19:33:58 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define WIN_HEIGHT 480
-# define WIN_WIDTH 640
-# define TEX_WIDTH 64
-# define TEX_HEIGHT 64
+//# define WIN_HEIGHT 480
+//# define WIN_WIDTH 640
 
-# define E_MLX "MiniLibX error\n"
+# define WIN_HEIGHT 600
+# define WIN_WIDTH 800
+
+// # define WIN_HEIGHT 768
+// # define WIN_WIDTH 1024
+
+//# define TEX_WIDTH 64
+//# define TEX_HEIGHT 64
+
+# define E_MLX "MiniLibX error : "
+# define E_TEXTURE "Error while loading texture : "
 
 # define MAP_HEIGHT	24
 # define MAP_WIDTH	24
@@ -36,7 +44,7 @@
 # define A_KEY	97
 # define D_KEY	100
 
-# define MOVE_SPEED		0.03
+# define MOVE_SPEED		0.02
 # define ROTATE_SPEED	0.0165
 
 # define MAP_VOID		9
@@ -56,13 +64,8 @@
 
 ///// PROTOTYPES /////
 
-// Cub3D
 
-void		exit_error(char *error, t_data *data);
-
-// Exit and free
-
-void		exit_error(char *error, t_data *data);
+void		exit_error(char *error, char *arg, t_data *data);
 
 // Hooks
 
@@ -102,8 +105,12 @@ void		raycasting(t_data	*data);
 
 // Movement
 
-void	move_player(t_data *data);
-void	rotate_player(t_data *data);
+void		move_player(t_data *data);
+void		rotate_player_left(t_data *data);
+
+// Texture
+
+void		get_texture(t_data *data);
 
 // Debug
 

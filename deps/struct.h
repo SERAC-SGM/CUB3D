@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/15 18:08:26 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/15 19:02:30 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,7 @@ typedef struct s_map_data
 	t_strlst	*map_strs;
 	t_strlst	*top;
 	int			map_fd;
-	char		*path_texture_n;
-	char		*path_texture_s;
-	char		*path_texture_w;
-	char		*path_texture_e;
+	char		*texture_path[4];
 	int			color_f;
 	int			color_c;
 	int			map_height;

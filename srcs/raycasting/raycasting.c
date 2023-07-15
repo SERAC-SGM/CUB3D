@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 15:38:48 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/15 18:32:52 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/15 19:35:11 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,18 +98,18 @@ void	raycasting(t_data	*data)
 				ray.sidedistx += ray.deltadistx;
 				ray.mapx += ray.stepx;
 				if (ray.stepx == 1)
-					ray.side = 2;
-				else if (ray.stepx == -1)
 					ray.side = 0;
+				else if (ray.stepx == -1)
+					ray.side = 2;
 			}
 			else
 			{
 				ray.sidedisty += ray.deltadisty;
 				ray.mapy += ray.stepy;
 				if (ray.stepy == 1)
-					ray.side = 3;
-				else if (ray.stepy == -1)
 					ray.side = 1;
+				else if (ray.stepy == -1)
+					ray.side = 3;
 			}
 			if (data->mdata->map[ray.mapx][ray.mapy] > 0)
 				ray.hit = 1;
@@ -131,19 +131,19 @@ void	raycasting(t_data	*data)
 		else
 			ray.wallx = player.posx + ray.perpwalldist * ray.raydirx;
 		ray.wallx -= floor(ray.wallx);
-		ray.texx = (int)(ray.wallx * (double)TEX_WIDTH);
+		ray.texx = (int)(ray.wallx * (double)data->texture[0].width);
 		if (((ray.side == 0 || ray.side == 2) && ray.raydirx > 0))
-			ray.texx = TEX_WIDTH - ray.texx - 1;
+			ray.texx = data->texture[0].width - ray.texx - 1;
 		if (((ray.side == 1 || ray.side == 3) && ray.raydiry < 0))
-			ray.texx = TEX_WIDTH - ray.texx - 1;
-		ray.step = 1.0 * TEX_HEIGHT / ray.lineheight;
+			ray.texx = data->texture[0].width - ray.texx - 1;
+		ray.step = 1.0 * data->texture[0].height / ray.lineheight;
 		ray.texpos = (ray.drawstart - WIN_HEIGHT / 2 + ray.lineheight / 2) * ray.step;
 		y = -1;
 		while (++y < ray.drawstart)
 			pixel_put_in_image(&data->img, x, y, encode_rgb(0, 0, 0));
 		while (++y < ray.drawend)
 		{
-			ray.texy = (int)ray.texpos & (TEX_HEIGHT - 1);
+			ray.texy = (int)ray.texpos & (data->texture[0].height - 1);
 			ray.texpos += ray.step;
 			if (ray.side == 0)
 				data->color = data->texture[0].address[ray.texy * (data->texture[0].line_length / 4) + ray.texx];
