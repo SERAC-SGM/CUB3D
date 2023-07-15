@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/14 18:32:17 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/15 17:57:57 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,27 @@ typedef struct s_map_data
 	int			map_width;
 }				t_map_data;
 
+typedef struct s_texture
+{
+	void	*img;
+	unsigned int		*address;
+	int		width;
+	int		height;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}			t_texture;
+
 typedef struct s_data
 {
 	void		*mlx;
 	void		*win;
+	void		*tmpimg;
 	t_image		img;
 	t_player	*player;
 	t_ray		ray;
 	t_map_data	*mdata;
+	t_texture	texture[4];
 	double		time;
 	double		oldtime;
 	uint32_t	color;

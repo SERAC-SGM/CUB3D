@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 15:38:48 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/14 18:13:46 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/15 17:59:44 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,6 @@ void	pixel_put_in_image(t_image *image, int x, int y, int color)
 		i -= 8;
 	}
 }
-// int	get_color(t_data *data)
-// {
-// 	if (data->mdata->map[data->ray.mapx][data->ray.mapy] == 1)
-// 		return (encode_rgb(255, 0, 0));
-// 	if (data->mdata->map[data->ray.mapx][data->ray.mapy] == 2)
-// 		return (encode_rgb(0, 255, 0));
-// 	if (data->mdata->map[data->ray.mapx][data->ray.mapy] == 3)
-// 		return (encode_rgb(0, 0, 255));
-// 	if (data->mdata->map[data->ray.mapx][data->ray.mapy] == 4)
-// 		return (encode_rgb(255, 255, 255));
-// 	else
-// 		return (encode_rgb(127, 127, 127));
-// }
 
 void	draw_line(int x, t_data *data)
 {
@@ -63,6 +50,11 @@ void	draw_line(int x, t_data *data)
 			pixel_put_in_image(&data->img, x, y, encode_rgb(50, 50, 50));
 	}
 }
+
+// int	get_color(t_texture tex, int x, int y)
+// {
+// 	return (y * tex.line_length + x * (tex.bits_per_pixel / 8));
+// }
 
 void	raycasting(t_data	*data)
 {
@@ -138,7 +130,6 @@ void	raycasting(t_data	*data)
 		ray.drawend = ray.lineheight / 2 + WIN_HEIGHT / 2;
 		if (ray.drawend >= WIN_HEIGHT)
 			ray.drawend = WIN_HEIGHT - 1;
-		data->ray = ray;
 		ray.wallx = 0;
 		if (ray.side == 0 || ray.side == 2)
 			ray.wallx = player.posy + ray.perpwalldist * ray.raydiry;
@@ -146,37 +137,29 @@ void	raycasting(t_data	*data)
 			ray.wallx = player.posx + ray.perpwalldist * ray.raydirx;
 		ray.wallx -= floor(ray.wallx);
 		ray.texx = (int)(ray.wallx * (double)TEX_WIDTH);
-		if (ray.side == 0 && ray.raydirx > 0)
+		if ((ray.side == 0 && ray.raydirx > 0) || (ray.side == 2 && ray.raydirx > 0))
 			ray.texx = TEX_WIDTH - ray.texx - 1;
-		if (ray.side == 1 && ray.raydiry < 0)
+		if ((ray.side == 1 && ray.raydiry < 0) || (ray.side == 3 && ray.raydiry < 0))
 			ray.texx = TEX_WIDTH - ray.texx - 1;
 		ray.step = 1.0 * TEX_HEIGHT / ray.lineheight;
 		ray.texpos = (ray.drawstart - WIN_HEIGHT / 2 + ray.lineheight / 2) * ray.step;
 		y = ray.drawstart - 1;
-		// while (++y < ray.drawend)
-		// {
-		// 	ray.texy = (int)ray.texpos & (TEX_HEIGHT - 1);
-		// 	ray.texpos += ray.step;
-		// 	if (ray.side == 0)
-		// 		data->color = data->texture_n[TEX_HEIGHT * ray.texy + ray.texx];
-		// 	else if (ray.side == 1)
-		// 		data->color = data->texture_s[TEX_HEIGHT * ray.texy + ray.texx];
-		// 	else if (ray.side == 2)
-		// 		data->color = data->texture_e[TEX_HEIGHT * ray.texy + ray.texx];
-		// 	else
-		// 		data->color = data->texture_w[TEX_HEIGHT * ray.texy + ray.texx];
-		// 	if (ray.side == 1 || ray.side == 3)
-		// 		data->color = (data->color >> 1) & 8355711;
-		// 	pixel_put_in_image(&data->img, x, y, data->color);
-		// }
-		if (ray.side == 0)
-			data->color = encode_rgb(255, 0, 0);
-		else if (ray.side == 1)
-			data->color = encode_rgb(0, 255, 0);
-		else if (ray.side == 2)
-			data->color = encode_rgb(0, 0, 255);
-		else
-			data->color = encode_rgb(255, 255, 255);
-		draw_line(x, data);
+		while (++y < ray.drawend)
+		{
+			ray.texy = (int)ray.texpos & (TEX_HEIGHT - 1);
+			ray.texpos += ray.step;
+			if (ray.side == 0)
+				data->color = data->texture[0].address[ray.texy * (data->texture[0].line_length / 4) + ray.texx];
+			else if (ray.side == 1)
+				data->color = data->texture[1].address[ray.texy * (data->texture[0].line_length / 4) + ray.texx];
+			else if (ray.side == 2)
+				data->color = data->texture[2].address[ray.texy * (data->texture[0].line_length / 4) + ray.texx];
+			else if (ray.side == 3)
+				data->color = data->texture[3].address[ray.texy * (data->texture[0].line_length / 4) + ray.texx];
+			//if (ray.side == 1 || ray.side == 3)
+			//	data->color = (data->color >> 1) & 8355711;
+			pixel_put_in_image(&data->img, x, y, data->color);
+		}
 	}
 }
+

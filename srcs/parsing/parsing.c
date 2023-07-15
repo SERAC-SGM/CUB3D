@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:51:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/14 18:46:36 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/15 16:27:58 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void	get_map_size(t_map_data *mdata)
 	{
 		ft_lstadd_back(&mdata->map_strs, ft_lstnew(ft_strdup(line)));
 		mdata->map_height++;
-		tmp = ft_strlen(line);&data
+		tmp = ft_strlen(line);
 		if (tmp - 1 > mdata->map_width)
 			mdata->map_width = tmp - 1;
 		free(line);
@@ -94,6 +94,7 @@ static void	get_map_size(t_map_data *mdata)
 		line = get_next_line(mdata->map_fd);
 	}
 }
+
 
 int	get_map_data(t_data *data)
 {
