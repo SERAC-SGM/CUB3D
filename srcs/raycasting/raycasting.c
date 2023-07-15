@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 15:38:48 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/15 17:59:44 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/15 18:01:41 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,6 @@ void	draw_line(int x, t_data *data)
 			pixel_put_in_image(&data->img, x, y, encode_rgb(50, 50, 50));
 	}
 }
-
-// int	get_color(t_texture tex, int x, int y)
-// {
-// 	return (y * tex.line_length + x * (tex.bits_per_pixel / 8));
-// }
 
 void	raycasting(t_data	*data)
 {
