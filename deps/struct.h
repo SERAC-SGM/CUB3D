@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/15 17:13:18 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/15 18:08:26 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,17 @@ typedef struct s_map_data
 	int			map_width;
 }				t_map_data;
 
+typedef struct s_texture
+{
+	void			*img;
+	unsigned int	*address;
+	int				width;
+	int				height;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+}			t_texture;
+
 typedef struct s_data
 {
 	void		*mlx;
@@ -96,7 +107,8 @@ typedef struct s_data
 	t_player	*player;
 	t_ray		ray;
 	t_map_data	*mdata;
-	int			TEMPCOLOR;
+	t_texture	texture[4];
+	uint32_t	color;
 	int			move_fwd;
 	int			move_bckwd;
 	int			move_left;

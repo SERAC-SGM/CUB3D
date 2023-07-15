@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:51:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/15 17:14:04 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/15 18:15:28 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ static void	fill_map(t_data *data)
 
 static void	get_map_size(t_map_data *mdata)
 {
-	char	*line;
-	int		tmp;
+	char		*line;
+	int			tmp;
 
 	mdata->map_height = 0;
 	mdata->map_width = 0;
@@ -74,14 +74,14 @@ static void	get_map_size(t_map_data *mdata)
 	}
 	if (line != NULL && (line[0] == '0' || line[0] == '1' || line[0] == ' '))
 	{
-		mdata->map_strs = ft_lstnew(ft_strdup(line));
-		mdata->top = mdata->map_strs;
+		ft_lstadd_back(&mdata->map_strs, ft_lstnew(ft_strdup(line)));
 		mdata->map_height++;
 		tmp = ft_strlen(line);
 		if (tmp - 1 > mdata->map_width)
 			mdata->map_width = tmp - 1;
 		free(line);
 		line = get_next_line(mdata->map_fd);
+		mdata->top = mdata->map_strs;
 	}
 	while (line != NULL && (line[0] == '0' || line[0] == '1' || line[0] == ' '))
 	{
@@ -94,6 +94,7 @@ static void	get_map_size(t_map_data *mdata)
 		line = get_next_line(mdata->map_fd);
 	}
 }
+
 
 int	get_map_data(t_data *data)
 {

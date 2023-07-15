@@ -92,6 +92,7 @@ SRCS_DIR += ./srcs
 SRCS_DIR += ./srcs/parsing
 SRCS_DIR += ./srcs/debug
 SRCS_DIR += ./srcs/raycasting
+SRCS_DIR += ./srcs/textures
 
 PATH_SRCS = $(SRCS_DIR)
 
@@ -110,7 +111,11 @@ SRCS += exit_and_free.c
 SRCS += parsing_utils.c
 SRCS += debug.c
 SRCS += raycasting.c
+<<<<<<< HEAD
 SRCS += movement.c
+=======
+SRCS += texture.c
+>>>>>>> texture
 
 #______________________________________________________________________________#
 ############################### Attribution ####################################
