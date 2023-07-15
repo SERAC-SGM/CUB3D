@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/15 16:39:40 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/15 16:54:23 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,25 @@ int	check_arg(int argc, char **argv, t_data *data)
 
 }
 
+void	init_data(t_data *data, t_map_data *mdata, t_player *player)
+{
+	data->move_fwd = 0;
+	data->move_bckwd = 0;
+	data->move_left = 0;
+	data->move_right = 0;
+	data->rotate_left = 0;
+	data->rotate_right = 0;
+	data->mdata = mdata;
+	data->player = player;
+}
+
 int	main(int argc, char **argv)
 {
 	t_data		data;
-	t_map_data	map_data;
+	t_map_data	mdata;
 	t_player	player;
 
-	data.mdata = &map_data;
-	data.player = &player;
+	init_data(&data, &mdata, &player);
 	if (check_arg(argc, argv, &data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (get_map_data(&data) == EXIT_FAILURE)

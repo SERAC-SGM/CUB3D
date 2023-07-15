@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_and_free.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:50:07 by mat               #+#    #+#             */
-/*   Updated: 2023/07/14 14:28:31 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/15 17:27:37 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	exit_error(char *error, t_data *data)
 	free(data->mdata->path_texture_s);
 	free(data->mdata->path_texture_e);
 	free(data->mdata->path_texture_w);
+	free(data->player);
 	if (error)
 		ft_putstr_fd(error, 2);
 	exit(1);

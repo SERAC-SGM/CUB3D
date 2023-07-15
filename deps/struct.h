@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/15 16:39:28 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/15 17:13:18 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_map_data
 {
 	int			**map;
 	t_strlst	*map_strs;
+	t_strlst	*top;
 	int			map_fd;
 	char		*path_texture_n;
 	char		*path_texture_s;
