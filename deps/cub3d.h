@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/14 18:11:42 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/15 16:47:55 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 # define CLOSE_WINDOW 17
 # define KEY_PRESS 2
+# define KEY_RELEASE 3
 
 # define LEFT_ARROW 65361
 # define RIGHT_ARROW 65363
@@ -32,8 +33,11 @@
 # define SPACE	32
 # define W_KEY	119
 # define S_KEY	115
-# define A_KEY	113
+# define A_KEY	97
 # define D_KEY	100
+
+# define MOVE_SPEED		0.03
+# define ROTATE_SPEED	0.0165
 
 # define MAP_VOID		9
 # define MAP_FLOOR		0
@@ -63,7 +67,8 @@ void		exit_error(char *error, t_data *data);
 
 // Hooks
 
-int			handle_key_input(int keycode, t_data *data);
+int			handle_key_press(int keycode, t_data *data);
+int			handle_key_release(int keycode, t_data *data);
 int			quit_window(t_data *data);
 
 // Parsing
@@ -93,47 +98,18 @@ void		ft_lstadd_back(t_strlst **lst, t_strlst *new);
 void		ft_lstclear(t_strlst **lst, void (*del)(void*));
 
 // Raycasting
+
 void		raycasting(t_data	*data);
+
+// Movement
+
+void	move_player(t_data *data);
+void	rotate_player(t_data *data);
 
 // Debug
 
 void		print_player_data(t_player *player);
 void		print_map_data(t_map_data *mdata);
 void		print_map(t_map_data *mdata);
-
-
-//# define MAP_HEIGHT	24
-//# define MAP_WIDTH	24
-
-//# define TEX1 = "./raycaster/pics/bluestone.png"
-//# define TEX2 = "./raycaster/pics/greystone.png"
-
-//int worldMap[MAP_WIDTH][MAP_HEIGHT]=
-//{
-//  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-//  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-//  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-//  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-//  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-//};
 
 #endif

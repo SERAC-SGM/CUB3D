@@ -6,33 +6,45 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:34:39 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/14 18:46:56 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/15 16:26:59 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	rotate_player(int keycode, t_data *data)
-{
-	(void)keycode;
-	(void)data;
-	return ;
-}
-
-void	move_player(int keycode, t_data *data)
-{
-	if (keycode == )
-}
-
-int	handle_key_input(int keycode, t_data *data)
+int	handle_key_press(int keycode, t_data *data)
 {
 	if (keycode == ESCAPE)
 		exit_error("Destroyed window\n", data);
-	else if (keycode == LEFT_ARROW || keycode == RIGHT_ARROW)
-		rotate_player(keycode, data);
-	else if (keycode == W_KEY || keycode == S_KEY
-		|| keycode == A_KEY || keycode == D_KEY)
-		move_player(keycode, data);
+	if (keycode == LEFT_ARROW)
+		data->rotate_left = 1;
+	if (keycode == RIGHT_ARROW)
+		data->rotate_right = 1;
+	if (keycode == W_KEY)
+		data->move_fwd = 1;
+	if (keycode == S_KEY)
+		data->move_bckwd = 1;
+	if (keycode == A_KEY)
+		data->move_left = 1;
+	if (keycode == D_KEY)
+		data->move_right = 1;
+	return (0);
+}
+
+int			handle_key_release(int keycode, t_data *data)
+{
+	if (keycode == LEFT_ARROW)
+		data->rotate_left = 0;
+	if (keycode == RIGHT_ARROW)
+		data->rotate_right = 0;
+	if (keycode == W_KEY)
+		data->move_fwd = 0;
+	if (keycode == S_KEY)
+		data->move_bckwd = 0;
+	if (keycode == A_KEY)
+		data->move_left = 0;
+	if (keycode == D_KEY)
+		data->move_right = 0;
 	return (0);
 }
 

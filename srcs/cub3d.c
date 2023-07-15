@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/14 18:46:31 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/15 16:39:40 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static void	init_window(t_data *data)
  int	render(t_data *data)
  {
  	raycasting(data);
+	move_player(data);
+	rotate_player(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.mlx_image, 0, 0);
  	return (0);
  }
@@ -62,11 +64,6 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	if (get_map_data(&data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	print_map(data.mdata);
-	print_map_data(data.mdata);
-	print_player_data(data.player);
-	//data.time = 0;
-	//data.oldtime 1 = 0;
 	init_window(&data);
 	data.img.mlx_image = mlx_new_image(data.mlx, WIN_WIDTH, WIN_HEIGHT);
 	data.img.address = mlx_get_data_addr(data.img.mlx_image,
@@ -76,9 +73,9 @@ int	main(int argc, char **argv)
 	raycasting(&data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img.mlx_image, 0, 0);
 	mlx_loop_hook(data.mlx, &render, &data);
-	mlx_hook(data.win, KEY_PRESS, KeyPressMask, &handle_key_input, &data);
+	mlx_hook(data.win, KEY_PRESS, KeyPressMask, &handle_key_press, &data);
+	mlx_hook(data.win, KEY_RELEASE, KeyReleaseMask, &handle_key_release, &data);
 	mlx_hook(data.win, CLOSE_WINDOW, LeaveWindowMask, &quit_window, &data);
 	mlx_loop(data.mlx);
 	return (0);
 }
-

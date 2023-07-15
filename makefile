@@ -110,6 +110,7 @@ SRCS += exit_and_free.c
 SRCS += parsing_utils.c
 SRCS += debug.c
 SRCS += raycasting.c
+SRCS += movement.c
 
 #______________________________________________________________________________#
 ############################### Attribution ####################################

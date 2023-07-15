@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/14 11:35:18 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/15 16:39:28 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,13 @@ typedef struct s_data
 	t_player	*player;
 	t_ray		ray;
 	t_map_data	*mdata;
-	double		time;
-	double		oldtime;
 	int			TEMPCOLOR;
+	int			move_fwd;
+	int			move_bckwd;
+	int			move_left;
+	int			move_right;
+	int			rotate_left;
+	int			rotate_right;
 }				t_data;
 
 #endif
