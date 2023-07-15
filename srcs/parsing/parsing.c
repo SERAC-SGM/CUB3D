@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:51:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/15 20:48:12 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/15 20:51:28 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ static void	fill_map(t_data *data)
 			else if (data->mdata->map_strs->str[j] == '1')
 				data->mdata->map[i][j] = MAP_WALL;
 			else
-				data->mdata->map[i][j] =
-					get_player_data(data, data->mdata->map_strs->str[j], i, j);
+				data->mdata->map[i][j] = get_player_data(data,
+						data->mdata->map_strs->str[j], i, j);
 			j++;
 		}
 		data->mdata->map_strs = data->mdata->map_strs->next;

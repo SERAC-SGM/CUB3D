@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:13:59 by mat               #+#    #+#             */
-/*   Updated: 2023/07/15 19:20:39 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/15 20:51:03 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static char	*trim_path(char *line)
 	path[len] = '\0';
 	return (path);
 }
-
 
 static void	store_texture(t_map_data *mdata, char *line, int *counter)
 {
