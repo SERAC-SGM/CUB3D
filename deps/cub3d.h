@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/15 19:33:58 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/15 20:40:14 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@
 
 ///// PROTOTYPES /////
 
-
 void		exit_error(char *error, char *arg, t_data *data);
 
 // Hooks
@@ -108,9 +107,17 @@ void		raycasting(t_data	*data);
 void		move_player(t_data *data);
 void		rotate_player_left(t_data *data);
 
+// Colors
+int			encode_rgb(__uint8_t red, __uint8_t green, __uint8_t blue);
+
 // Texture
 
 void		get_texture(t_data *data);
+void		put_texture_pixel(t_ray *ray, t_data *data, int x, int y);
+
+// Window
+
+void		pixel_put_in_image(t_image *image, int x, int y, int color);
 
 // Debug
 

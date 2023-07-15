@@ -91,8 +91,6 @@ vpath %.h $(DEPS_DIR)
 SRCS_DIR += ./srcs
 SRCS_DIR += ./srcs/parsing
 SRCS_DIR += ./srcs/debug
-SRCS_DIR += ./srcs/raycasting
-SRCS_DIR += ./srcs/textures
 
 PATH_SRCS = $(SRCS_DIR)
 
@@ -100,20 +98,25 @@ PATH_SRCS = $(SRCS_DIR)
 ############################### Sources ########################################
 #‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾#
 
-SRCS += cub3d.c
-SRCS += hooks.c
-SRCS += parsing.c
-SRCS += mallocs.c
+# parsing
 SRCS += get_color.c
-SRCS += get_textures.c
 SRCS += get_player.c
-SRCS += exit_and_free.c
+SRCS += get_textures.c
+SRCS += mallocs.c
 SRCS += parsing_utils.c
-SRCS += debug.c
-SRCS += raycasting.c
-SRCS += movement.c
-SRCS += texture.c
+SRCS += parsing.c
 
+SRCS += color.c
+SRCS += cub3d.c
+SRCS += exit_and_free.c
+SRCS += hooks.c
+SRCS += movement.c
+SRCS += raycasting.c
+SRCS += texture.c
+SRCS += window.c
+
+# debug
+SRCS += debug.c
 #______________________________________________________________________________#
 ############################### Attribution ####################################
 #‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾#

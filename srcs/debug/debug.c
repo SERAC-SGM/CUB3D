@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 14:16:27 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/15 19:04:47 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/15 20:40:22 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	print_map(t_map_data *mdata)
 	while (i < mdata->map_height)
 	{
 		j = 0;
-		while(j < mdata->map_width)
+		while (j < mdata->map_width)
 			printf("%d", mdata->map[i][j++]);
 		printf("\n");
 		i++;

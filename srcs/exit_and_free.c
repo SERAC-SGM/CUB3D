@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:50:07 by mat               #+#    #+#             */
-/*   Updated: 2023/07/15 19:20:12 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/15 20:42:38 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	free_map(t_map_data *mdata)
 	}
 	free(mdata->map);
 }
-
 
 void	exit_error(char *error, char *arg, t_data *data)
 {

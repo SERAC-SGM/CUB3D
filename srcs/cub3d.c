@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/15 19:13:10 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/15 20:40:39 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	check_arg(int argc, char **argv, t_data *data)
 	else
 		data->mdata->map_fd = map_fd;
 	return (EXIT_SUCCESS);
-
 }
 
 void	init_data(t_data *data, t_map_data *mdata, t_player *player)
@@ -63,7 +62,6 @@ void	init_data(t_data *data, t_map_data *mdata, t_player *player)
 	data->mdata = mdata;
 	data->player = player;
 }
-
 
 int	main(int argc, char **argv)
 {

@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:51:04 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/15 18:47:13 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/15 19:58:35 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static void	move_player_side(t_data *data)
 			data->player->posy += data->player->dirx * MOVE_SPEED;
 	}
 }
-
 
 void	move_player(t_data *data)
 {
