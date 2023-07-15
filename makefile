@@ -111,11 +111,8 @@ SRCS += exit_and_free.c
 SRCS += parsing_utils.c
 SRCS += debug.c
 SRCS += raycasting.c
-<<<<<<< HEAD
 SRCS += movement.c
-=======
 SRCS += texture.c
->>>>>>> texture
 
 #______________________________________________________________________________#
 ############################### Attribution ####################################

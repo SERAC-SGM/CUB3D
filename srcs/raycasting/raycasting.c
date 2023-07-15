@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 15:38:48 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/15 18:01:41 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/15 18:32:52 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,13 +132,15 @@ void	raycasting(t_data	*data)
 			ray.wallx = player.posx + ray.perpwalldist * ray.raydirx;
 		ray.wallx -= floor(ray.wallx);
 		ray.texx = (int)(ray.wallx * (double)TEX_WIDTH);
-		if ((ray.side == 0 && ray.raydirx > 0) || (ray.side == 2 && ray.raydirx > 0))
+		if (((ray.side == 0 || ray.side == 2) && ray.raydirx > 0))
 			ray.texx = TEX_WIDTH - ray.texx - 1;
-		if ((ray.side == 1 && ray.raydiry < 0) || (ray.side == 3 && ray.raydiry < 0))
+		if (((ray.side == 1 || ray.side == 3) && ray.raydiry < 0))
 			ray.texx = TEX_WIDTH - ray.texx - 1;
 		ray.step = 1.0 * TEX_HEIGHT / ray.lineheight;
 		ray.texpos = (ray.drawstart - WIN_HEIGHT / 2 + ray.lineheight / 2) * ray.step;
-		y = ray.drawstart - 1;
+		y = -1;
+		while (++y < ray.drawstart)
+			pixel_put_in_image(&data->img, x, y, encode_rgb(0, 0, 0));
 		while (++y < ray.drawend)
 		{
 			ray.texy = (int)ray.texpos & (TEX_HEIGHT - 1);
@@ -146,15 +148,15 @@ void	raycasting(t_data	*data)
 			if (ray.side == 0)
 				data->color = data->texture[0].address[ray.texy * (data->texture[0].line_length / 4) + ray.texx];
 			else if (ray.side == 1)
-				data->color = data->texture[1].address[ray.texy * (data->texture[0].line_length / 4) + ray.texx];
+				data->color = data->texture[1].address[ray.texy * (data->texture[1].line_length / 4) + ray.texx];
 			else if (ray.side == 2)
-				data->color = data->texture[2].address[ray.texy * (data->texture[0].line_length / 4) + ray.texx];
+				data->color = data->texture[2].address[ray.texy * (data->texture[2].line_length / 4) + ray.texx];
 			else if (ray.side == 3)
-				data->color = data->texture[3].address[ray.texy * (data->texture[0].line_length / 4) + ray.texx];
-			//if (ray.side == 1 || ray.side == 3)
-			//	data->color = (data->color >> 1) & 8355711;
+				data->color = data->texture[3].address[ray.texy * (data->texture[3].line_length / 4) + ray.texx];
 			pixel_put_in_image(&data->img, x, y, data->color);
 		}
+		while (++y < WIN_HEIGHT)
+			pixel_put_in_image(&data->img, x, y, encode_rgb(100, 100, 100));
 	}
 }
 

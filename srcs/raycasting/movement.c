@@ -3,32 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:51:04 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/15 16:32:48 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/15 18:37:49 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	move_player_side(t_data *data)
-{
-	if (data->move_left == 1)
-	{
-		if(data->mdata->map[(int)(data->player->posx - (data->player->diry * MOVE_SPEED * 2))][(int)data->player->posy] == 0)
-			data->player->posx -= data->player->diry * MOVE_SPEED;
-		if(data->mdata->map[(int)data->player->posx][(int)(data->player->posy - (data->player->dirx * MOVE_SPEED * 2))] == 0)
-			data->player->posy -= data->player->dirx * MOVE_SPEED;
-	}
-	if (data->move_right == 1)
-	{
-		if(data->mdata->map[(int)(data->player->posx + (data->player->diry * MOVE_SPEED * 2))][(int)data->player->posy] == 0)
-			data->player->posx += data->player->diry * MOVE_SPEED;
-		if(data->mdata->map[(int)data->player->posx][(int)(data->player->posy + (data->player->dirx * MOVE_SPEED * 2))] == 0)
-			data->player->posy += data->player->dirx * MOVE_SPEED;
-	}
+static void move_player_side(t_data *data) {
+    if (data->move_right == 1) {
+        if (data->mdata->map[(int)(data->player->posx + (data->player->diry * MOVE_SPEED * 2))][(int)data->player->posy] == 0)
+            data->player->posx += data->player->diry * MOVE_SPEED;
+        if (data->mdata->map[(int)data->player->posx][(int)(data->player->posy - (data->player->dirx * MOVE_SPEED * 2))] == 0)
+            data->player->posy -= data->player->dirx * MOVE_SPEED;
+    }
+    if (data->move_left == 1) {
+        if (data->mdata->map[(int)(data->player->posx - (data->player->diry * MOVE_SPEED * 2))][(int)data->player->posy] == 0)
+            data->player->posx -= data->player->diry * MOVE_SPEED;
+        if (data->mdata->map[(int)data->player->posx][(int)(data->player->posy + (data->player->dirx * MOVE_SPEED * 2))] == 0)
+            data->player->posy += data->player->dirx * MOVE_SPEED;
+    }
 }
+
 
 void	move_player(t_data *data)
 {

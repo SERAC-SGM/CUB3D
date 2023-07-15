@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/15 18:20:23 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/15 18:28:19 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ static void	init_window(t_data *data)
 		exit_error(E_MLX, data);
 }
 
- int	render(t_data *data)
- {
- 	raycasting(data);
+int	render(t_data *data)
+{
+	raycasting(data);
 	move_player(data);
 	rotate_player(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.mlx_image, 0, 0);
- 	return (0);
- }
+	return (0);
+}
 
 int	check_arg(int argc, char **argv, t_data *data)
 {
@@ -71,7 +71,7 @@ void	get_texture(t_data *data)
 	data->texture[2].img = mlx_xpm_file_to_image(data->mlx, "textures/bluestone.xpm", &data->texture[2].width, &data->texture[2].height);
 	data->texture[3].img = mlx_xpm_file_to_image(data->mlx, "textures/purplestone.xpm", &data->texture[3].width, &data->texture[3].height);
 	if (!data->texture[0].img || !data->texture[1].img || !data->texture[2].img || !data->texture[3].img)
-		exit_error("TEX NOT FOUND\n", data);
+		exit_error("TEXTURE NOT FOUND\n", data);
 	data->texture[0].address = (unsigned int *)mlx_get_data_addr(data->texture[0].img, &data->texture[0].bits_per_pixel, &data->texture[0].line_length, &data->texture[0].endian);
 	data->texture[1].address = (unsigned int *)mlx_get_data_addr(data->texture[1].img, &data->texture[1].bits_per_pixel, &data->texture[1].line_length, &data->texture[1].endian);
 	data->texture[2].address = (unsigned int *)mlx_get_data_addr(data->texture[2].img, &data->texture[2].bits_per_pixel, &data->texture[2].line_length, &data->texture[2].endian);
@@ -90,12 +90,12 @@ int	main(int argc, char **argv)
 	if (get_map_data(&data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	init_window(&data);
+	get_texture(&data);
 	data.img.mlx_image = mlx_new_image(data.mlx, WIN_WIDTH, WIN_HEIGHT);
 	data.img.address = mlx_get_data_addr(data.img.mlx_image,
 			&data.img.bits_per_pixel, &data.img.line_length, &data.img.endian);
 	if (!data.img.mlx_image || !data.img.address)
 		exit_error(E_MLX, &data);
-	raycasting(&data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img.mlx_image, 0, 0);
 	mlx_loop_hook(data.mlx, &render, &data);
 	mlx_hook(data.win, KEY_PRESS, KeyPressMask, &handle_key_press, &data);
