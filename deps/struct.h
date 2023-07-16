@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/15 19:02:30 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/16 16:20:43 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_ray
 	int		texy;
 	double	step;
 	double	texpos;
+	double	zbuffer[WIN_WIDTH];
 }			t_ray;
 
 typedef struct s_strlst

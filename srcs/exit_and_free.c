@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:50:07 by mat               #+#    #+#             */
-/*   Updated: 2023/07/15 20:42:38 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/16 16:11:06 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	exit_error(char *error, char *arg, t_data *data)
 	int	i;
 
 	i = -1;
+	write(2, "Error\n", 6);
 	if (error)
 		ft_putstr_fd(error, 2);
 	if (arg)

@@ -6,18 +6,18 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/15 20:40:14 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/16 16:11:47 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-//# define WIN_HEIGHT 480
-//# define WIN_WIDTH 640
+# define WIN_HEIGHT 480
+# define WIN_WIDTH 640
 
-# define WIN_HEIGHT 600
-# define WIN_WIDTH 800
+// # define WIN_HEIGHT 600
+// # define WIN_WIDTH 800
 
 // # define WIN_HEIGHT 768
 // # define WIN_WIDTH 1024
@@ -25,8 +25,8 @@
 //# define TEX_WIDTH 64
 //# define TEX_HEIGHT 64
 
-# define E_MLX "MiniLibX error : "
-# define E_TEXTURE "Error while loading texture : "
+# define E_MLX "MiniLibX : "
+# define E_TEXTURE "Unable to load texture : "
 
 # define MAP_HEIGHT	24
 # define MAP_WIDTH	24
