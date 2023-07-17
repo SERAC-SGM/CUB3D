@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 15:38:48 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/17 11:13:45 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/17 16:51:09 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,27 +85,27 @@ static void	get_wall_heigth(t_ray *ray, t_player *player, t_data *data)
 	else
 		ray->wallx = player->posx + ray->perpwalldist * ray->raydirx;
 	ray->wallx -= floor(ray->wallx);
-	ray->texx = (int)(ray->wallx * (double)data->texture[0].width);
+	ray->texx = (int)(ray->wallx * (double)data->wall[0].width);
 	if (((ray->side == 0 || ray->side == 2) && ray->raydirx > 0))
-		ray->texx = data->texture[0].width - ray->texx - 1;
+		ray->texx = data->wall[0].width - ray->texx - 1;
 	if (((ray->side == 1 || ray->side == 3) && ray->raydiry < 0))
-		ray->texx = data->texture[0].width - ray->texx - 1;
-	ray->step = 1.0 * data->texture[0].height / ray->lineheight;
+		ray->texx = data->wall[0].width - ray->texx - 1;
+	ray->step = 1.0 * data->wall[0].height / ray->lineheight;
 	ray->texpos = (ray->drawstart - WIN_HEIGHT / 2 + ray->lineheight / 2)
 		* ray->step;
 }
 
 static void	display_line(int x, t_ray *ray, t_data *data)
 {
-	int	y;
+	int		y;
 
 	y = -1;
 	while (++y < ray->drawstart)
-		pixel_put_in_image(&data->img, x, y, data->mdata->color_c);
+		pixel_put_in_image(&data->img, x, y, data->mdata->color_ceiling);
 	while (++y < ray->drawend)
-		put_texture_pixel(ray, data, x, y);
+		put_wall_pixel(ray, data, x, y);
 	while (++y < WIN_HEIGHT)
-		pixel_put_in_image(&data->img, x, y, data->mdata->color_f);
+		pixel_put_in_image(&data->img, x, y, data->mdata->color_floor);
 }
 
 void	raycasting(t_data	*data)
@@ -117,20 +117,19 @@ void	raycasting(t_data	*data)
 	player = *data->player;
 	ray = data->ray;
 	x = -1;
+	init_ray(x, &ray, &player);
 	while (++x < WIN_WIDTH)
 	{
-		ray.camerax = 2 * x / (double)WIN_WIDTH - 1;
-		ray.raydirx = player.dirx + player.planex * ray.camerax;
-		ray.raydiry = player.diry + player.planey * ray.camerax;
-		ray.mapx = player.posx;
-		ray.mapy = player.posy;
-		ray.deltadistx = fabs(1 / ray.raydirx);
-		ray.deltadisty = fabs(1 / ray.raydiry);
-		ray.hit = 0;
+		init_ray(x, &ray, &player);
 		get_distances(&ray, &player);
 		check_hit(&ray, data);
 		get_wall_heigth(&ray, &player, data);
 		display_line(x, &ray, data);
+		display_fire_sprite(x, data);
+
 		data->ray = ray;
 	}
+	data->frame = ++data->frame % FRAME_UPDATE;
+	if (data->frame == 0)
+		data->index = ++data->index % SPRITE_NB;
 }

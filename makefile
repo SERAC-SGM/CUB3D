@@ -16,6 +16,8 @@ CC = cc
 # Compiler Flags
 CFLAGS = -Wall -Wextra -Werror -g
 
+#CFLAGS = -Wall -Wextra -Werror -O3
+
 #______________________________________________________________________________#
 ############################### Libraries ######################################
 #‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾#
@@ -114,6 +116,9 @@ SRCS += movement.c
 SRCS += raycasting.c
 SRCS += texture.c
 SRCS += window.c
+SRCS += sprite.c
+SRCS += init_sprite.c
+SRCS += raycasting_utils.c
 
 # debug
 SRCS += debug.c

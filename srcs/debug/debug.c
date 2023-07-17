@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 14:16:27 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/15 20:40:22 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:49:55 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	print_player_data(t_player *player)
 // 	printf("SO is %s\n", mdata->path_texture_s);
 // 	printf("WE is %s\n", mdata->path_texture_w);
 // 	printf("EA is %s\n", mdata->path_texture_e);
-// 	printf("F is %d\n", mdata->color_f);
-// 	printf("C is %d\n", mdata->color_c);
+// 	printf("F is %d\n", mdata->color_floor);
+// 	printf("C is %d\n", mdata->color_ceiling);
 // }
 void	print_map(t_map_data *mdata)
 {
