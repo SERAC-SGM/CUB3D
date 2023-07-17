@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 15:38:48 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/17 16:51:09 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/17 16:55:30 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,6 @@ void	raycasting(t_data	*data)
 		get_wall_heigth(&ray, &player, data);
 		display_line(x, &ray, data);
 		display_fire_sprite(x, data);
-
 		data->ray = ray;
 	}
 	data->frame = ++data->frame % FRAME_UPDATE;

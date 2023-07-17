@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/17 16:49:27 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/17 16:56:07 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void		get_sprite(t_data *data);
 void		display_fire_sprite(int x, t_data *data);
 void		init_walls_sprites(t_data *data);
 void		init_ray(int x, t_ray *ray, t_player *player);
-
 
 ///// PROTOTYPES /////
 
