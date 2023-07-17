@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:34:39 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/15 20:42:44 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:41:17 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	handle_key_press(int keycode, t_data *data)
 {
 	if (keycode == ESCAPE)
-		exit_error(NULL, NULL, data);
+		exit_clean(data);
 	if (keycode == LEFT_ARROW)
 		data->rotate_left = 1;
 	if (keycode == RIGHT_ARROW)
@@ -50,6 +50,6 @@ int	handle_key_release(int keycode, t_data *data)
 
 int	quit_window(t_data *data)
 {
-	exit_error(NULL, NULL, data);
+	exit_clean(data);
 	return (0);
 }

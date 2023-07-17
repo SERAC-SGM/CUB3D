@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/16 16:11:47 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:40:27 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,16 @@
 
 ///// PROTOTYPES /////
 
+// Exit and free
+
 void		exit_error(char *error, char *arg, t_data *data);
+void		exit_clean(t_data *data);
+
+// Init
+
+void	init_window(t_data *data);
+void	init_data(t_data *data, t_map_data *mdata, t_player *player);
+void	init_images(t_data *data);
 
 // Hooks
 
