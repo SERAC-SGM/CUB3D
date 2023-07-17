@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/17 16:56:07 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/17 17:27:22 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,14 @@
 # define MOVE_SPEED		0.02
 # define ROTATE_SPEED	0.0165
 
-# define MAP_VOID		9
+# define MAP_VOID		0
 # define MAP_FLOOR		0
 # define MAP_WALL		1
+# define MAP_THIN_WALL_X	't'
+# define MAP_THIN_WALL_Y	'T'
+# define MAP_DOOR_X		'd'
+# define MAP_DOOR_Y		'D'
+# define MAP_SPRITE		'S'
 # define PLAYER_NORTH	2
 # define PLAYER_SOUTH	3
 # define PLAYER_EAST	4

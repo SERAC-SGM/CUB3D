@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/17 16:47:51 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/17 17:05:33 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	if (get_map_data(&data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
+	print_map(data.mdata);
 	init_window(&data);
 	init_walls_sprites(&data);
 	data.img.mlx_image = mlx_new_image(data.mlx, WIN_WIDTH, WIN_HEIGHT);

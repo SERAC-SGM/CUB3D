@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 15:38:48 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/17 16:55:30 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/17 17:59:11 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,17 @@ static void	check_hit(t_ray *ray, t_data *data)
 			else if (ray->stepy == -1)
 				ray->side = 3;
 		}
-		if (data->mdata->map[ray->mapx][ray->mapy] > 0)
-			ray->hit = 1;
+		// if (data->mdata->map[ray->mapx][ray->mapy] == MAP_THIN_WALL_X
+		// 	|| data->mdata->map[ray->mapx][ray->mapy] == MAP_THIN_WALL_Y)
+		// {
+		// 	if (ray->side == 0 || ray->side == 2)
+		// 		ray->hit = MAP_THIN_WALL_X;
+		// 	if (ray->side == 1 || ray->side == 3)
+		// 		ray->hit = MAP_THIN_WALL_Y;
+		// }
+		// else
+		//if (data->mdata->map[ray->mapx][ray->mapy] == 0)
+		ray->hit = data->mdata->map[ray->mapx][ray->mapy];
 	}
 }
 
@@ -95,7 +104,7 @@ static void	get_wall_heigth(t_ray *ray, t_player *player, t_data *data)
 		* ray->step;
 }
 
-static void	display_line(int x, t_ray *ray, t_data *data)
+static void	display_wall_line(int x, t_ray *ray, t_data *data)
 {
 	int		y;
 
@@ -124,7 +133,7 @@ void	raycasting(t_data	*data)
 		get_distances(&ray, &player);
 		check_hit(&ray, data);
 		get_wall_heigth(&ray, &player, data);
-		display_line(x, &ray, data);
+		display_wall_line(x, &ray, data);
 		display_fire_sprite(x, data);
 		data->ray = ray;
 	}
