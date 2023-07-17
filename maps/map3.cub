@@ -4,8 +4,8 @@
 
 
 
-F 220,100,0
-C 225,30,0
+C 100,100,100
+F 120,122,104
 
 NO ./textures/lab/tile040.xpm
 SO ./textures/lab/tile043.xpm

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_and_free.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:50:07 by mat               #+#    #+#             */
-/*   Updated: 2023/07/17 11:01:33 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/17 11:13:32 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ void	exit_error(char *error, char *arg, t_data *data)
 		ft_putstr_fd(arg, 2);
 	if (error)
 		ft_putstr_fd("\n", 2);
+	while (++i < 4)
+		mlx_destroy_image(data->mlx, data->texture[i].img);
+	mlx_destroy_image(data->mlx, data->img.mlx_image);
 	if (data->win)
 		mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
@@ -44,6 +47,7 @@ void	exit_error(char *error, char *arg, t_data *data)
 		free(data->mlx);
 	data->win = NULL;
 	free_map(data->mdata);
+	i = -1;
 	while (++i < 4)
 		free(data->mdata->texture_path[i]);
 	free(data->player);
