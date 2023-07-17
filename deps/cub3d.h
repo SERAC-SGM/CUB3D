@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/16 16:11:47 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:28:32 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,19 @@
 // # define WIN_HEIGHT 768
 // # define WIN_WIDTH 1024
 
-//# define TEX_WIDTH 64
-//# define TEX_HEIGHT 64
-
-# define E_MLX "MiniLibX : "
-# define E_TEXTURE "Unable to load texture : "
-
 # define MAP_HEIGHT	24
 # define MAP_WIDTH	24
+
+# define MOVE_SPEED		0.02
+# define ROTATE_SPEED	0.0165
+
+# define MAP_VOID		9
+# define MAP_FLOOR		0
+# define MAP_WALL		1
+# define PLAYER_NORTH	2
+# define PLAYER_SOUTH	3
+# define PLAYER_EAST	4
+# define PLAYER_WEST	5
 
 # define CLOSE_WINDOW 17
 # define KEY_PRESS 2
@@ -44,23 +49,15 @@
 # define A_KEY	97
 # define D_KEY	100
 
-# define MOVE_SPEED		0.02
-# define ROTATE_SPEED	0.0165
-
-# define MAP_VOID		9
-# define MAP_FLOOR		0
-# define MAP_WALL		1
-# define PLAYER_NORTH	2
-# define PLAYER_SOUTH	3
-# define PLAYER_EAST	4
-# define PLAYER_WEST	5
+# define E_MLX "MiniLibX : "
+# define E_TEXTURE "Unable to load texture : "
 
 # include <math.h>
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include "libft.h"
 # include "mlx.h"
 # include "struct.h"
-# include <X11/X.h>
-# include <X11/keysym.h>
 
 ///// PROTOTYPES /////
 
