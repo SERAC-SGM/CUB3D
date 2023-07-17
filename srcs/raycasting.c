@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 15:38:48 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/15 20:39:50 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/17 10:52:35 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,11 @@ static void	display_line(int x, t_ray *ray, t_data *data)
 
 	y = -1;
 	while (++y < ray->drawstart)
-		pixel_put_in_image(&data->img, x, y, encode_rgb(127, 0, 0));
+		pixel_put_in_image(&data->img, x, y, data->mdata->color_c);
 	while (++y < ray->drawend)
 		put_texture_pixel(ray, data, x, y);
 	while (++y < WIN_HEIGHT)
-		pixel_put_in_image(&data->img, x, y, encode_rgb(100, 100, 100));
+		pixel_put_in_image(&data->img, x, y, data->mdata->color_f);
 }
 
 void	raycasting(t_data	*data)

@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/17 11:01:44 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/17 11:02:49 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_ray
 	double	step;
 	double	texpos;
 	double	zbuffer[WIN_WIDTH];
+	double	sprite_dist;
 }			t_ray;
 
 typedef struct s_strlst
