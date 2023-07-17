@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/17 10:54:31 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/17 11:01:44 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_ray
 	int		texy;
 	double	step;
 	double	texpos;
+	double	zbuffer[WIN_WIDTH];
 }			t_ray;
 
 typedef struct s_strlst
@@ -78,15 +79,23 @@ typedef struct s_map_data
 	t_strlst	*map_strs;
 	t_strlst	*top;
 	int			map_fd;
-	char		*path_texture_n;
-	char		*path_texture_s;
-	char		*path_texture_w;
-	char		*path_texture_e;
+	char		*texture_path[4];
 	int			color_f;
 	int			color_c;
 	int			map_height;
 	int			map_width;
 }				t_map_data;
+
+typedef struct s_texture
+{
+	void			*img;
+	unsigned int	*address;
+	int				width;
+	int				height;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+}			t_texture;
 
 typedef struct s_data
 {
@@ -96,9 +105,14 @@ typedef struct s_data
 	t_player	*player;
 	t_ray		ray;
 	t_map_data	*mdata;
-	double		time;
-	double		oldtime;
-	int			TEMPCOLOR;
+	t_texture	texture[4];
+	uint32_t	color;
+	int			move_fwd;
+	int			move_bckwd;
+	int			move_left;
+	int			move_right;
+	int			rotate_left;
+	int			rotate_right;
 }				t_data;
 
 #endif

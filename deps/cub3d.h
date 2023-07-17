@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/14 16:07:43 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/16 16:11:47 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,37 @@
 
 # define WIN_HEIGHT 480
 # define WIN_WIDTH 640
-# define TEX_WIDTH 64
-# define TEX_HEIGHT 64
 
-# define E_MLX "MiniLibX error\n"
+// # define WIN_HEIGHT 600
+// # define WIN_WIDTH 800
+
+// # define WIN_HEIGHT 768
+// # define WIN_WIDTH 1024
+
+//# define TEX_WIDTH 64
+//# define TEX_HEIGHT 64
+
+# define E_MLX "MiniLibX : "
+# define E_TEXTURE "Unable to load texture : "
 
 # define MAP_HEIGHT	24
 # define MAP_WIDTH	24
 
 # define CLOSE_WINDOW 17
 # define KEY_PRESS 2
+# define KEY_RELEASE 3
 
-# define UP_ARROW 65362
-# define DOWN_ARROW 65364
 # define LEFT_ARROW 65361
 # define RIGHT_ARROW 65363
 # define ESCAPE 65307
+# define SPACE	32
+# define W_KEY	119
+# define S_KEY	115
+# define A_KEY	97
+# define D_KEY	100
+
+# define MOVE_SPEED		0.02
+# define ROTATE_SPEED	0.0165
 
 # define MAP_VOID		9
 # define MAP_FLOOR		0
@@ -49,18 +64,12 @@
 
 ///// PROTOTYPES /////
 
-// Cub3D
-
-int			main(int argc, char **argv);
-void		exit_error(char *error, t_data *data);
-
-// Exit and free
-
-void		exit_error(char *error, t_data *data);
+void		exit_error(char *error, char *arg, t_data *data);
 
 // Hooks
 
-int			handle_key_input(int keycode, t_data *data);
+int			handle_key_press(int keycode, t_data *data);
+int			handle_key_release(int keycode, t_data *data);
 int			quit_window(t_data *data);
 
 // Parsing
@@ -90,47 +99,30 @@ void		ft_lstadd_back(t_strlst **lst, t_strlst *new);
 void		ft_lstclear(t_strlst **lst, void (*del)(void*));
 
 // Raycasting
+
 void		raycasting(t_data	*data);
+
+// Movement
+
+void		move_player(t_data *data);
+void		rotate_player_left(t_data *data);
+
+// Colors
+int			encode_rgb(__uint8_t red, __uint8_t green, __uint8_t blue);
+
+// Texture
+
+void		get_texture(t_data *data);
+void		put_texture_pixel(t_ray *ray, t_data *data, int x, int y);
+
+// Window
+
+void		pixel_put_in_image(t_image *image, int x, int y, int color);
 
 // Debug
 
 void		print_player_data(t_player *player);
 void		print_map_data(t_map_data *mdata);
 void		print_map(t_map_data *mdata);
-
-
-//# define MAP_HEIGHT	24
-//# define MAP_WIDTH	24
-
-//# define TEX1 = "./raycaster/pics/bluestone.png"
-//# define TEX2 = "./raycaster/pics/greystone.png"
-
-//int worldMap[MAP_WIDTH][MAP_HEIGHT]=
-//{
-//  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-//  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-//  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-//  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-//  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-//};
 
 #endif

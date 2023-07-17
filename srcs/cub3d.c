@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/14 15:44:32 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/15 20:40:39 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,19 @@ static void	init_window(t_data *data)
 {
 	data->mlx = mlx_init();
 	if (!data->mlx)
-		exit_error(E_MLX, data);
+		exit_error(E_MLX, "init failed", data);
 	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
 	if (!data->win)
-		exit_error(E_MLX, data);
+		exit_error(E_MLX, "window creation failed", data);
+}
+
+int	render(t_data *data)
+{
+	raycasting(data);
+	move_player(data);
+	rotate_player_left(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->img.mlx_image, 0, 0);
+	return (0);
 }
 
 int	check_arg(int argc, char **argv, t_data *data)
@@ -40,73 +49,43 @@ int	check_arg(int argc, char **argv, t_data *data)
 	else
 		data->mdata->map_fd = map_fd;
 	return (EXIT_SUCCESS);
+}
 
+void	init_data(t_data *data, t_map_data *mdata, t_player *player)
+{
+	data->move_fwd = 0;
+	data->move_bckwd = 0;
+	data->move_left = 0;
+	data->move_right = 0;
+	data->rotate_left = 0;
+	data->rotate_right = 0;
+	data->mdata = mdata;
+	data->player = player;
 }
 
 int	main(int argc, char **argv)
 {
 	t_data		data;
-	t_map_data	map_data;
+	t_map_data	mdata;
 	t_player	player;
 
-	data.mdata = &map_data;
-	data.player = &player;
+	init_data(&data, &mdata, &player);
 	if (check_arg(argc, argv, &data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	if (get_map_data(&data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	print_map(data.mdata);
-	print_map_data(data.mdata);
-	print_player_data(data.player);
-	//data.time = 0;
-	//data.oldtime 1 = 0;
 	init_window(&data);
+	get_texture(&data);
 	data.img.mlx_image = mlx_new_image(data.mlx, WIN_WIDTH, WIN_HEIGHT);
 	data.img.address = mlx_get_data_addr(data.img.mlx_image,
 			&data.img.bits_per_pixel, &data.img.line_length, &data.img.endian);
 	if (!data.img.mlx_image || !data.img.address)
-		exit_error(E_MLX, &data);
-	printf("raycasting\n");
-	raycasting(&data);
-	printf("raycasting done\n");
+		exit_error(E_MLX, "image creation failed", &data);
 	mlx_put_image_to_window(data.mlx, data.win, data.img.mlx_image, 0, 0);
-	mlx_hook(data.win, KEY_PRESS, KeyPressMask, &handle_key_input, &data);
+	mlx_loop_hook(data.mlx, &render, &data);
+	mlx_hook(data.win, KEY_PRESS, KeyPressMask, &handle_key_press, &data);
+	mlx_hook(data.win, KEY_RELEASE, KeyReleaseMask, &handle_key_release, &data);
 	mlx_hook(data.win, CLOSE_WINDOW, LeaveWindowMask, &quit_window, &data);
 	mlx_loop(data.mlx);
 	return (0);
 }
-
-// int	render(t_data *data)
-// {
-// 	// if (!data->win)
-// 	// 	exit_error(E_MLX, data);
-// 	raycasting(data);
-// 	return (0);
-// }
-
-//int	main(void)
-//{
-//	t_data	data;
-
-//	data.player.posx = 22;
-//	data.player.posy = 12;
-//	data.player.dirx = -1;
-//	data.player.diry = 0;
-//	data.player.planex = 0;
-//	data.player.planey = 0.66;
-//	data.time = 0;
-//	data.oldtime = 0;
-//	init_window(&data);
-//	data.img.mlx_image = mlx_new_image(data.mlx, WIN_WIDTH, WIN_HEIGHT);
-//	data.img.address = mlx_get_data_addr(data.img.mlx_image, &data.img.bits_per_pixel, &data.img.line_length, &data.img.endian);
-//	if (!data.img.mlx_image || !data.img.address)
-//		exit_error(E_MLX, &data);
-//	while (1)
-//	{
-//		//mlx_loop_hook(data.mlx, &render, &data);
-//		//render(&data);
-//		raycasting(&data);
-//		mlx_put_image_to_window(data.mlx, data.win, data.img.mlx_image, 0, 0);
-//	}
-//	return (0);
-//}

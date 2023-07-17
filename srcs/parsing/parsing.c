@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:51:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/17 10:58:00 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/17 11:01:37 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ static void	fill_map(t_data *data)
 			else if (data->mdata->map_strs->str[j] == '1')
 				data->mdata->map[i][j] = MAP_WALL;
 			else
-				data->mdata->map[i][j] =
-					get_player_data(data, data->mdata->map_strs->str[j], i, j);
+				data->mdata->map[i][j] = get_player_data(data,
+						data->mdata->map_strs->str[j], i, j);
 			j++;
 		}
 		data->mdata->map_strs = data->mdata->map_strs->next;
@@ -60,8 +60,8 @@ static void	fill_map(t_data *data)
 
 static void	get_map_size(t_map_data *mdata)
 {
-	char	*line;
-	int		tmp;
+	char		*line;
+	int			tmp;
 
 	mdata->map_height = 0;
 	mdata->map_width = 0;
@@ -74,14 +74,14 @@ static void	get_map_size(t_map_data *mdata)
 	}
 	if (line != NULL && (line[0] == '0' || line[0] == '1' || line[0] == ' '))
 	{
-		mdata->map_strs = ft_lstnew(ft_strdup(line));
-		mdata->top = mdata->map_strs;
+		ft_lstadd_back(&mdata->map_strs, ft_lstnew(ft_strdup(line)));
 		mdata->map_height++;
 		tmp = ft_strlen(line);
 		if (tmp - 1 > mdata->map_width)
 			mdata->map_width = tmp - 1;
 		free(line);
 		line = get_next_line(mdata->map_fd);
+		mdata->top = mdata->map_strs;
 	}
 	while (line != NULL && (line[0] == '0' || line[0] == '1' || line[0] == ' '))
 	{
@@ -99,12 +99,6 @@ int	get_map_data(t_data *data)
 {
 	get_texture_path(data->mdata);
 	get_map_size(data->mdata);
-	printf("F is %d\n", data->mdata->color_f);
-	printf("C is %d\n", data->mdata->color_c);
-	printf("NO is %s\n", data->mdata->path_texture_n);
-	printf("SO is %s\n", data->mdata->path_texture_s);
-	printf("WE is %s\n", data->mdata->path_texture_w);
-	printf("EA is %s\n", data->mdata->path_texture_e);
 	if (malloc_structs(data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	fill_map(data);
