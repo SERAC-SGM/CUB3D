@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/17 11:27:20 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/17 14:00:11 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ typedef struct s_data
 	void		*mlx;
 	void		*win;
 	t_image		img;
-	t_image		minimap;
 	t_player	*player;
 	t_ray		ray;
 	t_map_data	*mdata;

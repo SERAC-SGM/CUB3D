@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/17 11:40:27 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/17 14:15:43 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 # define WIN_HEIGHT 480
 # define WIN_WIDTH 640
+
+# define MINIMAP_H	WIN_HEIGHT/4
+# define MINIMAP_W	WIN_WIDTH/4
+
+# define SCALE 10
 
 // # define WIN_HEIGHT 600
 // # define WIN_WIDTH 800
@@ -73,7 +78,7 @@ void		exit_clean(t_data *data);
 
 void	init_window(t_data *data);
 void	init_data(t_data *data, t_map_data *mdata, t_player *player);
-void	init_images(t_data *data);
+void	init_image(t_data *data);
 
 // Hooks
 
@@ -127,6 +132,10 @@ void		put_texture_pixel(t_ray *ray, t_data *data, int x, int y);
 // Window
 
 void		pixel_put_in_image(t_image *image, int x, int y, int color);
+
+// Minimap
+
+void		minimap(t_data *data);
 
 // Debug
 

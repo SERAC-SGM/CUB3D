@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 11:28:52 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/17 11:35:53 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/17 13:59:36 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,11 @@ void	init_data(t_data *data, t_map_data *mdata, t_player *player)
 	data->player = player;
 }
 
-void	init_images(t_data *data)
+void	init_image(t_data *data)
 {
 	data->img.mlx_image = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
 	data->img.address = mlx_get_data_addr(data->img.mlx_image,
 			&data->img.bits_per_pixel, &data->img.line_length, &data->img.endian);
 	if (!data->img.mlx_image || !data->img.address)
 		exit_error(E_MLX, "image creation failed", data);
-	data->minimap.mlx_image = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
-	data->minimap.address = mlx_get_data_addr(data->minimap.mlx_image,
-			&data->minimap.bits_per_pixel, &data->minimap.line_length, &data->minimap.endian);
-	if (!data->minimap.mlx_image || !data->minimap.address)
-		exit_error(E_MLX, "minimap image creation failed", data);
 }
