@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/17 11:28:32 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/18 16:48:14 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define CLOSE_WINDOW 17
 # define KEY_PRESS 2
 # define KEY_RELEASE 3
+# define MOUSE_MOVE	6
 
 # define LEFT_ARROW 65361
 # define RIGHT_ARROW 65363
@@ -68,6 +69,7 @@ void		exit_error(char *error, char *arg, t_data *data);
 int			handle_key_press(int keycode, t_data *data);
 int			handle_key_release(int keycode, t_data *data);
 int			quit_window(t_data *data);
+int			handle_mouse(int x, int y, t_data *data);
 
 // Parsing
 

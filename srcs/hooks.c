@@ -3,14 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:34:39 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/15 20:42:44 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/18 17:27:01 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+//int	handle_mouse(int x, int y, t_data *data)
+//{
+//	(void)y;
+
+//	printf("x is %d and prev y is %d\n", x, data->prev_mouse_w);
+//	if (x > data->prev_mouse_w)
+//	{
+//		printf("x > prev x\n");
+//		data->rotate_left = 1;
+//	}
+//	if (x < data->prev_mouse_w)
+//	{
+//		printf("x < prev x\n");
+//		data->rotate_right = 1;
+//	}
+//	printf("moving mouse\n");
+//	data->prev_mouse_w = x;
+//	return (0);
+//}
 
 int	handle_key_press(int keycode, t_data *data)
 {

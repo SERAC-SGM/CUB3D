@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/17 11:02:49 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/18 17:01:36 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ typedef struct s_data
 	int			move_right;
 	int			rotate_left;
 	int			rotate_right;
+	int			prev_mouse_w;
 }				t_data;
 
 #endif
