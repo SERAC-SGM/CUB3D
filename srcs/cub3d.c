@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/18 11:04:34 by mat              ###   ########.fr       */
+/*   Updated: 2023/07/18 15:57:02 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	main(int argc, char **argv)
 	init_window(&data);
 	get_texture(&data);
 	init_image(&data);
-	print_map(data.mdata);
 	mlx_loop_hook(data.mlx, &render, &data);
 	mlx_hook(data.win, KEY_PRESS, KeyPressMask, &handle_key_press, &data);
 	mlx_hook(data.win, KEY_RELEASE, KeyReleaseMask, &handle_key_release, &data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/18 11:19:13 by mat              ###   ########.fr       */
+/*   Updated: 2023/07/18 16:10:03 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 # define WIN_HEIGHT 480
 # define WIN_WIDTH 640
 
-# define MINIMAP_H	WIN_HEIGHT/4
-# define MINIMAP_W	WIN_WIDTH/4
+# define MINIMAP_H	120
+# define MINIMAP_W	160
 
-# define SCALE 1/5
+# define SCALE 1/15
 
 // # define WIN_HEIGHT 600
 // # define WIN_WIDTH 800
@@ -142,5 +142,6 @@ void		minimap(t_data *data);
 void		print_player_data(t_player *player);
 void		print_map_data(t_map_data *mdata);
 void		print_map(t_map_data *mdata);
+void		print_strs(t_strlst *lst);
 
 #endif
