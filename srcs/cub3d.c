@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/17 14:00:31 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/18 11:04:34 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	render(t_data *data)
 	move_player(data);
 	rotate_player_left(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img.mlx_image, 0, 0);
-	//mlx_put_image_to_window(data->mlx, data->win, data->minimap.mlx_image, 0, 0);
 	return (0);
 }
 
@@ -57,6 +56,7 @@ int	main(int argc, char **argv)
 	init_window(&data);
 	get_texture(&data);
 	init_image(&data);
+	print_map(data.mdata);
 	mlx_loop_hook(data.mlx, &render, &data);
 	mlx_hook(data.win, KEY_PRESS, KeyPressMask, &handle_key_press, &data);
 	mlx_hook(data.win, KEY_RELEASE, KeyReleaseMask, &handle_key_release, &data);

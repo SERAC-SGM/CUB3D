@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/17 14:15:43 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/18 11:19:13 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define MINIMAP_H	WIN_HEIGHT/4
 # define MINIMAP_W	WIN_WIDTH/4
 
-# define SCALE 10
+# define SCALE 1/5
 
 // # define WIN_HEIGHT 600
 // # define WIN_WIDTH 800
