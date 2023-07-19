@@ -6,58 +6,12 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 11:47:03 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/19 10:29:54 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/19 14:06:02 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	put_minimap_borders(t_data *data)
-{
-	int	x;
-	int	y;
-	int	color_border;
-
-	color_border = encode_rgb(9, 135, 219);
-
-	x = 0;
-	y = 0;
-
-	while (y < MINIMAP_W)
-	{
-		pixel_put_in_image(&data->img, 0, y, color_border);
-		pixel_put_in_image(&data->img, 1, y, color_border);
-		pixel_put_in_image(&data->img, MINIMAP_H - 1, y, color_border);
-		pixel_put_in_image(&data->img, MINIMAP_H - 2, y, color_border);
-		y++;
-	}
-	while (x < MINIMAP_H)
-	{
-		pixel_put_in_image(&data->img, x, 0, color_border);
-		pixel_put_in_image(&data->img, x, 1, color_border);
-		pixel_put_in_image(&data->img, x, MINIMAP_W - 1, color_border);
-		pixel_put_in_image(&data->img, x, MINIMAP_W - 2, color_border);
-		x++;
-	}
-}
-
-void	put_player_in_minimap(t_data *data)
-{
-	int	i;
-	int	j;
-
-	i = -5;
-	while (i < 5)
-	{
-		j = -5;
-		while (j < 5)
-		{
-			pixel_put_in_image(&data->img, MINIMAP_H / 2 + i, MINIMAP_W / 2 + j, encode_rgb(255, 0, 0));
-			j++;
-		}
-		i++;
-	}
-}
 
 int	within_map_borders(t_coord *coord, t_data *data)
 {
@@ -110,28 +64,4 @@ void	minimap(t_data *data)
 	}
 	put_minimap_borders(data);
 	put_player_in_minimap(data);
-}
-
-void	raycasting(t_data	*data)
-{
-	int			x;
-	t_player	player;
-	t_ray		ray;
-
-	player = *data->player;
-	ray = data->ray;
-	x = -1;
-	while (++x < WIN_WIDTH)
-	{
-		ray.camerax = 2 * x / (double)WIN_WIDTH - 1;
-		ray.raydirx = player.dirx + player.planex * ray.camerax;
-		ray.raydiry = player.diry + player.planey * ray.camerax;
-		ray.mapx = player.posx;
-		ray.mapy = player.posy;
-		ray.deltadistx = fabs(1 / ray.raydirx);
-		ray.deltadisty = fabs(1 / ray.raydiry);
-		ray.hit = 0;
-		get_distances(&ray, &player);
-		check_hit(&ray, data);
-	}
 }

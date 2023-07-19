@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/18 16:10:03 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/19 14:18:09 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@
 # define A_KEY	97
 # define D_KEY	100
 
-# define MOVE_SPEED		0.02
-# define ROTATE_SPEED	0.0165
+# define MOVE_SPEED		0.06
+# define ROTATE_SPEED	0.0375
 
 # define MAP_VOID		9
 # define MAP_FLOOR		0

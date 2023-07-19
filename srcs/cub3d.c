@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/18 15:57:02 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/19 14:01:03 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	main(int argc, char **argv)
 	init_window(&data);
 	get_texture(&data);
 	init_image(&data);
+	//render(&data);
 	mlx_loop_hook(data.mlx, &render, &data);
 	mlx_hook(data.win, KEY_PRESS, KeyPressMask, &handle_key_press, &data);
 	mlx_hook(data.win, KEY_RELEASE, KeyReleaseMask, &handle_key_release, &data);
