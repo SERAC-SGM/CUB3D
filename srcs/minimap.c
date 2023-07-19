@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 10:43:34 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/19 14:21:30 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/19 15:27:33 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	put_minimap_borders(t_data *data)
 	int	y;
 	int	color_border;
 
-	color_border = encode_rgb(9, 135, 219);
+	color_border = encode_rgb(255, 255, 255);
 
 	x = 0;
 	y = 0;
@@ -52,7 +52,7 @@ static void	put_player_in_minimap(t_data *data)
 		j = -5;
 		while (j < 5)
 		{
-			pixel_put_in_image(&data->img, MINIMAP_W / 2 + i, MINIMAP_H / 2 + j, encode_rgb(255, 0, 0));
+			pixel_put_in_image(&data->img, MINIMAP_W / 2 + i + 5, MINIMAP_H / 2 + j + 5, encode_rgb(255, 0, 0));
 			j++;
 		}
 		i++;
@@ -70,8 +70,8 @@ static int	get_minimap_color(t_data *data, double x, double y, int i, int j)
 	int	map_square_x;
 	int	map_square_y;
 
-	map_square_x = x + (i + 5)/10;
-	map_square_y = y + (j + 5)/10;
+	map_square_x = x + (i)/10;
+	map_square_y = y + (j)/10;
 
 	if (is_out_of_bounds(data, map_square_x, map_square_y) == 1 || data->mdata->map[map_square_x][map_square_y] == 0)
 		return (0);
@@ -81,12 +81,32 @@ static int	get_minimap_color(t_data *data, double x, double y, int i, int j)
 	}
 
 }
+
+void	fill_square(t_data *data, int color, int i, int j)
+{
+	int	k;
+	int	l;
+
+	k = 0;
+	while (k < 10)
+	{
+		l = 0;
+		while (l < 10)
+		{
+			pixel_put_in_image(&data->img, l + j, k + i, color);
+			l++;
+		}
+		k++;
+	}
+}
+
 void	minimap(t_data *data)
 {
 	const double	top_corner_x = data->player->posx - 6.0;
 	const double	top_corner_y = data->player->posy - 8.0;
 	int				i;
 	int				j;
+	int				color;
 
 	i = 0;
 	while (i < MINIMAP_H)
@@ -94,11 +114,11 @@ void	minimap(t_data *data)
 		j = 0;
 		while (j < MINIMAP_W)
 		{
-			pixel_put_in_image(&data->img, j, i,
-				get_minimap_color(data, top_corner_x, top_corner_y, i, j));
-			j++;
+			color = get_minimap_color(data, top_corner_x, top_corner_y, i, j);
+			fill_square(data, color, i, j);
+			j += 10;
 		}
-		i++;
+		i += 10;
 	}
 	put_minimap_borders(data);
 	put_player_in_minimap(data);
