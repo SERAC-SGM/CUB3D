@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 15:38:48 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/17 11:13:45 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/19 16:11:35 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ static void	check_hit(t_ray *ray, t_data *data)
 			else if (ray->stepy == -1)
 				ray->side = 3;
 		}
-		if (data->mdata->map[ray->mapx][ray->mapy] > 0)
+		if (data->mdata->map[ray->mapx][ray->mapy] == 1
+			|| data->mdata->map[ray->mapx][ray->mapy] == 'D')
 			ray->hit = 1;
 	}
 }

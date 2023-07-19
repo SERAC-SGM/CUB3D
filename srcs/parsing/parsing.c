@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:51:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/19 15:49:20 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/19 16:15:43 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	fill_map(t_data *data)
 			else if (data->mdata->map_strs->str[j] == '1')
 				data->mdata->map[i][j] = MAP_WALL;
 			else
-				data->mdata->map[i][j] = get_player_data(data,
+				data->mdata->map[i][j] = get_player_and_door_data(data,
 						data->mdata->map_strs->str[j], i, j);
 			j++;
 		}

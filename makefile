@@ -116,6 +116,7 @@ SRCS += texture.c
 SRCS += window.c
 SRCS += init.c
 SRCS += minimap.c
+SRCS += door.c
 
 # debug
 SRCS += debug.c

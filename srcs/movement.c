@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:51:04 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/19 11:08:02 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/19 17:00:07 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,49 +14,55 @@
 
 static void	move_player_side(t_data *data)
 {
+	const double	posx = data->player->posx;
+	const double	posy = data->player->posy;
+	const double	movx = data->player->dirx * MOVE_SPEED;
+	const double	movy = data->player->diry * MOVE_SPEED;
+
 	if (data->move_right == 1)
 	{
-		if (data->mdata->map[(int)(data->player->posx
-				+ (data->player->diry * MOVE_SPEED * 2))]
-						[(int)data->player->posy] == 0)
-			data->player->posx += data->player->diry * MOVE_SPEED;
-		if (data->mdata->map[(int)data->player->posx][(int)(data->player->posy
-			- (data->player->dirx * MOVE_SPEED * 2))] == 0)
-			data->player->posy -= data->player->dirx * MOVE_SPEED;
+		if (data->mdata->map[(int)(posx + (movy * 2))][(int)posy] == 0
+			|| data->mdata->map[(int)(posx + (movy * 2))][(int)posy] == 'd')
+			data->player->posx += movy;
+		if (data->mdata->map[(int)posx][(int)(posy - (movx * 2))] == 0
+			|| data->mdata->map[(int)posx][(int)(posy - (movx * 2))] == 'd')
+			data->player->posy -= movx;
 	}
 	if (data->move_left == 1)
 	{
-		if (data->mdata->map[(int)(data->player->posx
-				- (data->player->diry * MOVE_SPEED * 2))]
-					[(int)data->player->posy] == 0)
-			data->player->posx -= data->player->diry * MOVE_SPEED;
-		if (data->mdata->map[(int)data->player->posx][(int)(data->player->posy
-			+ (data->player->dirx * MOVE_SPEED * 2))] == 0)
-			data->player->posy += data->player->dirx * MOVE_SPEED;
+		if (data->mdata->map[(int)(posx - (movy * 2))][(int)posy] == 0
+			|| data->mdata->map[(int)(posx - (movy * 2))][(int)posy] == 'd')
+			data->player->posx -= movy;
+		if (data->mdata->map[(int)posx][(int)(posy + (movx * 2))] == 0
+			|| data->mdata->map[(int)posx][(int)(posy + (movx * 2))] == 'd')
+			data->player->posy += movx;
 	}
 }
 
 void	move_player(t_data *data)
 {
+	const double	posx = data->player->posx;
+	const double	posy = data->player->posy;
+	const double	movx = data->player->dirx * MOVE_SPEED;
+	const double	movy = data->player->diry * MOVE_SPEED;
+
 	if (data->move_fwd == 1)
 	{
-		if (data->mdata->map[(int)(data->player->posx
-				+ (data->player->dirx * MOVE_SPEED * 5))]
-					[(int)data->player->posy] == 0)
-			data->player->posx += data->player->dirx * MOVE_SPEED;
-		if (data->mdata->map[(int)data->player->posx][(int)(data->player->posy
+		if (data->mdata->map[(int)(posx + (movx * 5))][(int)posy] == 0
+			|| data->mdata->map[(int)(posx + (movx * 5))][(int)posy] == 'd')
+			data->player->posx += movx;
+		if (data->mdata->map[(int)posx][(int)(posy
 			+ (data->player->diry * MOVE_SPEED * 5))] == 0)
-			data->player->posy += data->player->diry * MOVE_SPEED;
+			data->player->posy += movy;
 	}
 	if (data->move_bckwd == 1)
 	{
-		if (data->mdata->map[(int)(data->player->posx
-				- (data->player->dirx * MOVE_SPEED * 2))]
-				[(int)data->player->posy] == 0)
-			data->player->posx -= data->player->dirx * MOVE_SPEED;
-		if (data->mdata->map[(int)data->player->posx][(int)(data->player->posy
-			- (data->player->diry * MOVE_SPEED * 2))] == 0)
-			data->player->posy -= data->player->diry * MOVE_SPEED;
+		if (data->mdata->map[(int)(posx - (movx * 2))][(int)posy] == 0
+			|| data->mdata->map[(int)(posx - (movx * 2))][(int)posy] == 'd')
+			data->player->posx -= movx;
+		if (data->mdata->map[(int)posx][(int)(posy - (movy * 2))] == 0
+			|| data->mdata->map[(int)posx][(int)(posy - (movy * 2))] == 'd')
+			data->player->posy -= movy;
 	}
 	move_player_side(data);
 }

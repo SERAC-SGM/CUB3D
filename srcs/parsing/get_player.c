@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_player.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:56:28 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/15 20:50:00 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/19 16:20:41 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,22 @@ static int	get_player_data_sides(t_data *data, char c)
 	return (MAP_FLOOR);
 }
 
-int	get_player_data(t_data *data, char c, int i, int j)
+static int	get_door_data(char c, char *d)
 {
+	if (c == 'd' || c == 'D')
+	{
+		*d = c;
+		return (EXIT_SUCCESS);
+	}
+	return (EXIT_FAILURE);
+}
+
+int	get_player_and_door_data(t_data *data, char c, int i, int j)
+{
+	char	d;
+
+	if (get_door_data(c, &d) == EXIT_SUCCESS)
+		return (d);
 	data->player->posx = i + 0.5;
 	data->player->posy = j + 0.5;
 	data->player->planex = 0;

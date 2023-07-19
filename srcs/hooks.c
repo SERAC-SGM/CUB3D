@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:34:39 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/19 15:44:08 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/19 16:23:30 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	handle_key_press(int keycode, t_data *data)
 		data->move_left = 1;
 	if (keycode == D_KEY)
 		data->move_right = 1;
+	if (keycode == SPACE)
+		change_door_state(data);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/19 15:44:25 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/19 16:34:59 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 
 # define MINIMAP_H	120
 # define MINIMAP_W	160
-
-# define SCALE 1/15
 
 // # define WIN_HEIGHT 600
 // # define WIN_WIDTH 800
@@ -53,6 +51,8 @@
 # define PLAYER_SOUTH	3
 # define PLAYER_EAST	4
 # define PLAYER_WEST	5
+# define OPEN_DOOR		'd'
+# define CLOSED_DOOR	'D'
 
 # define CLOSE_WINDOW 17
 # define KEY_PRESS 2
@@ -87,9 +87,9 @@ void		exit_clean(t_data *data);
 
 // Init
 
-void	init_window(t_data *data);
-void	init_data(t_data *data, t_map_data *mdata, t_player *player);
-void	init_image(t_data *data);
+void		init_window(t_data *data);
+void		init_data(t_data *data, t_map_data *mdata, t_player *player);
+void		init_image(t_data *data);
 
 // Hooks
 
@@ -116,7 +116,7 @@ void		get_texture_path(t_map_data *mdata);
 
 // Get player
 
-int			get_player_data(t_data *data, char c, int i, int j);
+int			get_player_and_door_data(t_data *data, char c, int i, int j);
 
 // Parsing utils
 
@@ -148,6 +148,10 @@ void		pixel_put_in_image(t_image *image, int x, int y, int color);
 // Minimap
 
 void		minimap(t_data *data);
+
+// Door
+
+void		change_door_state(t_data *data);
 
 // Debug
 
