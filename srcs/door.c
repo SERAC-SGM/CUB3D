@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 16:24:17 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/19 17:00:39 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/19 17:03:41 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,7 @@ void	change_door_state(t_data *data)
 	const int	door_y = (int)data->player->posy + general_diry;
 
 	if (data->mdata->map[door_x][door_y] == 'd')
-	{
-		printf("changing door_state to closed\n");
 		data->mdata->map[door_x][door_y] = 'D';
-	}
 	else if (data->mdata->map[door_x][door_y] == 'D')
-	{
-		printf("changing door_state to open\n");
 		data->mdata->map[door_x][door_y] = 'd';
-	}
 }
