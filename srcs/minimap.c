@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 11:47:03 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/18 16:31:05 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/19 10:29:54 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,28 +91,6 @@ int	get_minimap_color(t_data *data, int x, int y)
 		return (encode_rgb(255, 255, 255));
 }
 
-//int	get_minimap_color(t_data *data, int x, int y)
-//{
-//	const int	player_h = data->player->posx;
-//	const int	player_w = data->player->posy;
-//	t_coord		minimap_square;
-
-//	minimap_square.h = x / 20 - 1;
-//	minimap_square.w = y / 20 - 1;
-//	printf("x is %d, y is %d\n", x, y);
-//	printf("minimap x is %d, minimap y is %d\n", minimap_square.h, minimap_square.w);
-//	printf("player_h is %d, player_w is %d\n", player_h, player_w);
-//	if (within_map_borders(&minimap_square, data) ||
-//		data->mdata->map[player_h + minimap_square.h - 3]
-//		[player_w + minimap_square.w - 4]
-//		== 0)
-//		return (encode_rgb(0, 0, 0));
-//	else
-//		return (encode_rgb(255, 255, 255));
-
-
-//}
-
 void	minimap(t_data *data)
 {
 	(void)data;
@@ -132,4 +110,28 @@ void	minimap(t_data *data)
 	}
 	put_minimap_borders(data);
 	put_player_in_minimap(data);
+}
+
+void	raycasting(t_data	*data)
+{
+	int			x;
+	t_player	player;
+	t_ray		ray;
+
+	player = *data->player;
+	ray = data->ray;
+	x = -1;
+	while (++x < WIN_WIDTH)
+	{
+		ray.camerax = 2 * x / (double)WIN_WIDTH - 1;
+		ray.raydirx = player.dirx + player.planex * ray.camerax;
+		ray.raydiry = player.diry + player.planey * ray.camerax;
+		ray.mapx = player.posx;
+		ray.mapy = player.posy;
+		ray.deltadistx = fabs(1 / ray.raydirx);
+		ray.deltadisty = fabs(1 / ray.raydiry);
+		ray.hit = 0;
+		get_distances(&ray, &player);
+		check_hit(&ray, data);
+	}
 }

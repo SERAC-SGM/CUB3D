@@ -115,7 +115,7 @@ SRCS += raycasting.c
 SRCS += texture.c
 SRCS += window.c
 SRCS += init.c
-SRCS += minimap.c
+SRCS += minimap2.c
 
 # debug
 SRCS += debug.c
