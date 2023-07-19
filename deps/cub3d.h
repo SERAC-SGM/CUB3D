@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/18 16:48:14 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/19 15:44:25 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 # define WIN_HEIGHT 480
 # define WIN_WIDTH 640
+
+# define MINIMAP_H	120
+# define MINIMAP_W	160
+
+# define SCALE 1/15
 
 // # define WIN_HEIGHT 600
 // # define WIN_WIDTH 800
@@ -25,8 +30,21 @@
 # define MAP_HEIGHT	24
 # define MAP_WIDTH	24
 
-# define MOVE_SPEED		0.02
-# define ROTATE_SPEED	0.0165
+# define CLOSE_WINDOW 17
+# define KEY_PRESS 2
+# define KEY_RELEASE 3
+
+# define LEFT_ARROW 65361
+# define RIGHT_ARROW 65363
+# define ESCAPE 65307
+# define SPACE	32
+# define W_KEY	119
+# define S_KEY	115
+# define A_KEY	97
+# define D_KEY	100
+
+# define MOVE_SPEED		0.06
+# define ROTATE_SPEED	0.0375
 
 # define MAP_VOID		9
 # define MAP_FLOOR		0
@@ -62,7 +80,16 @@
 
 ///// PROTOTYPES /////
 
+// Exit and free
+
 void		exit_error(char *error, char *arg, t_data *data);
+void		exit_clean(t_data *data);
+
+// Init
+
+void	init_window(t_data *data);
+void	init_data(t_data *data, t_map_data *mdata, t_player *player);
+void	init_image(t_data *data);
 
 // Hooks
 
@@ -118,10 +145,15 @@ void		put_texture_pixel(t_ray *ray, t_data *data, int x, int y);
 
 void		pixel_put_in_image(t_image *image, int x, int y, int color);
 
+// Minimap
+
+void		minimap(t_data *data);
+
 // Debug
 
 void		print_player_data(t_player *player);
 void		print_map_data(t_map_data *mdata);
 void		print_map(t_map_data *mdata);
+void		print_strs(t_strlst *lst);
 
 #endif

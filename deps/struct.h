@@ -6,12 +6,18 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/18 17:01:36 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/19 15:44:17 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+typedef struct s_coord
+{
+	int	h;
+	int	w;
+}			t_coord;
 
 typedef struct s_image
 {
