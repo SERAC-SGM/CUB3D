@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/19 15:44:17 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/20 13:55:41 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 typedef struct s_coord
 {
-	int	h;
-	int	w;
+	int	x;
+	int	y;
 }			t_coord;
 
 typedef struct s_image

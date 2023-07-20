@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:51:04 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/20 13:45:22 by mat              ###   ########.fr       */
+/*   Updated: 2023/07/20 13:48:39 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	move_player(t_data *data)
 		if (data->mdata->map[(int)(posx + (movx * 5))][(int)posy] == 0
 			|| data->mdata->map[(int)(posx + (movx * 5))][(int)posy] == 'd')
 			data->player->posx += movx;
-		if (data->mdata->map[(int)posx][(int)(posy+ (movy * 5))] == 0
+		if (data->mdata->map[(int)posx][(int)(posy + (movy * 5))] == 0
 			|| data->mdata->map[(int)posx][(int)(posy + (movy * 5))] == 'd')
 			data->player->posy += movy;
 	}

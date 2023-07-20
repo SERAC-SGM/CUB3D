@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 11:28:52 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/17 13:59:36 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/20 14:00:25 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void	init_image(t_data *data)
 {
 	data->img.mlx_image = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
 	data->img.address = mlx_get_data_addr(data->img.mlx_image,
-			&data->img.bits_per_pixel, &data->img.line_length, &data->img.endian);
+			&data->img.bits_per_pixel,
+			&data->img.line_length, &data->img.endian);
 	if (!data->img.mlx_image || !data->img.address)
 		exit_error(E_MLX, "image creation failed", data);
 }
