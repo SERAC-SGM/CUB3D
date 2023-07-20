@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:51:04 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/19 17:00:07 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/20 13:45:22 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	move_player(t_data *data)
 		if (data->mdata->map[(int)(posx + (movx * 5))][(int)posy] == 0
 			|| data->mdata->map[(int)(posx + (movx * 5))][(int)posy] == 'd')
 			data->player->posx += movx;
-		if (data->mdata->map[(int)posx][(int)(posy
-			+ (data->player->diry * MOVE_SPEED * 5))] == 0)
+		if (data->mdata->map[(int)posx][(int)(posy+ (movy * 5))] == 0
+			|| data->mdata->map[(int)posx][(int)(posy + (movy * 5))] == 'd')
 			data->player->posy += movy;
 	}
 	if (data->move_bckwd == 1)
