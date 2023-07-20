@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/19 15:43:58 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/20 17:36:49 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ int	check_arg(int argc, char **argv, t_data *data)
 
 	if (argc != 2)
 	{
-		ft_putstr_fd("You need to put the map path in argument\n", 2);
+		ft_putstr_fd("Error\nYou need to put the map path in argument\n", 2);
 		return (EXIT_FAILURE);
 	}
 	map_fd = open(argv[1], O_RDONLY);
 	if (map_fd == -1)
 	{
-		ft_putstr_fd("Map path invalid\n", 2);
+		ft_putstr_fd("Error\nMap path invalid\n", 2);
 		return (EXIT_FAILURE);
 	}
 	else
@@ -51,7 +51,7 @@ int	main(int argc, char **argv)
 	init_data(&data, &mdata, &player);
 	if (check_arg(argc, argv, &data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	if (get_map_data(&data) == EXIT_FAILURE)
+	if (parsing(&data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	init_window(&data);
 	get_texture(&data);

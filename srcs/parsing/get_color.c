@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 10:44:16 by mat               #+#    #+#             */
-/*   Updated: 2023/07/12 11:54:22 by mat              ###   ########.fr       */
+/*   Updated: 2023/07/20 15:25:53 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static int	get_color_composant(char *line, size_t *i)
 	nb_str[j] = '\0';
 	nb = ft_atoi(nb_str);
 	free(nb_str);
+	if (nb > 255)
+		return (-1);
 	return (nb);
 }
 
@@ -55,6 +57,8 @@ static int	get_color(char *line)
 	r = get_color_composant(line, &i);
 	g = get_color_composant(line, &i);
 	b = get_color_composant(line, &i);
+	if (r == -1 || g == -1 || b == -1 || line[i] != '\n')
+		return (-1);
 	return (get_rgb_colors(r, g, b));
 }
 

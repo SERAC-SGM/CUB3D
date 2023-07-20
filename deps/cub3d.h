@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/19 16:34:59 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/20 18:01:16 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,11 @@
 # define A_KEY	97
 # define D_KEY	100
 
-# define E_MLX "MiniLibX : "
-# define E_TEXTURE "Unable to load texture : "
+# define E_MLX			"MiniLibX : "
+# define E_TEXTURE		"Unable to load texture : "
+# define E_COLOR		"Referenced colors in wrong format\nUse R, G, B Format\n"
+# define E_PLAYER		"Wrong number of player in map, you must reference a single player position\n"
+# define E_UNCLOSED_MAP	"Wrong map format, maps need to be surrounded by walls\n"
 
 # include <math.h>
 # include <X11/X.h>
@@ -100,7 +103,7 @@ int			handle_mouse(int x, int y, t_data *data);
 
 // Parsing
 
-int			get_map_data(t_data *data);
+int			parsing(t_data *data);
 
 // Mallocs
 
@@ -123,6 +126,10 @@ int			get_player_and_door_data(t_data *data, char c, int i, int j);
 t_strlst	*ft_lstnew(void *content);
 void		ft_lstadd_back(t_strlst **lst, t_strlst *new);
 void		ft_lstclear(t_strlst **lst, void (*del)(void*));
+
+// Check map
+
+int			check_map(t_data *data);
 
 // Raycasting
 

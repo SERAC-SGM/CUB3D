@@ -105,6 +105,7 @@ SRCS += get_textures.c
 SRCS += mallocs.c
 SRCS += parsing_utils.c
 SRCS += parsing.c
+SRCS += check_map.c
 
 SRCS += color.c
 SRCS += cub3d.c

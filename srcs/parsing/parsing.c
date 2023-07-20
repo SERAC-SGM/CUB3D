@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:51:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/19 16:15:43 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/20 18:01:35 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,13 +99,21 @@ static void	get_map_size(t_map_data *mdata)
 	}
 }
 
-int	get_map_data(t_data *data)
+int	parsing(t_data *data)
 {
 	get_texture_path(data->mdata);
+	if (data->mdata->color_c == -1 || data->mdata->color_f == -1)
+	{
+		ft_putstr_fd("Error\n", 2);
+		ft_putstr_fd(E_COLOR, 2);
+		return (EXIT_FAILURE);
+	}
 	get_map_size(data->mdata);
 	if (malloc_structs(data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	fill_map(data);
+	if (check_map(data) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
 	ft_lstclear(&data->mdata->top, free);
 	return (EXIT_SUCCESS);
 }
