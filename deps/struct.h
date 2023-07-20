@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/20 12:49:38 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/20 14:49:23 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 typedef struct s_coord
 {
-	int	h;
-	int	w;
+	int	x;
+	int	y;
 }			t_coord;
 
 // typedef struct s_image

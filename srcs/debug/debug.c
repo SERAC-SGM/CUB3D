@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 14:16:27 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/20 12:30:46 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/20 14:49:57 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ void	print_player_data(t_player *player)
 	printf("planey is %f\n", player->planey);
 }
 
-// void	print_map_data(t_map_data *mdata)
-// {
-// 	printf("NO is %s\n", mdata->path_texture_n);
-// 	printf("SO is %s\n", mdata->path_texture_s);
-// 	printf("WE is %s\n", mdata->path_texture_w);
-// 	printf("EA is %s\n", mdata->path_texture_e);
-// 	printf("F is %d\n", mdata->color_floor);
-// 	printf("C is %d\n", mdata->color_ceiling);
-// }
+void	print_map_data(t_map_data *mdata)
+{
+	printf("NO is %s\n", mdata->texture_path[0]);
+	printf("SO is %s\n", mdata->texture_path[1]);
+	printf("WE is %s\n", mdata->texture_path[2]);
+	printf("EA is %s\n", mdata->texture_path[3]);
+	printf("F is %d\n", mdata->color_f);
+	printf("C is %d\n", mdata->color_c);
+}
 
 void	print_strs(t_strlst *lst)
 {
@@ -39,7 +39,6 @@ void	print_strs(t_strlst *lst)
 		printf("%s", lst->str);
 		lst = lst->next;
 	}
-
 }
 
 void	print_map(t_map_data *mdata)
