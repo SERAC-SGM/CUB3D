@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:50:07 by mat               #+#    #+#             */
-/*   Updated: 2023/07/20 12:28:54 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/20 12:37:50 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	exit_error(char *error, char *arg, t_data *data)
 	free_map(data->mdata);
 	i = -1;
 	while (++i < 4)
-		free(data->mdata->texture_path[i]);
+		free(data->mdata->texture[i]);
 	free(data->player);
 	exit(1);
 }
@@ -60,7 +60,10 @@ void	exit_clean(t_data *data)
 
 	i = -1;
 	while (++i < 4)
-		mlx_destroy_image(data->mlx, data->texture[i].img);
+	{
+		mlx_destroy_image(data->mlx, data->wall[i].img);
+		mlx_destroy_image(data->mlx, data->fire[i].img);
+	}
 	mlx_destroy_image(data->mlx, data->img.mlx_image);
 	if (data->win)
 		mlx_destroy_window(data->mlx, data->win);
@@ -71,7 +74,7 @@ void	exit_clean(t_data *data)
 	free_map(data->mdata);
 	i = -1;
 	while (++i < 4)
-		free(data->mdata->texture_path[i]);
+		free(data->mdata->texture[i]);
 	free(data->player);
 	exit(0);
 }

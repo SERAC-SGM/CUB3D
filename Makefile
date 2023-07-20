@@ -102,21 +102,24 @@ PATH_SRCS = $(SRCS_DIR)
 SRCS += get_color.c
 SRCS += get_player.c
 SRCS += get_textures.c
+SRCS += init_sprite.c
 SRCS += mallocs.c
 SRCS += parsing_utils.c
 SRCS += parsing.c
 
 SRCS += color.c
 SRCS += cub3d.c
+SRCS += door.c
 SRCS += exit_and_free.c
 SRCS += hooks.c
-SRCS += movement.c
-SRCS += raycasting.c
-SRCS += texture.c
-SRCS += window.c
 SRCS += init.c
 SRCS += minimap.c
-SRCS += door.c
+SRCS += movement.c
+SRCS += raycasting_utils.c
+SRCS += raycasting.c
+SRCS += sprite.c
+SRCS += texture.c
+SRCS += window.c
 
 # debug
 SRCS += debug.c

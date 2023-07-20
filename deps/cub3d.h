@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/20 12:28:32 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/20 12:42:57 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@
 # define VDIV 2
 # define VMOVE 125.0
 
-# define FRAME_UPDATE	50
+# define FRAME_UPDATE	15
 # define SPRITE_NB		4
 
 # include <math.h>

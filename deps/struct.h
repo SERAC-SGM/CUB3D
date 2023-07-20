@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/20 12:30:29 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/20 12:37:04 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ typedef struct s_coord
 	int	w;
 }			t_coord;
 
-typedef struct s_image
-{
-	void	*mlx_image;
-	char	*address;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}			t_image;
+// typedef struct s_image
+// {
+// 	void	*mlx_image;
+// 	char	*address;
+// 	int		bits_per_pixel;
+// 	int		line_length;
+// 	int		endian;
+// }			t_image;
 
 typedef struct s_player
 {
@@ -85,7 +85,7 @@ typedef struct s_map_data
 	t_strlst	*map_strs;
 	t_strlst	*top;
 	int			map_fd;
-	char		*texture_path[4];
+	char		*texture[4];
 	int			color_floor;
 	int			color_ceiling;
 	int			map_height;
