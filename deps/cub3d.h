@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/19 16:34:59 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/20 12:28:32 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,14 @@
 # define MOVE_SPEED		0.06
 # define ROTATE_SPEED	0.0375
 
-# define MAP_VOID		9
+# define MAP_VOID		0
 # define MAP_FLOOR		0
 # define MAP_WALL		1
+# define MAP_THIN_WALL_X	't'
+# define MAP_THIN_WALL_Y	'T'
+# define MAP_DOOR_X		'd'
+# define MAP_DOOR_Y		'D'
+# define MAP_SPRITE		'S'
 # define PLAYER_NORTH	2
 # define PLAYER_SOUTH	3
 # define PLAYER_EAST	4
@@ -71,12 +76,27 @@
 # define E_MLX "MiniLibX : "
 # define E_TEXTURE "Unable to load texture : "
 
+# define SPRITE_WIDTH 64
+# define SPRITE_HEIGHT 64
+
+# define UDIV 2
+# define VDIV 2
+# define VMOVE 125.0
+
+# define FRAME_UPDATE	50
+# define SPRITE_NB		4
+
 # include <math.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include "libft.h"
 # include "mlx.h"
 # include "struct.h"
+
+void		get_sprite(t_data *data);
+void		display_fire_sprite(int x, t_data *data);
+void		init_walls_sprites(t_data *data);
+void		init_ray(int x, t_ray *ray, t_player *player);
 
 ///// PROTOTYPES /////
 
@@ -138,8 +158,8 @@ int			encode_rgb(__uint8_t red, __uint8_t green, __uint8_t blue);
 
 // Texture
 
-void		get_texture(t_data *data);
-void		put_texture_pixel(t_ray *ray, t_data *data, int x, int y);
+void		get_wall(t_data *data);
+void		put_wall_pixel(t_ray *ray, t_data *data, int x, int y);
 
 // Window
 
@@ -156,7 +176,7 @@ void		change_door_state(t_data *data);
 // Debug
 
 void		print_player_data(t_player *player);
-void		print_map_data(t_map_data *mdata);
+//void		print_map_data(t_map_data *mdata);
 void		print_map(t_map_data *mdata);
 void		print_strs(t_strlst *lst);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/19 15:43:58 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/20 12:31:21 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,9 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	if (get_map_data(&data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
+	print_map(data.mdata);
 	init_window(&data);
-	get_texture(&data);
+	init_walls_sprites(&data);
 	data.prev_mouse_w = 0;
 	init_image(&data);
 	mlx_loop_hook(data.mlx, &render, &data);

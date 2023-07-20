@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/19 15:44:17 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/20 12:30:29 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ typedef struct s_ray
 	int		texy;
 	double	step;
 	double	texpos;
-	double	zbuffer[WIN_WIDTH];
-	double	sprite_dist;
+
 }			t_ray;
 
 typedef struct s_strlst
@@ -87,11 +86,53 @@ typedef struct s_map_data
 	t_strlst	*top;
 	int			map_fd;
 	char		*texture_path[4];
-	int			color_f;
-	int			color_c;
+	int			color_floor;
+	int			color_ceiling;
 	int			map_height;
 	int			map_width;
 }				t_map_data;
+
+typedef struct s_image
+{
+	void	*mlx_image;
+	char	*address;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}			t_image;
+
+typedef struct s_sprite
+{
+	void			*img;
+	unsigned int	*address;
+	int				number;
+	int				width;
+	int				height;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+	double			pos[100][2];
+	double			zbuffer[WIN_WIDTH];
+	double			sprite_dist;
+	double			xsprite;
+	double			ysprite;
+	double			invdet;
+	double			transformx;
+	double			transformy;
+	int				spritescreenx;
+	int				spriteheight;
+	int				vmove;
+	int				drawstartspritey;
+	int				drawendspritey;
+	int				drawstartspritex;
+	int				drawendspritex;
+	int				sprite_width;
+	int				stripe;
+	int				spritetexx;
+	int				spritetexy;
+	int				d;
+	int				color;
+}					t_sprite;
 
 typedef struct s_texture
 {
@@ -102,7 +143,7 @@ typedef struct s_texture
 	int				bits_per_pixel;
 	int				line_length;
 	int				endian;
-}			t_texture;
+}					t_texture;
 
 typedef struct s_data
 {
@@ -112,7 +153,8 @@ typedef struct s_data
 	t_player	*player;
 	t_ray		ray;
 	t_map_data	*mdata;
-	t_texture	texture[4];
+	t_texture	wall[4];
+	t_sprite	fire[4];
 	uint32_t	color;
 	int			move_fwd;
 	int			move_bckwd;
@@ -121,6 +163,8 @@ typedef struct s_data
 	int			rotate_left;
 	int			rotate_right;
 	int			prev_mouse_w;
+	int			frame;
+	int			index;
 }				t_data;
 
 #endif
