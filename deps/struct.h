@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/20 14:49:23 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:08:52 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,38 +101,45 @@ typedef struct s_image
 	int		endian;
 }			t_image;
 
-typedef struct s_sprite
+typedef struct s_sprite_img
 {
 	void			*img;
 	unsigned int	*address;
 	int				number;
+	int				index;
 	int				width;
 	int				height;
 	int				bits_per_pixel;
 	int				line_length;
 	int				endian;
-	double			pos[100][2];
-	double			zbuffer[WIN_WIDTH];
-	double			sprite_dist;
-	double			xsprite;
-	double			ysprite;
-	double			invdet;
-	double			transformx;
-	double			transformy;
-	int				spritescreenx;
-	int				spriteheight;
-	int				vmove;
-	int				drawstartspritey;
-	int				drawendspritey;
-	int				drawstartspritex;
-	int				drawendspritex;
-	int				sprite_width;
-	int				stripe;
-	int				spritetexx;
-	int				spritetexy;
-	int				d;
-	int				color;
-}					t_sprite;
+	//double			pos[100][2];
+
+}					t_sprite_img;
+
+typedef struct s_sprite
+{
+	double		pos[2];
+	double		zbuffer[WIN_WIDTH];
+	double		sprite_dist;
+	double		xsprite;
+	double		ysprite;
+	double		invdet;
+	double		transformx;
+	double		transformy;
+	int			spritescreenx;
+	int			spriteheight;
+	int			vmove;
+	int			drawstartspritey;
+	int			drawendspritey;
+	int			drawstartspritex;
+	int			drawendspritex;
+	int			sprite_width;
+	int			stripe;
+	int			spritetexx;
+	int			spritetexy;
+	int			d;
+	int			color;
+}				t_sprite;
 
 typedef struct s_texture
 {
@@ -147,25 +154,26 @@ typedef struct s_texture
 
 typedef struct s_data
 {
-	void		*mlx;
-	void		*win;
-	t_image		img;
-	t_player	*player;
-	t_ray		ray;
-	t_map_data	*mdata;
-	t_texture	wall[4];
-	t_texture	door;
-	t_sprite	fire[4];
-	uint32_t	color;
-	int			move_fwd;
-	int			move_bckwd;
-	int			move_left;
-	int			move_right;
-	int			rotate_left;
-	int			rotate_right;
-	int			prev_mouse_w;
-	int			frame;
-	int			index;
-}				t_data;
+	void			*mlx;
+	void			*win;
+	t_image			img;
+	t_player		*player;
+	t_ray			ray;
+	t_map_data		*mdata;
+	t_texture		wall[4];
+	t_texture		door;
+	t_sprite_img	fire_img[4];
+	t_sprite		fire[100];
+	uint32_t		color;
+	int				move_fwd;
+	int				move_bckwd;
+	int				move_left;
+	int				move_right;
+	int				rotate_left;
+	int				rotate_right;
+	int				prev_mouse_w;
+	int				frame;
+	int				index;
+}					t_data;
 
 #endif

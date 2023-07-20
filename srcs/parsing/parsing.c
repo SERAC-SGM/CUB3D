@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:51:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/20 12:56:03 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:04:20 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ static void	fill_map(t_data *data)
 			else if (data->mdata->map_strs->str[j] == '1')
 				data->mdata->map[i][j] = MAP_WALL;
 			else if (data->mdata->map[i][j] == 'S')
-				data->mdata->map[i][j] = MAP_SPRITE;
+				data->mdata->map[i][j] = get_sprite_pos(i, j, data);
+				// data->mdata->map[i][j] = MAP_FLOOR;
 			else
 				data->mdata->map[i][j] = get_player_and_door_data(data,
 						data->mdata->map_strs->str[j], i, j);

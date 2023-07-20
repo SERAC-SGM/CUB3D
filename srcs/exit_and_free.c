@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:50:07 by mat               #+#    #+#             */
-/*   Updated: 2023/07/20 12:37:50 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:11:38 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	exit_error(char *error, char *arg, t_data *data)
 	while (++i < 4)
 	{
 		mlx_destroy_image(data->mlx, data->wall[i].img);
-		mlx_destroy_image(data->mlx, data->fire[i].img);
+		mlx_destroy_image(data->mlx, data->fire_img[i].img);
 	}
 	mlx_destroy_image(data->mlx, data->img.mlx_image);
 	if (data->win)
@@ -62,7 +62,7 @@ void	exit_clean(t_data *data)
 	while (++i < 4)
 	{
 		mlx_destroy_image(data->mlx, data->wall[i].img);
-		mlx_destroy_image(data->mlx, data->fire[i].img);
+		mlx_destroy_image(data->mlx, data->fire_img[i].img);
 	}
 	mlx_destroy_image(data->mlx, data->img.mlx_image);
 	if (data->win)

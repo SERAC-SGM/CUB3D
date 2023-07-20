@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/20 14:48:01 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:11:21 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@
 
 # define E_MLX "MiniLibX : "
 # define E_TEXTURE "Unable to load texture : "
+# define E_SPRITE "Unable to load sprite : "
 
 # define SPRITE_WIDTH 64
 # define SPRITE_HEIGHT 64
@@ -181,6 +182,9 @@ void		print_map(t_map_data *mdata);
 void		print_strs(t_strlst *lst);
 
 
+void		show_all_sprites(int x, t_data *data);
 void		get_door(t_data *data);
+int	get_sprite_pos(int x, int y, t_data *data);
+
 
 #endif
