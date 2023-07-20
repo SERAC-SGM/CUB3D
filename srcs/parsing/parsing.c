@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:51:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/20 12:29:37 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/20 12:56:03 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,6 @@ static void	fill_map(t_data *data)
 				data->mdata->map[i][j] = MAP_FLOOR;
 			else if (data->mdata->map_strs->str[j] == '1')
 				data->mdata->map[i][j] = MAP_WALL;
-			else if (data->mdata->map_strs->str[j] == 't')
-				data->mdata->map[i][j] = MAP_THIN_WALL_X;
-			else if (data->mdata->map_strs->str[j] == 'T')
-				data->mdata->map[i][j] = MAP_THIN_WALL_Y;
 			else if (data->mdata->map[i][j] == 'S')
 				data->mdata->map[i][j] = MAP_SPRITE;
 			else

@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 16:40:32 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/20 12:38:57 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/20 12:50:37 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	init_walls_sprites(t_data *data)
 {
 	get_wall(data);
+	get_door(data);
 	get_sprite(data);
 	data->fire[0].pos[0][0] = 1.5; // À parser correctement
 	data->fire[0].pos[0][1] = 1.5; // À parser correctement

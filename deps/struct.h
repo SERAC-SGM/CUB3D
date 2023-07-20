@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/20 12:37:04 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/20 12:49:38 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ typedef struct s_data
 	t_ray		ray;
 	t_map_data	*mdata;
 	t_texture	wall[4];
+	t_texture	door;
 	t_sprite	fire[4];
 	uint32_t	color;
 	int			move_fwd;

@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 15:38:48 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/20 12:26:29 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/20 13:18:24 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	get_distances(t_ray *ray, t_player *player)
 */
 static void	check_hit(t_ray *ray, t_data *data)
 {
-	while (ray->hit == 0)
+	while (ray->hit == 0)// || ray->hit == 'S' || ray->hit == 'D')
 	{
 		if (ray->sidedistx < ray->sidedisty)
 		{
@@ -61,9 +61,11 @@ static void	check_hit(t_ray *ray, t_data *data)
 			else if (ray->stepy == -1)
 				ray->side = 3;
 		}
-		if (data->mdata->map[ray->mapx][ray->mapy] == 1
-			|| data->mdata->map[ray->mapx][ray->mapy] == 'D')
-			ray->hit = 1;
+		ray->hit = data->mdata->map[ray->mapx][ray->mapy];
+		if( ray->hit == 'S' || ray->hit == 'D')
+			ray->hit = 0;
+		//if (ray->hit == 'd')
+			//ray->side = 4;
 	}
 }
 

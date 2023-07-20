@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/20 12:42:57 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/07/20 14:48:01 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,5 +179,8 @@ void		print_player_data(t_player *player);
 //void		print_map_data(t_map_data *mdata);
 void		print_map(t_map_data *mdata);
 void		print_strs(t_strlst *lst);
+
+
+void		get_door(t_data *data);
 
 #endif
