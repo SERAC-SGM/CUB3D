@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/19 16:34:59 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/07/23 11:40:07 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,10 @@ void		pixel_put_in_image(t_image *image, int x, int y, int color);
 // Minimap
 
 void		minimap(t_data *data);
+
+// Minimap utils
+
+int			get_int_rouded(float nbr);
 
 // Door
 
