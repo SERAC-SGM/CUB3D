@@ -90,6 +90,9 @@ vpath %.h $(DEPS_DIR)
 
 SRCS_DIR += ./srcs
 SRCS_DIR += ./srcs/parsing
+SRCS_DIR += ./srcs/raycasting
+SRCS_DIR += ./srcs/inputs
+SRCS_DIR += ./srcs/minimap
 SRCS_DIR += ./srcs/debug
 
 PATH_SRCS = $(SRCS_DIR)
