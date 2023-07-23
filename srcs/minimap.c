@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 10:43:34 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/20 14:24:28 by mat              ###   ########.fr       */
+/*   Updated: 2023/07/23 11:42:46 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ static void	put_player_in_minimap(t_data *data)
 		j = -5;
 		while (j < 5)
 		{
-			pixel_put_in_image(&data->img, MINIMAP_W / 2 + i - 5,
-				MINIMAP_H / 2 + j - 5, encode_rgb(255, 0, 0));
+			pixel_put_in_image(&data->img, MINIMAP_W / 2 + (i - 5),
+				MINIMAP_H / 2 + (j - 5), encode_rgb(255, 0, 0));
 			j++;
 		}
 		i++;
@@ -63,8 +63,8 @@ static int	get_minimap_color(t_data *data, t_coord top_corner, int i, int j)
 	int	map_square_x;
 	int	map_square_y;
 
-	map_square_x = top_corner.x + i / 10;
-	map_square_y = top_corner.y + j / 10;
+	map_square_x = get_int_rouded(top_corner.x + (i) / 10);
+	map_square_y = get_int_rouded(top_corner.y + (j) / 10);
 	if (map_square_x < 0 || map_square_x > data->mdata->map_height - 1
 		|| map_square_y < 0 || map_square_y > data->mdata->map_width - 1
 		|| data->mdata->map[map_square_x][map_square_y] == 0)
@@ -102,8 +102,8 @@ void	minimap(t_data *data)
 	int				color;
 
 	i = 0;
-	top_corner.x = data->player->posx - 6.0;
-	top_corner.y = data->player->posy - 8.0;
+	top_corner.x = get_int_rouded(data->player->posx - 6);
+	top_corner.y = get_int_rouded(data->player->posy - 8);
 	while (i < MINIMAP_H)
 	{
 		j = 0;
@@ -118,3 +118,27 @@ void	minimap(t_data *data)
 	put_minimap_borders(data);
 	put_player_in_minimap(data);
 }
+
+//void	minimap(t_data *data)
+//{
+//	t_coord			top_corner;
+//	int				i;
+//	int				j;
+
+//	i = 0;
+//	top_corner.x = data->player->posx - 6.5;
+//	top_corner.y = data->player->posy - 8.5;
+//	while (i < MINIMAP_H)
+//	{
+//		j = 0;
+//		while (j < MINIMAP_W)
+//		{
+//			pixel_put_in_image(&data->img, j, i, 
+//				get_minimap_color(data, top_corner, i, j));
+//			j ++;
+//		}
+//		i++;
+//	}
+//	put_minimap_borders(data);
+//	put_player_in_minimap(data);
+//}

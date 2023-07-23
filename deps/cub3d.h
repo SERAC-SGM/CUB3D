@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/20 18:01:16 by mat              ###   ########.fr       */
+/*   Updated: 2023/07/23 11:46:31 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,10 @@ void		pixel_put_in_image(t_image *image, int x, int y, int color);
 // Minimap
 
 void		minimap(t_data *data);
+
+// Minimap utils
+
+int			get_int_rouded(float nbr);
 
 // Door
 
