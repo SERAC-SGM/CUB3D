@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:51:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/08/09 13:46:03 by mat              ###   ########.fr       */
+/*   Updated: 2023/08/10 14:17:12 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	init_map(t_map_data *mdata)
 		j = 0;
 		while (j < mdata->map_width)
 		{
-			mdata->map[i][j] = 6;
+			mdata->map[i][j] = 9;
 			j++;
 		}
 		i++;
@@ -112,6 +112,8 @@ int	parsing(t_data *data)
 	if (malloc_structs(data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	fill_map(data);
+	if (check_player(data->mdata) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
 	if (check_map(data) == EXIT_FAILURE)
 	{
 		ft_putstr_fd("Error\n", 2);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/09 14:35:22 by mat              ###   ########.fr       */
+/*   Updated: 2023/08/10 13:49:30 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ void		ft_lstclear(t_strlst **lst, void (*del)(void*));
 // Check map
 
 int			check_map(t_data *data);
+int			check_player(t_map_data *mdata);
 void		update_coord_horizontal(t_machine *m);
 void		update_coord_vertical(t_machine *m);
 
@@ -141,6 +142,7 @@ void		init_machine(t_machine *machine);
 void		one_state(t_machine *m, void (*f)(t_machine *m));
 void		zero_state(t_machine *m, void (*f)(t_machine *m));
 void		nine_state(t_machine *m, void (*f)(t_machine *m));
+void		first_pos_state(t_machine *m, void (*f)(t_machine *m));
 
 // Raycasting
 
