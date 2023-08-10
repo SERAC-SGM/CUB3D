@@ -108,6 +108,7 @@ SRCS += get_textures.c
 SRCS += mallocs.c
 SRCS += parsing_utils.c
 SRCS += parsing.c
+SRCS += state_machine.c
 SRCS += check_map.c
 
 SRCS += color.c

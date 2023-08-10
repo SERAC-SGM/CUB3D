@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/23 11:46:31 by mat              ###   ########.fr       */
+/*   Updated: 2023/08/09 14:35:22 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,11 @@
 # define E_MLX			"MiniLibX : "
 # define E_TEXTURE		"Unable to load texture : "
 # define E_COLOR		"Referenced colors in wrong format\nUse R, G, B Format\n"
-# define E_PLAYER		"Wrong number of player in map, you must reference a single player position\n"
+# define E_PLAYER		"Wrong number of player in map, one player allowed\n"
 # define E_UNCLOSED_MAP	"Wrong map format, maps need to be surrounded by walls\n"
 
 # include <math.h>
+# include <stdbool.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include "libft.h"
@@ -130,6 +131,16 @@ void		ft_lstclear(t_strlst **lst, void (*del)(void*));
 // Check map
 
 int			check_map(t_data *data);
+void		update_coord_horizontal(t_machine *m);
+void		update_coord_vertical(t_machine *m);
+
+
+// State machine
+
+void		init_machine(t_machine *machine);
+void		one_state(t_machine *m, void (*f)(t_machine *m));
+void		zero_state(t_machine *m, void (*f)(t_machine *m));
+void		nine_state(t_machine *m, void (*f)(t_machine *m));
 
 // Raycasting
 

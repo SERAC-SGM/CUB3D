@@ -6,7 +6,7 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:51:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/20 18:01:35 by mat              ###   ########.fr       */
+/*   Updated: 2023/08/09 13:46:03 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,11 @@ int	parsing(t_data *data)
 		return (EXIT_FAILURE);
 	fill_map(data);
 	if (check_map(data) == EXIT_FAILURE)
+	{
+		ft_putstr_fd("Error\n", 2);
+		ft_putstr_fd(E_UNCLOSED_MAP, 2);
 		return (EXIT_FAILURE);
+	}
 	ft_lstclear(&data->mdata->top, free);
 	return (EXIT_SUCCESS);
 }

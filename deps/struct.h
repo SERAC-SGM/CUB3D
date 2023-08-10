@@ -6,12 +6,20 @@
 /*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/20 13:55:41 by mat              ###   ########.fr       */
+/*   Updated: 2023/08/09 13:34:43 by mat              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+typedef enum e_states
+{
+	ZERO,
+	ONE,
+	NINE,
+	END
+}		t_states;
 
 typedef struct s_coord
 {
@@ -122,5 +130,15 @@ typedef struct s_data
 	int			rotate_right;
 	int			prev_mouse_w;
 }				t_data;
+
+typedef struct s_machine
+{
+	t_map_data	*mdata;
+	t_states	state;
+	t_states	prev_state;
+	int			i;
+	int			j;
+	bool		valid;
+}				t_machine;
 
 #endif
