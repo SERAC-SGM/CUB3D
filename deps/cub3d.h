@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/20 16:11:21 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:03:55 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,11 @@
 # define S_KEY	115
 # define A_KEY	97
 # define D_KEY	100
+
+# define SPRITE_1 "./textures/sprites/fire_1.xpm"
+# define SPRITE_2 "./textures/sprites/fire_2.xpm"
+# define SPRITE_3 "./textures/sprites/fire_3.xpm"
+# define SPRITE_4 "./textures/sprites/fire_4.xpm"
 
 # define E_MLX "MiniLibX : "
 # define E_TEXTURE "Unable to load texture : "
@@ -184,7 +189,7 @@ void		print_strs(t_strlst *lst);
 
 void		show_all_sprites(int x, t_data *data);
 void		get_door(t_data *data);
-int	get_sprite_pos(int x, int y, t_data *data);
+int			get_sprite_pos(int x, int y, t_data *data);
 
 
 #endif

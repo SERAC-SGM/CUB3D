@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 11:32:40 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/16 10:42:06 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:03:09 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,25 @@
 static void	load_sprites(t_data *data)
 {
 	data->fire_img[0].img = mlx_xpm_file_to_image(data->mlx,
-			"./textures/sprites/fire_1.xpm", &data->fire_img[0].width,
+			SPRITE_1, &data->fire_img[0].width,
 			&data->fire_img[0].height);
 	data->fire_img[1].img = mlx_xpm_file_to_image(data->mlx,
-			"./textures/sprites/fire_2.xpm", &data->fire_img[1].width,
+			SPRITE_2, &data->fire_img[1].width,
 			&data->fire_img[1].height);
 	data->fire_img[2].img = mlx_xpm_file_to_image(data->mlx,
-			"./textures/sprites/fire_3.xpm", &data->fire_img[2].width,
+			SPRITE_3, &data->fire_img[2].width,
 			&data->fire_img[2].height);
 	data->fire_img[3].img = mlx_xpm_file_to_image(data->mlx,
-			"./textures/sprites/fire_4.xpm", &data->fire_img[3].width,
+			SPRITE_4, &data->fire_img[3].width,
 			&data->fire_img[3].height);
 	if (!data->fire_img[0].img)
-		exit_error(E_TEXTURE, "./textures/sprites/fire_1.xpm", data);
+		exit_error(E_TEXTURE, SPRITE_1, data);
 	if (!data->fire_img[1].img)
-		exit_error(E_TEXTURE, "./textures/sprites/fire_2.xpm", data);
+		exit_error(E_TEXTURE, SPRITE_2, data);
 	if (!data->fire_img[2].img)
-		exit_error(E_TEXTURE, "./textures/sprites/fire_3.xpm", data);
+		exit_error(E_TEXTURE, SPRITE_3, data);
 	if (!data->fire_img[3].img)
-		exit_error(E_TEXTURE, "./textures/sprites/fire_4.xpm", data);
+		exit_error(E_TEXTURE, SPRITE_4, data);
 }
 
 void	get_sprite(t_data *data)
@@ -119,7 +119,7 @@ void	display_fire_sprite(int x, t_data *data)
 	int			i;
 
 	i = -1;
-	while (++i < data->fire_img->number)
+	while (++i < data->fire_img->number) // data->sprite_number
 	{
 		ray = data->ray;
 		player = *data->player;
