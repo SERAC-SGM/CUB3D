@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:51:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/08/16 11:02:53 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/08/16 11:18:32 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static void	fill_map(t_data *data)
 	init_map(data->mdata);
 	while (data->mdata->map_strs != NULL)
 	{
-		j = 0;
-		while (data->mdata->map_strs->str[j] != '\n')
+		j = -1;
+		while (data->mdata->map_strs->str[++j] != '\n')
 		{
 			if (data->mdata->map_strs->str[j] == ' ')
 				data->mdata->map[i][j] = MAP_VOID;
@@ -53,7 +53,7 @@ static void	fill_map(t_data *data)
 			else
 				data->mdata->map[i][j] = get_player_and_door_data(data,
 						data->mdata->map_strs->str[j], i, j);
-			j++;
+			//j++;
 		}
 		data->mdata->map_strs = data->mdata->map_strs->next;
 		i++;

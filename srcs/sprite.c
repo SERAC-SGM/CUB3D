@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 11:32:40 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/16 11:10:02 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:15:39 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,10 @@ void	display_fire_sprite(int x, t_data *data)
 		player = *data->player;
 		sprite = data->fire[i];
 		get_sprite_distance_1(x, &sprite, &player, &ray);
-		sprite.sprite_width = abs((int)(WIN_HEIGHT / (sprite.transformy))) / UDIV;
-		sprite.drawstartspritex = -sprite.sprite_width / 2 + sprite.spritescreenx;
+		sprite.sprite_width = abs((int)(WIN_HEIGHT / (sprite.transformy)))
+			/ UDIV;
+		sprite.drawstartspritex = -sprite.sprite_width / 2
+			+ sprite.spritescreenx;
 		if (sprite.drawstartspritex < 0)
 			sprite.drawstartspritex = 0;
 		sprite.drawendspritex = sprite.sprite_width / 2 + sprite.spritescreenx;

@@ -117,7 +117,6 @@ SRCS += minimap.c
 SRCS += movement.c
 SRCS += raycasting_utils.c
 SRCS += raycasting.c
-SRCS += sprite_2.c
 SRCS += sprite.c
 SRCS += texture.c
 SRCS += window.c

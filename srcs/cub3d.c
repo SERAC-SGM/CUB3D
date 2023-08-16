@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/20 12:31:21 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:17:25 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int	main(int argc, char **argv)
 	data.prev_mouse_w = 0;
 	init_image(&data);
 	mlx_loop_hook(data.mlx, &render, &data);
-	//mlx_hook(data.win, MOUSE_MOVE, PointerMotionMask, &handle_mouse, &data);
 	mlx_hook(data.win, KEY_PRESS, KeyPressMask, &handle_key_press, &data);
 	mlx_hook(data.win, KEY_RELEASE, KeyReleaseMask, &handle_key_release, &data);
 	mlx_hook(data.win, CLOSE_WINDOW, LeaveWindowMask, &quit_window, &data);

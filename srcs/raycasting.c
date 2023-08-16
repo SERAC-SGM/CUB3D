@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 15:38:48 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/20 15:53:34 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:15:53 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	get_distances(t_ray *ray, t_player *player)
 */
 static void	check_hit(t_ray *ray, t_data *data)
 {
-	while (ray->hit == 0)// || ray->hit == 'S' || ray->hit == 'D')
+	while (ray->hit == 0)
 	{
 		if (ray->sidedistx < ray->sidedisty)
 		{
