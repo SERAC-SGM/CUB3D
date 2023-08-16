@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/16 10:44:00 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/16 10:50:57 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ typedef struct s_sprite_img
 {
 	void			*img;
 	unsigned int	*address;
-	int				number;
 	int				index;
 	int				width;
 	int				height;
@@ -165,6 +164,7 @@ typedef struct s_data
 	t_sprite_img	fire_img[4];
 	t_sprite		fire[100];
 	uint32_t		color;
+	int				sprite_number;
 	int				move_fwd;
 	int				move_bckwd;
 	int				move_left;

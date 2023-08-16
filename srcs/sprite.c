@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 11:32:40 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/16 10:42:06 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/16 10:57:26 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void	display_fire_sprite(int x, t_data *data)
 	int			i;
 
 	i = -1;
-	while (++i < data->fire_img->number)
+	while (++i < data->sprite_number)
 	{
 		ray = data->ray;
 		player = *data->player;
