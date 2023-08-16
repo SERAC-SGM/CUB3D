@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 11:32:40 by lletourn          #+#    #+#             */
-/*   Updated: 2023/07/20 16:10:53 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/16 10:42:06 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,25 @@
 static void	load_sprites(t_data *data)
 {
 	data->fire_img[0].img = mlx_xpm_file_to_image(data->mlx,
-			"./textures/sprites/fire_img_1.xpm", &data->fire_img[0].width,
+			"./textures/sprites/fire_1.xpm", &data->fire_img[0].width,
 			&data->fire_img[0].height);
 	data->fire_img[1].img = mlx_xpm_file_to_image(data->mlx,
-			"./textures/sprites/fire_img_2.xpm", &data->fire_img[1].width,
+			"./textures/sprites/fire_2.xpm", &data->fire_img[1].width,
 			&data->fire_img[1].height);
 	data->fire_img[2].img = mlx_xpm_file_to_image(data->mlx,
-			"./textures/sprites/fire_img_3.xpm", &data->fire_img[2].width,
+			"./textures/sprites/fire_3.xpm", &data->fire_img[2].width,
 			&data->fire_img[2].height);
 	data->fire_img[3].img = mlx_xpm_file_to_image(data->mlx,
-			"./textures/sprites/fire_img_4.xpm", &data->fire_img[3].width,
+			"./textures/sprites/fire_4.xpm", &data->fire_img[3].width,
 			&data->fire_img[3].height);
 	if (!data->fire_img[0].img)
-		exit_error(E_TEXTURE, "./textures/sprites/fire_img_1.xpm", data);
+		exit_error(E_TEXTURE, "./textures/sprites/fire_1.xpm", data);
 	if (!data->fire_img[1].img)
-		exit_error(E_TEXTURE, "./textures/sprites/fire_img_2.xpm", data);
+		exit_error(E_TEXTURE, "./textures/sprites/fire_2.xpm", data);
 	if (!data->fire_img[2].img)
-		exit_error(E_TEXTURE, "./textures/sprites/fire_img_3.xpm", data);
+		exit_error(E_TEXTURE, "./textures/sprites/fire_3.xpm", data);
 	if (!data->fire_img[3].img)
-		exit_error(E_TEXTURE, "./textures/sprites/fire_img_4.xpm", data);
+		exit_error(E_TEXTURE, "./textures/sprites/fire_4.xpm", data);
 }
 
 void	get_sprite(t_data *data)
