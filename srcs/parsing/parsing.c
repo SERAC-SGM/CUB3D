@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:51:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/20 16:04:20 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:02:53 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,8 @@ static void	fill_map(t_data *data)
 				data->mdata->map[i][j] = MAP_FLOOR;
 			else if (data->mdata->map_strs->str[j] == '1')
 				data->mdata->map[i][j] = MAP_WALL;
-			else if (data->mdata->map[i][j] == 'S')
+			else if (data->mdata->map_strs->str[j] == '+')
 				data->mdata->map[i][j] = get_sprite_pos(i, j, data);
-				// data->mdata->map[i][j] = MAP_FLOOR;
 			else
 				data->mdata->map[i][j] = get_player_and_door_data(data,
 						data->mdata->map_strs->str[j], i, j);
@@ -110,5 +109,6 @@ int	get_map_data(t_data *data)
 		return (EXIT_FAILURE);
 	fill_map(data);
 	ft_lstclear(&data->mdata->top, free);
+	printf("data sprite nb %d\n", data->sprite_number);
 	return (EXIT_SUCCESS);
 }
