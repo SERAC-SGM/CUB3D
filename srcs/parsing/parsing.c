@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:51:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/08/16 11:21:44 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:31:44 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ static void	get_map_size(t_map_data *mdata)
 int	parsing(t_data *data)
 {
 	get_texture_path(data->mdata);
-	if (data->mdata->color_c == -1 || data->mdata->color_f == -1)
+	if (data->mdata->color_ceiling == -1 || data->mdata->color_floor == -1)
 	{
 		ft_putstr_fd("Error\n", 2);
 		ft_putstr_fd(E_COLOR, 2);

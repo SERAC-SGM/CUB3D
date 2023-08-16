@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/16 11:27:42 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:33:20 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,7 @@ typedef struct s_data
 	int				rotate_left;
 	int				rotate_right;
 	int				prev_mouse_w;
-	bool		mouse_hook;
+	bool			mouse_hook;
 	int				frame;
 	int				index;
 }					t_data;

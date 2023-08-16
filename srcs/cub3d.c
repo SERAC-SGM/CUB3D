@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/16 11:27:02 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:37:50 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	if (parsing(&data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	print_map(data.mdata);
+	//print_map(data.mdata);
 	init_window(&data);
 	init_walls_sprites(&data);
 	data.prev_mouse_w = 0;
