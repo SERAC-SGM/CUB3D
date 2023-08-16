@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/16 11:17:34 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:26:37 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,11 @@
 # define SPRITE_3 "./textures/sprites/fire_3.xpm"
 # define SPRITE_4 "./textures/sprites/fire_4.xpm"
 
-# define E_MLX "MiniLibX : "
-# define E_TEXTURE "Unable to load texture : "
+# define E_MLX			"MiniLibX : "
+# define E_TEXTURE		"Unable to load texture : "
+# define E_COLOR		"Referenced colors in wrong format\nUse R, G, B Format\n"
+# define E_PLAYER		"Wrong number of player in map, one player allowed\n"
+# define E_UNCLOSED_MAP	"Wrong map format, maps need to be surrounded by walls\n"
 # define E_SPRITE "Unable to load sprite : "
 
 # define SPRITE_WIDTH 64
@@ -93,6 +96,7 @@
 # define SPRITE_NB		4
 
 # include <math.h>
+# include <stdbool.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include "libft.h"
@@ -126,7 +130,7 @@ int			handle_mouse(int x, int y, t_data *data);
 
 // Parsing
 
-int			get_map_data(t_data *data);
+int			parsing(t_data *data);
 
 // Mallocs
 
@@ -149,6 +153,21 @@ int			get_player_and_door_data(t_data *data, char c, int i, int j);
 t_strlst	*ft_lstnew(void *content);
 void		ft_lstadd_back(t_strlst **lst, t_strlst *new);
 void		ft_lstclear(t_strlst **lst, void (*del)(void*));
+
+// Check map
+
+int			check_map(t_data *data);
+int			check_player(t_map_data *mdata);
+void		update_coord_horizontal(t_machine *m);
+void		update_coord_vertical(t_machine *m);
+
+// State machine
+
+void		init_machine(t_machine *machine);
+void		one_state(t_machine *m, void (*f)(t_machine *m));
+void		zero_state(t_machine *m, void (*f)(t_machine *m));
+void		nine_state(t_machine *m, void (*f)(t_machine *m));
+void		first_pos_state(t_machine *m, void (*f)(t_machine *m));
 
 // Raycasting
 
@@ -174,6 +193,10 @@ void		pixel_put_in_image(t_image *image, int x, int y, int color);
 // Minimap
 
 void		minimap(t_data *data);
+
+// Minimap utils
+
+int			get_int_rouded(float nbr);
 
 // Door
 

@@ -90,6 +90,9 @@ vpath %.h $(DEPS_DIR)
 
 SRCS_DIR += ./srcs
 SRCS_DIR += ./srcs/parsing
+SRCS_DIR += ./srcs/raycasting
+SRCS_DIR += ./srcs/inputs
+SRCS_DIR += ./srcs/minimap
 SRCS_DIR += ./srcs/debug
 
 PATH_SRCS = $(SRCS_DIR)
@@ -106,6 +109,8 @@ SRCS += init_sprite.c
 SRCS += mallocs.c
 SRCS += parsing_utils.c
 SRCS += parsing.c
+SRCS += state_machine.c
+SRCS += check_map.c
 
 SRCS += color.c
 SRCS += cub3d.c
@@ -120,6 +125,10 @@ SRCS += raycasting.c
 SRCS += sprite.c
 SRCS += texture.c
 SRCS += window.c
+SRCS += init.c
+SRCS += minimap.c
+SRCS += minimap_utils.c
+SRCS += door.c
 
 # debug
 SRCS += debug.c

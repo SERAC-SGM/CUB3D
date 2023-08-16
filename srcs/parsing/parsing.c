@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:51:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/08/16 11:18:32 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:21:44 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	init_map(t_map_data *mdata)
 		j = 0;
 		while (j < mdata->map_width)
 		{
-			mdata->map[i][j] = 6;
+			mdata->map[i][j] = 9;
 			j++;
 		}
 		i++;
@@ -101,13 +101,27 @@ static void	get_map_size(t_map_data *mdata)
 	}
 }
 
-int	get_map_data(t_data *data)
+int	parsing(t_data *data)
 {
 	get_texture_path(data->mdata);
+	if (data->mdata->color_c == -1 || data->mdata->color_f == -1)
+	{
+		ft_putstr_fd("Error\n", 2);
+		ft_putstr_fd(E_COLOR, 2);
+		return (EXIT_FAILURE);
+	}
 	get_map_size(data->mdata);
 	if (malloc_structs(data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	fill_map(data);
+	if (check_player(data->mdata) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
+	if (check_map(data) == EXIT_FAILURE)
+	{
+		ft_putstr_fd("Error\n", 2);
+		ft_putstr_fd(E_UNCLOSED_MAP, 2);
+		return (EXIT_FAILURE);
+	}
 	ft_lstclear(&data->mdata->top, free);
 	printf("data sprite nb %d\n", data->sprite_number);
 	return (EXIT_SUCCESS);

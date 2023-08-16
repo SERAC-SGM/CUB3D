@@ -3,15 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/16 10:50:57 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/08/16 11:27:42 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCT_H
 # define STRUCT_H
+
+typedef enum e_states
+{
+	ZERO,
+	ONE,
+	NINE,
+	FIRST_POS,
+	END
+}		t_states;
 
 typedef struct s_coord
 {
@@ -172,8 +181,19 @@ typedef struct s_data
 	int				rotate_left;
 	int				rotate_right;
 	int				prev_mouse_w;
+	bool		mouse_hook;
 	int				frame;
 	int				index;
 }					t_data;
+
+typedef struct s_machine
+{
+	t_map_data	*mdata;
+	t_states	state;
+	t_states	prev_state;
+	int			i;
+	int			j;
+	bool		valid;
+}				t_machine;
 
 #endif

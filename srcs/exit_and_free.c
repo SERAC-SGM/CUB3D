@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:50:07 by mat               #+#    #+#             */
-/*   Updated: 2023/07/20 16:11:38 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/16 11:29:16 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,18 @@ void	free_map(t_map_data *mdata)
 		i++;
 	}
 	free(mdata->map);
+}
+
+void	exit_parsing(t_data *data)
+{
+	int	i;
+
+	i = -1;
+	free_map(data->mdata);
+	while (++i < 4)
+		free(data->mdata->texture_path[i]);
+	free(data->player);
+	exit(1);
 }
 
 void	exit_error(char *error, char *arg, t_data *data)
