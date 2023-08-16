@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:34:39 by mdorr             #+#    #+#             */
-/*   Updated: 2023/08/16 10:40:52 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/08/16 10:42:01 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	handle_mouse(int x, int y, t_data *data)
 {
 	(void)y;
-
 	data->mouse_hook = true;
 	if (x > data->prev_mouse_w)
 		data->rotate_right = 1;

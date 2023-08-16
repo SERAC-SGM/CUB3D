@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/10 13:49:30 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/08/16 10:42:18 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,6 @@ int			check_map(t_data *data);
 int			check_player(t_map_data *mdata);
 void		update_coord_horizontal(t_machine *m);
 void		update_coord_vertical(t_machine *m);
-
 
 // State machine
 
