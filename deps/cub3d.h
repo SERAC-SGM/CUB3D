@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/17 11:22:49 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:49:46 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ void		init_ray(int x, t_ray *ray, t_player *player);
 
 void		exit_error(char *error, char *arg, t_data *data);
 void		exit_clean(t_data *data);
+void		exit_parsing(t_data *data);
 
 // Init
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 11:28:52 by mdorr             #+#    #+#             */
-/*   Updated: 2023/08/17 11:22:31 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:48:45 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	init_data(t_data *data, t_map_data *mdata, t_player *player)
 	data->rotate_right = 0;
 	data->mdata = mdata;
 	data->player = player;
+	data->mdata->map = NULL;
 	data->mouse_hook = false;
 	data->sprite_number = 0;
 }

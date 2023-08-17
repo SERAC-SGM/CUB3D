@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_and_free.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:50:07 by mat               #+#    #+#             */
-/*   Updated: 2023/08/17 11:27:44 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:48:57 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void	exit_parsing(t_data *data)
 	int	i;
 
 	i = -1;
-	free_map(data->mdata);
+	if (data->mdata->map)
+		free_map(data->mdata);
 	while (++i < 4)
 		free(data->mdata->texture[i]);
-	free(data->player);
 	exit(1);
 }
 
@@ -65,7 +65,6 @@ void	free_data(t_data *data)
 	i = -1;
 	while (++i < 4)
 		free(data->mdata->texture[i]);
-	free(data->player);
 }
 
 void	exit_error(char *error, char *arg, t_data *data)

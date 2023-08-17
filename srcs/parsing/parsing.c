@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:51:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/08/17 10:51:02 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:33:10 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int	parsing(t_data *data)
 	{
 		ft_putstr_fd("Error\n", 2);
 		ft_putstr_fd(E_COLOR, 2);
-		return (EXIT_FAILURE);
+		exit_parsing(data);
 	}
 	get_map_size(data->mdata);
 	if (malloc_structs(data) == EXIT_FAILURE)
