@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 11:28:52 by mdorr             #+#    #+#             */
-/*   Updated: 2023/08/16 11:29:46 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:22:31 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,21 @@ void	init_image(t_data *data)
 			&data->img.line_length, &data->img.endian);
 	if (!data->img.mlx_image || !data->img.address)
 		exit_error(E_MLX, "image creation failed", data);
+}
+
+void	init_malloc(t_data *data)
+{
+	int	i;
+
+	i = -1;
+	while (++i < 4)
+	{
+		data->wall[i].img = NULL;
+		data->fire_img[i].img = NULL;
+	}
+	data->door.img = NULL;
+	data->door_inside.img = NULL;
+	data->img.mlx_image = NULL;
+	data->win = NULL;
+	data->mlx = NULL;
 }

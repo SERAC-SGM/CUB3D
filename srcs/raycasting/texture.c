@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:54:34 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/16 14:24:54 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:19:07 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,10 @@ void	get_wall(t_data *data)
 		data->wall[i].img = mlx_xpm_file_to_image(data->mlx,
 				data->mdata->texture[i], &data->wall[i].width,
 				&data->wall[i].height);
+	}
+	i = -1;
+	while (++i < 4)
+	{
 		if (!data->wall[i].img)
 			exit_error(E_TEXTURE, data->mdata->texture[i], data);
 		data->wall[i].address = (unsigned int *)mlx_get_data_addr

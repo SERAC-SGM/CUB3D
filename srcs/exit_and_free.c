@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:50:07 by mat               #+#    #+#             */
-/*   Updated: 2023/08/17 10:44:22 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:27:44 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,23 @@ void	free_data(t_data *data)
 	i = -1;
 	while (++i < 4)
 	{
-		mlx_destroy_image(data->mlx, data->wall[i].img);
-		mlx_destroy_image(data->mlx, data->fire_img[i].img);
+		if (data->wall[i].img)
+			mlx_destroy_image(data->mlx, data->wall[i].img);
+		if (data->fire_img[i].img)
+			mlx_destroy_image(data->mlx, data->fire_img[i].img);
 	}
-	mlx_destroy_image(data->mlx, data->door.img);
-	mlx_destroy_image(data->mlx, data->door_inside.img);
-	mlx_destroy_image(data->mlx, data->img.mlx_image);
+	if (data->door.img)
+		mlx_destroy_image(data->mlx, data->door.img);
+	if (data->door_inside.img)
+		mlx_destroy_image(data->mlx, data->door_inside.img);
+	if (data->img.mlx_image)
+		mlx_destroy_image(data->mlx, data->img.mlx_image);
 	if (data->win)
 		mlx_destroy_window(data->mlx, data->win);
-	mlx_destroy_display(data->mlx);
 	if (data->mlx)
-		free(data->mlx);
-	data->win = NULL;
+		mlx_destroy_display(data->mlx);
+	free(data->mlx);
+	data->mlx = NULL;
 	free_map(data->mdata);
 	i = -1;
 	while (++i < 4)

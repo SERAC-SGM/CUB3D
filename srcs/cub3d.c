@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/17 11:06:28 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/08/17 11:23:18 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	main(int argc, char **argv)
 	t_map_data	mdata;
 	t_player	player;
 
+	init_malloc(&data);
 	init_data(&data, &mdata, &player);
 	if (check_arg(argc, argv, &data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);

@@ -1,14 +1,16 @@
+
 NO ./textures/north.xpm
 SO ./textures/south.xpm
 WE ./textures/west.xpm
 EA ./textures/east.xpm
 
-F 127,127,127
+F 127,127,127, 123
 C 50,50,50
 
 1111111
-1001001
-100d001
-1001001
-10N1001
+1000001
+1000001
+100E001
+1000001
+1000001
 1111111

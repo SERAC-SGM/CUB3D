@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/17 11:06:05 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/08/17 11:22:49 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@
 # define E_COLOR		"Referenced colors in wrong format\nUse R, G, B Format\n"
 # define E_PLAYER		"Wrong number of player in map, one player allowed\n"
 # define E_UNCLOSED_MAP	"Wrong map format, maps need to be surrounded by walls\n"
-# define E_SPRITE "Unable to load sprite : "
+# define E_SPRITE		"Unable to load sprite : "
 
 # define CLOSE_WINDOW 17
 # define KEY_PRESS 2
@@ -202,15 +202,15 @@ void		change_door_state(t_data *data);
 // Debug
 
 void		print_player_data(t_player *player);
-//void		print_map_data(t_map_data *mdata);
 void		print_map(t_map_data *mdata);
 void		print_strs(t_strlst *lst);
 
-//void		show_all_sprites(int x, t_data *data);
 void		get_door(t_data *data);
 int			get_sprite_pos(int x, int y, t_data *data);
 void		get_door_inside(t_data *data);
 void		check_door_hit(t_ray *ray);
 void		check_door_inside_hit(t_ray *ray, t_data *data);
+
+void		init_malloc(t_data *data);
 
 #endif
