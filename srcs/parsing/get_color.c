@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 10:44:16 by mat               #+#    #+#             */
-/*   Updated: 2023/08/17 11:28:55 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/08/17 11:53:29 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	get_color_composant(char *line, size_t *i)
 	size_t	j;
 	int		nb;
 
-	nb_str = malloc(sizeof(char) * ft_strlen(nb_str));
+	nb_str = malloc(sizeof(char) * ft_strlen(line));
 	j = 0;
 	while (line[*i] && ft_isdigit(line[*i]) == 0)
 		(*i)++;
