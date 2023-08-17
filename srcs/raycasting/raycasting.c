@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 15:38:48 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/16 11:15:53 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:23:16 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,49 @@ static void	get_distances(t_ray *ray, t_player *player)
 	}
 }
 
+void	check_door_hit(t_ray *ray)
+{
+	if (ray->hit == 'D')
+	{
+		if (ray->side == 0 || ray->side == 2)
+			ray->side = 4;
+		else
+			ray->side = 5;
+	}
+}
+
+void	check_door_inside_hit(t_ray *ray, t_data *data)
+{
+	if (ray->side == 0)
+	{
+		if (ray->mapx >= 1 && data->mdata->map[ray->mapx - 1][ray->mapy] == 'd')
+			ray->side = 6;
+	}
+	else if (ray->side == 1)
+	{
+		if (ray->mapy >= 1 && data->mdata->map[ray->mapx][ray->mapy - 1] == 'd')
+			ray->side = 7;
+	}
+	else if (ray->side == 2)
+	{
+		if (ray->mapx + 1 <= data->mdata->map_height
+			&& data->mdata->map[ray->mapx + 1][ray->mapy] == 'd')
+			ray->side = 6;
+	}
+	else if (ray->side == 3)
+	{
+		if (ray->mapy + 1 <= data->mdata->map_width
+			&& data->mdata->map[ray->mapx][ray->mapy + 1] == 'd')
+			ray->side = 7;
+	}
+}
+
 /*
 *		DDA algorithm
 */
 static void	check_hit(t_ray *ray, t_data *data)
 {
-	while (ray->hit == 0)
+	while (ray->hit == 0 || ray->hit == 'd')
 	{
 		if (ray->sidedistx < ray->sidedisty)
 		{
@@ -51,6 +88,7 @@ static void	check_hit(t_ray *ray, t_data *data)
 				ray->side = 0;
 			else if (ray->stepx == -1)
 				ray->side = 2;
+			check_door_inside_hit(ray, data);
 		}
 		else
 		{
@@ -60,18 +98,17 @@ static void	check_hit(t_ray *ray, t_data *data)
 				ray->side = 1;
 			else if (ray->stepy == -1)
 				ray->side = 3;
+			check_door_inside_hit(ray, data);
 		}
 		ray->hit = data->mdata->map[ray->mapx][ray->mapy];
-		if (ray->hit == 'S' || ray->hit == 'D')
-			ray->hit = 0;
-		if (ray->hit == 'd')
-			ray->side = 4;
+		check_door_hit(ray);
 	}
 }
 
+
 static void	get_wall_heigth(t_ray *ray, t_player *player, t_data *data)
 {
-	if (ray->side == 0 || ray->side == 2)
+	if (ray->side % 2 == 0)
 		ray->perpwalldist = (ray->sidedistx - ray->deltadistx);
 	else
 		ray->perpwalldist = (ray->sidedisty - ray->deltadisty);
@@ -83,15 +120,15 @@ static void	get_wall_heigth(t_ray *ray, t_player *player, t_data *data)
 	if (ray->drawend >= WIN_HEIGHT)
 		ray->drawend = WIN_HEIGHT - 1;
 	ray->wallx = 0;
-	if (ray->side == 0 || ray->side == 2)
+	if (ray->side % 2 == 0)
 		ray->wallx = player->posy + ray->perpwalldist * ray->raydiry;
 	else
 		ray->wallx = player->posx + ray->perpwalldist * ray->raydirx;
 	ray->wallx -= floor(ray->wallx);
 	ray->texx = (int)(ray->wallx * (double)data->wall[0].width);
-	if (((ray->side == 0 || ray->side == 2) && ray->raydirx > 0))
+	if (ray->side % 2 == 0 && ray->raydirx > 0)
 		ray->texx = data->wall[0].width - ray->texx - 1;
-	if (((ray->side == 1 || ray->side == 3) && ray->raydiry < 0))
+	if (ray->side % 2 && ray->raydiry < 0)
 		ray->texx = data->wall[0].width - ray->texx - 1;
 	ray->step = 1.0 * data->wall[0].height / ray->lineheight;
 	ray->texpos = (ray->drawstart - WIN_HEIGHT / 2 + ray->lineheight / 2)

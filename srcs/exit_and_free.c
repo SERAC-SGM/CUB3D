@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:50:07 by mat               #+#    #+#             */
-/*   Updated: 2023/08/16 11:32:57 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:26:47 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	exit_error(char *error, char *arg, t_data *data)
 	ft_putstr_fd(error, 2);
 	ft_putstr_fd(arg, 2);
 	ft_putstr_fd("\n", 2);
+	mlx_destroy_image(data->mlx, data->door.img);
+	mlx_destroy_image(data->mlx, data->door_inside.img);
 	while (++i < 4)
 	{
 		mlx_destroy_image(data->mlx, data->wall[i].img);

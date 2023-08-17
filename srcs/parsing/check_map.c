@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 14:26:28 by mat               #+#    #+#             */
-/*   Updated: 2023/08/10 14:09:08 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/08/16 11:51:05 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,15 @@ int	check_player(t_map_data *mdata)
 		{
 			c = mdata->map_strs->str[i];
 			if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+			{
 				player_counter++;
+				//printf("tile = %c\n", c);
+			}
 			i++;
 		}
 		mdata->map_strs = mdata->map_strs->next;
 	}
+	//printf("counter = %d\n", player_counter);
 	if (player_counter != 1)
 	{
 		ft_putstr_fd("Error\n", 2);

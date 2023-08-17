@@ -6,21 +6,21 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/16 11:26:37 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/16 14:04:32 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define WIN_HEIGHT 480
-# define WIN_WIDTH 640
+// # define WIN_HEIGHT 480
+// # define WIN_WIDTH 640
 
 # define MINIMAP_H	120
 # define MINIMAP_W	160
 
-// # define WIN_HEIGHT 600
-// # define WIN_WIDTH 800
+# define WIN_HEIGHT 600
+# define WIN_WIDTH 800
 
 // # define WIN_HEIGHT 768
 // # define WIN_WIDTH 1024
@@ -44,11 +44,9 @@
 # define MOVE_SPEED		0.06
 # define ROTATE_SPEED	0.0375
 
-# define MAP_VOID		0
+# define MAP_VOID		9
 # define MAP_FLOOR		0
 # define MAP_WALL		1
-# define MAP_THIN_WALL_X	't'
-# define MAP_THIN_WALL_Y	'T'
 # define MAP_DOOR_X		'd'
 # define MAP_DOOR_Y		'D'
 # define MAP_SPRITE		'S'
@@ -209,8 +207,10 @@ void		print_player_data(t_player *player);
 void		print_map(t_map_data *mdata);
 void		print_strs(t_strlst *lst);
 
-void		show_all_sprites(int x, t_data *data);
+//void		show_all_sprites(int x, t_data *data);
 void		get_door(t_data *data);
 int			get_sprite_pos(int x, int y, t_data *data);
+void		get_door_inside(t_data *data);
+
 
 #endif

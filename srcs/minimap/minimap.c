@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mat <mat@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 10:43:34 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/23 11:42:46 by mat              ###   ########.fr       */
+/*   Updated: 2023/08/16 13:39:40 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@ void	minimap(t_data *data)
 	int				color;
 
 	i = 0;
-	top_corner.x = get_int_rouded(data->player->posx - 6);
-	top_corner.y = get_int_rouded(data->player->posy - 8);
+	top_corner.x = get_int_rouded(data->player->posx - 5.5);
+	top_corner.y = get_int_rouded(data->player->posy - 7.5);
 	while (i < MINIMAP_H)
 	{
 		j = 0;
@@ -119,26 +119,3 @@ void	minimap(t_data *data)
 	put_player_in_minimap(data);
 }
 
-//void	minimap(t_data *data)
-//{
-//	t_coord			top_corner;
-//	int				i;
-//	int				j;
-
-//	i = 0;
-//	top_corner.x = data->player->posx - 6.5;
-//	top_corner.y = data->player->posy - 8.5;
-//	while (i < MINIMAP_H)
-//	{
-//		j = 0;
-//		while (j < MINIMAP_W)
-//		{
-//			pixel_put_in_image(&data->img, j, i, 
-//				get_minimap_color(data, top_corner, i, j));
-//			j ++;
-//		}
-//		i++;
-//	}
-//	put_minimap_borders(data);
-//	put_player_in_minimap(data);
-//}

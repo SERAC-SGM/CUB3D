@@ -117,8 +117,6 @@ SRCS += cub3d.c
 SRCS += door.c
 SRCS += exit_and_free.c
 SRCS += hooks.c
-SRCS += init.c
-SRCS += minimap.c
 SRCS += movement.c
 SRCS += raycasting_utils.c
 SRCS += raycasting.c
@@ -128,7 +126,6 @@ SRCS += window.c
 SRCS += init.c
 SRCS += minimap.c
 SRCS += minimap_utils.c
-SRCS += door.c
 
 # debug
 SRCS += debug.c
