@@ -112,7 +112,6 @@ SRCS += parsing.c
 SRCS += state_machine.c
 SRCS += check_map.c
 
-SRCS += color.c
 SRCS += cub3d.c
 SRCS += door.c
 SRCS += exit_and_free.c

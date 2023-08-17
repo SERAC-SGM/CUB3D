@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 10:43:34 by mdorr             #+#    #+#             */
-/*   Updated: 2023/08/16 13:39:40 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/17 10:52:26 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,4 +118,3 @@ void	minimap(t_data *data)
 	put_minimap_borders(data);
 	put_player_in_minimap(data);
 }
-

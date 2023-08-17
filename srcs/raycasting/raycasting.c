@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 15:38:48 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/16 14:23:16 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/17 10:50:51 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,43 +33,6 @@ static void	get_distances(t_ray *ray, t_player *player)
 	{
 		ray->stepy = 1;
 		ray->sidedisty = (ray->mapy + 1.0 - player->posy) * ray->deltadisty;
-	}
-}
-
-void	check_door_hit(t_ray *ray)
-{
-	if (ray->hit == 'D')
-	{
-		if (ray->side == 0 || ray->side == 2)
-			ray->side = 4;
-		else
-			ray->side = 5;
-	}
-}
-
-void	check_door_inside_hit(t_ray *ray, t_data *data)
-{
-	if (ray->side == 0)
-	{
-		if (ray->mapx >= 1 && data->mdata->map[ray->mapx - 1][ray->mapy] == 'd')
-			ray->side = 6;
-	}
-	else if (ray->side == 1)
-	{
-		if (ray->mapy >= 1 && data->mdata->map[ray->mapx][ray->mapy - 1] == 'd')
-			ray->side = 7;
-	}
-	else if (ray->side == 2)
-	{
-		if (ray->mapx + 1 <= data->mdata->map_height
-			&& data->mdata->map[ray->mapx + 1][ray->mapy] == 'd')
-			ray->side = 6;
-	}
-	else if (ray->side == 3)
-	{
-		if (ray->mapy + 1 <= data->mdata->map_width
-			&& data->mdata->map[ray->mapx][ray->mapy + 1] == 'd')
-			ray->side = 7;
 	}
 }
 
@@ -104,7 +67,6 @@ static void	check_hit(t_ray *ray, t_data *data)
 		check_door_hit(ray);
 	}
 }
-
 
 static void	get_wall_heigth(t_ray *ray, t_player *player, t_data *data)
 {

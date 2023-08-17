@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:51:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/08/16 12:11:30 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/17 10:51:02 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ static void	fill_map(t_data *data)
 			else
 				data->mdata->map[i][j] = get_player_and_door_data(data,
 						data->mdata->map_strs->str[j], i, j);
-			//j++;
 		}
 		data->mdata->map_strs = data->mdata->map_strs->next;
 		i++;
@@ -123,6 +122,5 @@ int	parsing(t_data *data)
 		return (EXIT_FAILURE);
 	}
 	ft_lstclear(&data->mdata->top, free);
-	//printf("data sprite nb %d\n", data->sprite_number);
 	return (EXIT_SUCCESS);
 }

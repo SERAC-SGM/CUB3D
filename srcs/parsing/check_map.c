@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 14:26:28 by mat               #+#    #+#             */
-/*   Updated: 2023/08/16 11:51:05 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/17 10:52:17 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,15 @@ int	check_player(t_map_data *mdata)
 	mdata->map_strs = mdata->top;
 	while (mdata->map_strs)
 	{
-		i = 0;
-		while (mdata->map_strs->str[i])
+		i = -1;
+		while (mdata->map_strs->str[++i])
 		{
 			c = mdata->map_strs->str[i];
 			if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
-			{
 				player_counter++;
-				//printf("tile = %c\n", c);
-			}
-			i++;
 		}
 		mdata->map_strs = mdata->map_strs->next;
 	}
-	//printf("counter = %d\n", player_counter);
 	if (player_counter != 1)
 	{
 		ft_putstr_fd("Error\n", 2);
