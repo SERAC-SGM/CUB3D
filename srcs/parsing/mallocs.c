@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mallocs.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:42:53 by mdorr             #+#    #+#             */
-/*   Updated: 2023/07/15 20:51:10 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/17 12:07:52 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,5 @@ int	malloc_structs(t_data *data)
 			return (free_prev_allocs(data, i));
 		i++;
 	}
-	data->player = malloc(sizeof(t_player));
-	if (data->player == NULL)
-		return (free_prev_allocs(data, i));
 	return (EXIT_SUCCESS);
 }

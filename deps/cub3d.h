@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/17 11:49:46 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/08/17 12:21:04 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@
 # define E_PLAYER		"Wrong number of player in map, one player allowed\n"
 # define E_UNCLOSED_MAP	"Wrong map format, maps need to be surrounded by walls\n"
 # define E_SPRITE		"Unable to load sprite : "
+# define E_INVALID_CHAR	"Invalid char in map, try with a different map\n"
 
 # define CLOSE_WINDOW 17
 # define KEY_PRESS 2
@@ -151,6 +152,7 @@ int			get_player_and_door_data(t_data *data, char c, int i, int j);
 t_strlst	*ft_lstnew(void *content);
 void		ft_lstadd_back(t_strlst **lst, t_strlst *new);
 void		ft_lstclear(t_strlst **lst, void (*del)(void*));
+int			check_map_char(t_map_data *mdata);
 
 // Check map
 

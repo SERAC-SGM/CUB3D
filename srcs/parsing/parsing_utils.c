@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 18:17:49 by mat               #+#    #+#             */
-/*   Updated: 2023/07/15 20:51:16 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/17 12:19:59 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,29 @@ void	ft_lstclear(t_strlst **lst, void (*del)(void*))
 			*lst = tmp_lst;
 		}
 	}
+}
+
+int	check_map_char(t_map_data *mdata)
+{
+	int			i;
+	t_strlst	*top;
+
+	top = mdata->map_strs;
+	while (mdata->map_strs)
+	{
+		i = 0;
+		while (mdata->map_strs->str[i])
+		{
+			if (ft_strchr("01+NSEWDd", mdata->map_strs->str[i]) == NULL)
+			{
+				ft_putstr_fd("Error\n", 2);
+				ft_putstr_fd(E_INVALID_CHAR, 2);
+				return (EXIT_FAILURE);
+			}
+			i++;
+		}
+		mdata->map_strs = mdata->map_strs->next;
+	}
+	mdata->map_strs = top;
+	return (EXIT_SUCCESS);
 }

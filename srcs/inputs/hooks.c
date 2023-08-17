@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:34:39 by mdorr             #+#    #+#             */
-/*   Updated: 2023/08/17 11:47:09 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/08/17 12:12:00 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	handle_mouse(int x, int y, t_data *data)
 	if (x < data->prev_mouse_w)
 		data->rotate_left = 1;
 	data->prev_mouse_w = x;
-	//if (x >= WIN_WIDTH - 50 || x <= 50 || y >= WIN_HEIGHT - 50 || y <= 50)
-	//	mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
+	if (x >= WIN_WIDTH - 50 || x <= 50 || y >= WIN_HEIGHT - 50 || y <= 50)
+		mlx_mouse_move(data->mlx, data->win, WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	return (0);
 }
 

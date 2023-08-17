@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:51:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/08/17 11:33:10 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/08/17 12:18:36 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ int	parsing(t_data *data)
 		exit_parsing(data);
 	}
 	get_map_size(data->mdata);
+	if (check_map_char(data->mdata) == EXIT_FAILURE)
+		return (EXIT_FAILURE);
 	if (malloc_structs(data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	fill_map(data);
