@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/17 13:37:44 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/08/17 14:09:20 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,10 @@ int			get_player_and_door_data(t_data *data, char c, int i, int j);
 t_strlst	*ft_lstnew(void *content);
 void		ft_lstadd_back(t_strlst **lst, t_strlst *new);
 void		ft_lstclear(t_strlst **lst, void (*del)(void*));
+char		*get_first_lst_ptr(t_map_data *mdata, char *line, int *tmp);
+
+// Check map char
+
 int			check_map_char(t_map_data *mdata);
 
 // Check map
