@@ -88,6 +88,15 @@ vpath %.h $(DEPS_DIR)
 ############################### Path Sources ###################################
 #‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾#
 
+BONUS_SRCS_DIR += ./srcs_bonus
+BONUS_SRCS_DIR += ./srcs_bonus/parsing
+BONUS_SRCS_DIR += ./srcs_bonus/raycasting
+BONUS_SRCS_DIR += ./srcs_bonus/inputs
+BONUS_SRCS_DIR += ./srcs_bonus/minimap
+BONUS_SRCS_DIR += ./srcs_bonus/debug
+
+BONUS_PATH_SRCS = $(BONUS_SRCS_DIR)
+
 SRCS_DIR += ./srcs
 SRCS_DIR += ./srcs/parsing
 SRCS_DIR += ./srcs/raycasting
@@ -101,7 +110,6 @@ PATH_SRCS = $(SRCS_DIR)
 ############################### Sources ########################################
 #‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾#
 
-# parsing
 SRCS += get_color.c
 SRCS += get_player.c
 SRCS += get_textures.c
@@ -123,18 +131,50 @@ SRCS += sprite.c
 SRCS += texture.c
 SRCS += window.c
 SRCS += init.c
-SRCS += minimap.c
-SRCS += minimap_utils.c
 SRCS += print_error.c
 SRCS += check_map_char.c
 
-# debug
 SRCS += debug.c
+
+#______________________________________________________________________________#
+############################### Sources Bonus ##################################
+#‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾#
+
+B_SRCS += get_color.c
+B_SRCS += get_player.c
+B_SRCS += get_textures.c
+B_SRCS += init_sprite.c
+B_SRCS += mallocs.c
+B_SRCS += parsing_utils.c
+B_SRCS += parsing.c
+B_SRCS += state_machine.c
+B_SRCS += check_map.c
+
+B_SRCS += cub3d.c
+B_SRCS += door.c
+B_SRCS += exit_and_free.c
+B_SRCS += hooks.c
+B_SRCS += movement.c
+B_SRCS += raycasting_utils.c
+B_SRCS += raycasting.c
+B_SRCS += sprite.c
+B_SRCS += texture.c
+B_SRCS += window.c
+B_SRCS += init.c
+B_SRCS += minimap.c
+B_SRCS += minimap_utils.c
+B_SRCS += print_error.c
+B_SRCS += check_map_char.c
+
+B_SRCS += debug.c
+
+
 #______________________________________________________________________________#
 ############################### Attribution ####################################
 #‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾#
 
 vpath %.c $(PATH_SRCS)
+vpath %.c $(BONUS_PATH_SRCS)
 
 #______________________________________________________________________________#
 ############################### Objects ########################################
@@ -144,12 +184,19 @@ OBJS_DIR = ./objs
 OBJS = $(patsubst %.c, $(OBJS_DIR)/%.o, $(SRCS))
 CHK_OBJS = $(patsubst %.c, $(OBJS_DIR)/%.o, $(CHK_SRCS))
 
+BONUS_OBJS_DIR = ./bonus_objs
+BONUS_OBJS = $(patsubst %.c, $(BONUS_OBJS_DIR)/%.o, $(B_SRCS))
+BONUS_CHK_OBJS = $(patsubst %.c, $(BONUS_OBJS_DIR)/%.o, $(BONUS_CHK_SRCS))
+
 #______________________________________________________________________________#
 ############################### Build ##########################################
 #‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾#
 
 BUILD_DIR = ./build
 BUILD = $(addprefix $(BUILD_DIR)/, $(notdir $(OBJS:.o=.d)))
+
+BONUS_BUILD_DIR = ./bonus_build
+BONUS_BUILD = $(addprefix $(BONUS_BUILD_DIR)/, $(notdir $(BONUS_OBJS:.o=.d)))
 
 #______________________________________________________________________________#
 ############################### Progress Bar ###################################
@@ -188,6 +235,17 @@ $(NAME): $(OBJS)
     #-----Output-----#
 	@echo "$(WHITE)\n▶$(BGREEN)$(NAME)\t$(GREEN)Executable created$(NC)"
 
+bonus : $(BONUS_OBJS)
+	@$(CC) $(CFLAGS) $^ $(LDFLAGS) $(DEPS) -o cub3d_bonus
+    #-----Output-----#
+	@echo "$(WHITE)\n▶$(BGREEN)$(NAME)\t$(GREEN)Executable created$(NC)"
+
+$(BONUS_OBJS) : $(BONUS_OBJS_DIR)/%.o: %.c | $(MLX) $(LIBFT) dir where
+	@$(CC) $(CFLAGS) -MMD $(DEPS) -c $< -o $@
+	@mv $(basename $@).d $(BONUS_BUILD_DIR)/$(notdir $(basename $@)).d
+    #-----Output-----#
+	@$(call PROGRESS_BAR, $(basename $(notdir $<)))
+
 $(OBJS): $(OBJS_DIR)/%.o: %.c | $(MLX) $(LIBFT) dir where
 	@$(CC) $(CFLAGS) -MMD $(DEPS) -c $< -o $@
 	@mv $(basename $@).d $(BUILD_DIR)/$(notdir $(basename $@)).d
@@ -214,12 +272,20 @@ $(OBJS_DIR):
 $(BUILD_DIR):
 	@mkdir $@
 
+$(BONUS_OBJS_DIR) :
+	@mkdir $@
+
+$(BONUS_BUILD_DIR) :
+	@mkdir $@
+
 bonus: all
 
 #_____Clean_____#
 clean: where_c lclean
 	@rm -rf $(OBJS_DIR)
 	@rm -rf $(BUILD_DIR)
+	@rm -rf $(BONUS_OBJS_DIR)
+	@rm -rf $(BONUS_BUILD_DIR)
     #-----Output-----#
 	@echo "▶ $(BYELLOW)clean $(YELLOW)Object files removed from $(PROJECT_NAME)$(NC)"
 	@echo "▶ \t$(YELLOW)Dependencies files removed from $(PROJECT_NAME)$(NC)"
