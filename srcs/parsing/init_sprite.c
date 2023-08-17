@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 16:40:32 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/16 14:04:07 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/17 14:05:14 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@ int	get_sprite_pos(int x, int y, t_data *data)
 
 void	init_walls_sprites(t_data *data)
 {
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < 4)
+	{
+		j = -1;
+		while (++j < WIN_WIDTH)
+			data->fire[i].zbuffer[j] = 0.0;
+	}
 	get_wall(data);
 	get_door(data);
 	get_door_inside(data);

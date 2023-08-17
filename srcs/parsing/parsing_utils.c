@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 18:17:49 by mat               #+#    #+#             */
-/*   Updated: 2023/08/17 13:39:21 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/08/17 13:50:28 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	check_map_char(t_map_data *mdata)
 		i = 0;
 		while (mdata->map_strs->str[i])
 		{
-			if (ft_strchr("01+NSEWDd", mdata->map_strs->str[i]) == NULL)
+			if (ft_strchr("01+NSEWDd \n", mdata->map_strs->str[i]) == NULL)
 				return (print_error(E_INVALID_CHAR));
 			i++;
 		}

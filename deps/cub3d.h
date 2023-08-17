@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/17 13:37:44 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/08/17 14:11:57 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define MAP_WIDTH	24
 
 # define MOVE_SPEED		0.1
-# define ROTATE_SPEED	0.05
+# define ROTATE_SPEED	0.075
 
 # define MAP_VOID		9
 # define MAP_FLOOR		0
@@ -60,11 +60,11 @@
 # define E_MLX			"MiniLibX : "
 # define E_TEXTURE		"Unable to load texture : "
 # define E_COLOR		"Referenced colors in wrong format\nUse R, G, B Format\n"
-# define E_PLAYER		"Wrong number of player in map, one player allowed\n"
-# define E_UNCLOSED_MAP	"Wrong map format, maps need to be surrounded by walls\n"
+# define E_PLAYER		"Incorrect number of player\n"
+# define E_UNCLOSED_MAP	"Wrong map format\n"
 # define E_SPRITE		"Unable to load sprite : "
-# define E_INVALID_CHAR	"Invalid char in map, try with a different map\n"
-# define E_NOMAP		"There is no map in the file\n"
+# define E_INVALID_CHAR	"Invalid map\n"
+# define E_NOMAP		"Empty map\n"
 
 # define CLOSE_WINDOW 17
 # define KEY_PRESS 2
