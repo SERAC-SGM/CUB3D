@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/17 10:44:32 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:06:28 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	main(int argc, char **argv)
 	init_walls_sprites(&data);
 	data.prev_mouse_w = 0;
 	init_image(&data);
+	mlx_mouse_hide(data.mlx, data.win);
 	mlx_loop_hook(data.mlx, &render, &data);
 	mlx_hook(data.win, MOUSE_MOVE, PointerMotionMask, &handle_mouse, &data);
 	mlx_hook(data.win, KEY_PRESS, KeyPressMask, &handle_key_press, &data);

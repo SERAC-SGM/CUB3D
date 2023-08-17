@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/17 11:00:57 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:06:05 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,9 @@
 # include "libft.h"
 # include "mlx.h"
 # include "struct.h"
+
+# include <X11/Xlib.h>
+# include <X11/Xutil.h>
 
 void		get_sprite(t_data *data);
 void		display_fire_sprite(int x, t_data *data);
