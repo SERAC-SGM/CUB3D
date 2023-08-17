@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 11:28:52 by mdorr             #+#    #+#             */
-/*   Updated: 2023/08/17 11:48:45 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/08/17 15:02:24 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ void	init_window(t_data *data)
 
 void	init_data(t_data *data, t_map_data *mdata, t_player *player)
 {
+	int	i;
+
+	i = 0;
+	while (i < 4)
+		mdata->texture[i++] = NULL;
 	data->move_fwd = 0;
 	data->move_bckwd = 0;
 	data->move_left = 0;
@@ -31,6 +36,7 @@ void	init_data(t_data *data, t_map_data *mdata, t_player *player)
 	data->rotate_left = 0;
 	data->rotate_right = 0;
 	data->mdata = mdata;
+	mdata->map_strs = NULL;
 	data->player = player;
 	data->mdata->map = NULL;
 	data->mouse_hook = false;

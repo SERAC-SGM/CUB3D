@@ -1,2 +1,0 @@
-g++ -o pitch raycaster_pitch.cpp quickcg.cpp -lSDL 
-

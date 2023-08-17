@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 18:17:49 by mat               #+#    #+#             */
-/*   Updated: 2023/08/17 13:50:28 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/17 15:57:59 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_lstclear(t_strlst **lst, void (*del)(void*))
 	}
 }
 
-int	check_map_char(t_map_data *mdata)
+char	*get_first_lst_ptr(t_map_data *mdata, char *line, int *tmp)
 {
 	int			i;
 	t_strlst	*top;

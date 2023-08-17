@@ -126,6 +126,7 @@ SRCS += init.c
 SRCS += minimap.c
 SRCS += minimap_utils.c
 SRCS += print_error.c
+SRCS += check_map_char.c
 
 # debug
 SRCS += debug.c

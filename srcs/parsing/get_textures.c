@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:13:59 by mat               #+#    #+#             */
-/*   Updated: 2023/08/16 11:30:01 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/17 14:44:41 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	store_texture(t_map_data *mdata, char *line, int *counter)
 	}
 }
 
-void	get_texture_path(t_map_data *mdata)
+int	get_texture_path(t_map_data *mdata)
 {
 	char	*line;
 	int		counter;
@@ -83,5 +83,7 @@ void	get_texture_path(t_map_data *mdata)
 		store_texture(mdata, line, &counter);
 		free(line);
 	}
-	return ;
+	if (counter != 6)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }

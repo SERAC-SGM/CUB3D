@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 14:26:28 by mat               #+#    #+#             */
-/*   Updated: 2023/08/17 10:52:17 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/17 15:05:01 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,10 @@ int	check_map(t_data *data)
 
 	machine.mdata = data->mdata;
 	machine.valid = true;
+	printf("blata\n");
 	if (check_first_and_last_row(data->mdata) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
+	printf("blat after firts and lasyt\n");
 	init_machine(&machine);
 	while (machine.state != END && machine.valid != false)
 		s_map_func[machine.state](&machine, update_coord_horizontal);
