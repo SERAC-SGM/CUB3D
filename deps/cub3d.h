@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/17 12:21:04 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/08/17 13:37:44 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@
 # define E_UNCLOSED_MAP	"Wrong map format, maps need to be surrounded by walls\n"
 # define E_SPRITE		"Unable to load sprite : "
 # define E_INVALID_CHAR	"Invalid char in map, try with a different map\n"
+# define E_NOMAP		"There is no map in the file\n"
 
 # define CLOSE_WINDOW 17
 # define KEY_PRESS 2
@@ -215,5 +216,9 @@ void		check_door_hit(t_ray *ray);
 void		check_door_inside_hit(t_ray *ray, t_data *data);
 
 void		init_malloc(t_data *data);
+
+// Print error
+
+int			print_error(char *message);
 
 #endif

@@ -125,6 +125,7 @@ SRCS += window.c
 SRCS += init.c
 SRCS += minimap.c
 SRCS += minimap_utils.c
+SRCS += print_error.c
 
 # debug
 SRCS += debug.c
