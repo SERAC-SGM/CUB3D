@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/17 12:12:44 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/08/17 14:50:09 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	if (parsing(&data) == EXIT_FAILURE)
 	{
-		ft_lstclear(&data.mdata->top, free);
+		if (data.mdata->map_strs)
+			ft_lstclear(&data.mdata->top, free);
 		exit_parsing(&data);
 	}
 	init_window(&data);

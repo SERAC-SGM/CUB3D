@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:51:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/08/17 14:31:33 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/08/17 15:04:20 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ static void	get_map_size(t_map_data *mdata)
 	mdata->map_height = 0;
 	mdata->map_width = 0;
 	line = get_next_line(mdata->map_fd);
-	mdata->map_strs = NULL;
 	while (line != NULL && line[0] != '0' && line[0] != '1' && line[0] != ' ')
 	{
 		free(line);
@@ -90,11 +89,13 @@ static void	get_map_size(t_map_data *mdata)
 		free(line);
 		line = get_next_line(mdata->map_fd);
 	}
+	free(line);
 }
 
 int	parsing(t_data *data)
 {
-	get_texture_path(data->mdata);
+	if (get_texture_path(data->mdata) == EXIT_FAILURE)
+		return (print_error(E_MISSING_TXT));
 	if (data->mdata->color_ceiling == -1 || data->mdata->color_floor == -1)
 	{
 		ft_putstr_fd("Error\n", 2);
@@ -107,12 +108,15 @@ int	parsing(t_data *data)
 	if (malloc_structs(data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	fill_map(data);
+	print_map(data->mdata);
+	printf("map width is %d and map height is %d\n", data->mdata->map_width, data->mdata->map_height);
 	if (check_map(data) == EXIT_FAILURE)
 	{
 		ft_putstr_fd("Error\n", 2);
 		ft_putstr_fd(E_UNCLOSED_MAP, 2);
 		return (EXIT_FAILURE);
 	}
+	printf("bblat\n");
 	if (check_player(data->mdata) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	ft_lstclear(&data->mdata->top, free);

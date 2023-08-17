@@ -6,7 +6,7 @@
 /*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/17 14:09:20 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/08/17 14:44:04 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@
 # define E_SPRITE		"Unable to load sprite : "
 # define E_INVALID_CHAR	"Invalid char in map, try with a different map\n"
 # define E_NOMAP		"There is no map in the file\n"
+# define E_MISSING_TXT	"A texture or color is missing\n"
 
 # define CLOSE_WINDOW 17
 # define KEY_PRESS 2
@@ -142,7 +143,7 @@ void		test_colors(t_map_data *mdata, char *line, int *counter);
 
 // Get textures
 
-void		get_texture_path(t_map_data *mdata);
+int			get_texture_path(t_map_data *mdata);
 
 // Get player
 
