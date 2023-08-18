@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 16:40:32 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/17 14:05:14 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/18 11:29:28 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 int	get_sprite_pos(int x, int y, t_data *data)
 {
 	if (data->sprite_number == 99)
+	{
+		ft_lstclear(&data->mdata->top, free);
 		exit_error(E_SPRITE, "Too many sprites", data);
+	}
 	data->fire[data->sprite_number].pos[0] = x + 0.5;
 	data->fire[data->sprite_number].pos[1] = y + 0.5;
 	data->sprite_number++;
@@ -28,7 +31,7 @@ void	init_walls_sprites(t_data *data)
 	int	j;
 
 	i = -1;
-	while (++i < 4)
+	while (++i < data->sprite_number)
 	{
 		j = -1;
 		while (++j < WIN_WIDTH)

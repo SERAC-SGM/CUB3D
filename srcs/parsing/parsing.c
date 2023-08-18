@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:51:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/08/17 15:04:20 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/08/18 11:10:09 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ static void	fill_map(t_data *data)
 	}
 }
 
-
 static void	get_map_size(t_map_data *mdata)
 {
 	char		*line;
@@ -108,15 +107,12 @@ int	parsing(t_data *data)
 	if (malloc_structs(data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	fill_map(data);
-	print_map(data->mdata);
-	printf("map width is %d and map height is %d\n", data->mdata->map_width, data->mdata->map_height);
 	if (check_map(data) == EXIT_FAILURE)
 	{
 		ft_putstr_fd("Error\n", 2);
 		ft_putstr_fd(E_UNCLOSED_MAP, 2);
 		return (EXIT_FAILURE);
 	}
-	printf("bblat\n");
 	if (check_player(data->mdata) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	ft_lstclear(&data->mdata->top, free);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_and_free.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 17:50:07 by mat               #+#    #+#             */
-/*   Updated: 2023/08/17 14:54:06 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/08/18 11:12:54 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ void	free_data(t_data *data)
 	free(data->mlx);
 	data->mlx = NULL;
 	free_map(data->mdata);
-	i = -1;
-	while (++i < 4)
+	while (i-- > 0)
 		free(data->mdata->texture[i]);
 }
 
