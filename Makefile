@@ -14,7 +14,7 @@ PROJECT_NAME = cub3d
 CC = cc
 
 # Compiler Flags
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -O3
 
 #______________________________________________________________________________#
 ############################### Libraries ######################################
@@ -184,7 +184,7 @@ OBJS_DIR = ./objs
 OBJS = $(patsubst %.c, $(OBJS_DIR)/%.o, $(SRCS))
 CHK_OBJS = $(patsubst %.c, $(OBJS_DIR)/%.o, $(CHK_SRCS))
 
-BONUS_OBJS_DIR = ./bonus_objs
+BONUS_OBJS_DIR = ./objs_b
 BONUS_OBJS = $(patsubst %.c, $(BONUS_OBJS_DIR)/%.o, $(B_SRCS))
 BONUS_CHK_OBJS = $(patsubst %.c, $(BONUS_OBJS_DIR)/%.o, $(BONUS_CHK_SRCS))
 
@@ -195,7 +195,7 @@ BONUS_CHK_OBJS = $(patsubst %.c, $(BONUS_OBJS_DIR)/%.o, $(BONUS_CHK_SRCS))
 BUILD_DIR = ./build
 BUILD = $(addprefix $(BUILD_DIR)/, $(notdir $(OBJS:.o=.d)))
 
-BONUS_BUILD_DIR = ./bonus_build
+BONUS_BUILD_DIR = ./build_b
 BONUS_BUILD = $(addprefix $(BONUS_BUILD_DIR)/, $(notdir $(BONUS_OBJS:.o=.d)))
 
 #______________________________________________________________________________#
@@ -264,7 +264,7 @@ $(MLX):
 -include $(BUILD)
 
 # Directories
-dir: $(OBJS_DIR) $(BUILD_DIR)
+dir: $(OBJS_DIR) $(BUILD_DIR) $(BONUS_OBJS_DIR) $(BONUS_BUILD_DIR)
 
 $(OBJS_DIR):
 	@mkdir $@
@@ -278,7 +278,7 @@ $(BONUS_OBJS_DIR) :
 $(BONUS_BUILD_DIR) :
 	@mkdir $@
 
-bonus: all
+#bonus: all
 
 #_____Clean_____#
 clean: where_c lclean

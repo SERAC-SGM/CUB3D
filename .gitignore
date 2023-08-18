@@ -4,3 +4,6 @@ objs
 so_long
 cub3d
 libft/libft.a
+objs_b/
+build_b/
+cub3d_bonus
