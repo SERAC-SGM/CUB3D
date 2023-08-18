@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 18:17:49 by mat               #+#    #+#             */
-/*   Updated: 2023/08/17 15:57:59 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/18 11:03:32 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,23 +70,13 @@ void	ft_lstclear(t_strlst **lst, void (*del)(void*))
 
 char	*get_first_lst_ptr(t_map_data *mdata, char *line, int *tmp)
 {
-	int			i;
-	t_strlst	*top;
-
-	top = mdata->map_strs;
-	if (mdata->map_strs == NULL)
-		return (print_error(E_NOMAP));
-	while (mdata->map_strs)
-	{
-		i = 0;
-		while (mdata->map_strs->str[i])
-		{
-			if (ft_strchr("01+NSEWDd \n", mdata->map_strs->str[i]) == NULL)
-				return (print_error(E_INVALID_CHAR));
-			i++;
-		}
-		mdata->map_strs = mdata->map_strs->next;
-	}
-	mdata->map_strs = top;
-	return (EXIT_SUCCESS);
+	ft_lstadd_back(&mdata->map_strs, ft_lstnew(ft_strdup(line)));
+	mdata->map_height++;
+	*tmp = ft_strlen(line);
+	if (*tmp - 1 > mdata->map_width)
+		mdata->map_width = *tmp - 1;
+	free(line);
+	line = get_next_line(mdata->map_fd);
+	mdata->top = mdata->map_strs;
+	return (line);
 }
