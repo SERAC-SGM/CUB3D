@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:51:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/08/18 11:10:09 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/18 12:19:43 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,7 @@ int	parsing(t_data *data)
 		return (print_error(E_MISSING_TXT));
 	if (data->mdata->color_ceiling == -1 || data->mdata->color_floor == -1)
 	{
-		ft_putstr_fd("Error\n", 2);
-		ft_putstr_fd(E_COLOR, 2);
+		print_error(E_COLOR);
 		exit_parsing(data);
 	}
 	get_map_size(data->mdata);
@@ -109,12 +108,14 @@ int	parsing(t_data *data)
 	fill_map(data);
 	if (check_map(data) == EXIT_FAILURE)
 	{
-		ft_putstr_fd("Error\n", 2);
-		ft_putstr_fd(E_UNCLOSED_MAP, 2);
-		return (EXIT_FAILURE);
+		ft_lstclear(&data->mdata->top, free);
+		return (print_error(E_UNCLOSED_MAP));
 	}
 	if (check_player(data->mdata) == EXIT_FAILURE)
+	{
+		ft_lstclear(&data->mdata->top, free);
 		return (EXIT_FAILURE);
+	}
 	ft_lstclear(&data->mdata->top, free);
 	return (EXIT_SUCCESS);
 }
