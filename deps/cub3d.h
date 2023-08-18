@@ -6,30 +6,33 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/17 15:56:41 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/18 16:35:19 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-// # define WIN_HEIGHT 600
 // # define WIN_WIDTH 800
+// # define WIN_HEIGHT 600
 
-# define MINIMAP_H	120
-# define MINIMAP_W	160
-
-// # define WIN_HEIGHT 480
 // # define WIN_WIDTH 640
+// # define WIN_HEIGHT 480
 
-# define WIN_HEIGHT 768
 # define WIN_WIDTH 1024
+# define WIN_HEIGHT 768
 
-# define MAP_HEIGHT	24
-# define MAP_WIDTH	24
+//# define MAP_WIDTH	24
+//# define MAP_HEIGHT	24
 
-# define MOVE_SPEED		0.1
-# define ROTATE_SPEED	0.075
+# define MINIMAP_W	160
+# define MINIMAP_H	120
+
+# define MINIMAP_SIZE_X	16
+# define MINIMAP_SIZE_Y	12
+
+# define MOVE_SPEED		0.05
+# define ROTATE_SPEED	0.03
 
 # define MAP_VOID		9
 # define MAP_FLOOR		0
