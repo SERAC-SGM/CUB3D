@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 10:44:16 by mat               #+#    #+#             */
-/*   Updated: 2023/08/17 11:53:29 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/18 12:48:56 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ static int	get_color(char *line)
 
 void	test_colors(t_map_data *mdata, char *line, int *counter)
 {
-	if (ft_strncmp(line, "F ", 2) == 0)
+	if (ft_strncmp(line, "F ", 2) == 0 && mdata->color_floor == -1)
 	{
 		(*counter)++;
 		mdata->color_floor = get_color(line);
 	}
-	else if (ft_strncmp(line, "C ", 2) == 0)
+	else if (ft_strncmp(line, "C ", 2) == 0 && mdata->color_ceiling == -1)
 	{
 		(*counter)++;
 		mdata->color_ceiling = get_color(line);

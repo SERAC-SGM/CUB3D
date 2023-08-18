@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 11:28:52 by mdorr             #+#    #+#             */
-/*   Updated: 2023/08/18 12:05:12 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/18 12:45:06 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	init_data(t_data *data, t_map_data *mdata, t_player *player)
 	data->rotate_right = 0;
 	data->mdata = mdata;
 	mdata->map_strs = NULL;
+	mdata->color_ceiling = -1;
+	mdata->color_floor = -1;
 	data->player = player;
 	data->mdata->map = NULL;
 	data->mouse_hook = false;
