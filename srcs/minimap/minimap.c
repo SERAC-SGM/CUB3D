@@ -6,13 +6,13 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 16:49:07 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/18 17:04:28 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/19 16:49:11 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	put_minimap_borders(t_data *data)
+static void	draw_borders(t_data *data)
 {
 	int	x;
 	int	y;
@@ -21,34 +21,38 @@ static void	put_minimap_borders(t_data *data)
 	color_border = encode_rgb(255, 255, 255);
 	x = 0;
 	y = 0;
-	while (y < MINIMAP_W)
+	while (y < MINIMAP_W + 3)
 	{
 		pixel_put_in_image(&data->img, y, 0, color_border);
 		pixel_put_in_image(&data->img, y, 1, color_border);
-		pixel_put_in_image(&data->img, y, MINIMAP_H - 1, color_border);
-		pixel_put_in_image(&data->img, y, MINIMAP_H - 2, color_border);
+		pixel_put_in_image(&data->img, y, MINIMAP_H + 1, color_border);
+		pixel_put_in_image(&data->img, y, MINIMAP_H + 2, color_border);
 		y++;
 	}
-	while (x < MINIMAP_H)
+	while (x < MINIMAP_H + 3)
 	{
 		pixel_put_in_image(&data->img, 0, x, color_border);
 		pixel_put_in_image(&data->img, 1, x, color_border);
-		pixel_put_in_image(&data->img, MINIMAP_W - 1, x, color_border);
-		pixel_put_in_image(&data->img, MINIMAP_W - 2, x, color_border);
+		pixel_put_in_image(&data->img, MINIMAP_W + 1, x, color_border);
+		pixel_put_in_image(&data->img, MINIMAP_W + 2, x, color_border);
 		x++;
 	}
 }
 
-static void	put_player_in_minimap(t_data *data)
+static void	draw_player(t_data *data)
 {
 	int	pixel_x;
 	int	pixel_y;
 
-	pixel_x = (MINIMAP_W / 2) - (MINIMAP_W / MINIMAP_SIZE_X * 0.5);
-	while (pixel_x < (MINIMAP_W / 2) + (MINIMAP_W / MINIMAP_SIZE_X * 0.5))
+	pixel_x = (MINIMAP_W / 2) - (MINIMAP_W / MINIMAP_SIZE_X
+			* MINIMAP_PLAYER_FACTOR);
+	while (pixel_x < (MINIMAP_W / 2) + (MINIMAP_W / MINIMAP_SIZE_X
+			* MINIMAP_PLAYER_FACTOR))
 	{
-		pixel_y = (MINIMAP_H / 2) - (MINIMAP_H / MINIMAP_SIZE_Y * 0.5);
-		while (pixel_y < (MINIMAP_H / 2) + (MINIMAP_H / MINIMAP_SIZE_Y * 0.5))
+		pixel_y = (MINIMAP_H / 2) - (MINIMAP_H / MINIMAP_SIZE_Y
+				* MINIMAP_PLAYER_FACTOR);
+		while (pixel_y < (MINIMAP_H / 2) + (MINIMAP_H / MINIMAP_SIZE_Y
+				* MINIMAP_PLAYER_FACTOR))
 		{
 			pixel_put_in_image(&data->img, pixel_x,
 				pixel_y, encode_rgb(255, 0, 0));
@@ -118,29 +122,88 @@ static void	put_player_in_minimap(t_data *data)
 // 	put_player_in_minimap(data);
 // }
 
+// t_coord	get_map_coord(int pixel_x, int pixel_y, t_data *data)
+// {
+// 	t_coord	square;
+
+// 	return (square);
+// }
+
+static int	get_map_color(int square_x, int square_y, t_data *data)
+{
+	// if (square_x < 0 || square_y < 0)
+	// 	return (0);
+//printf("square x1 = %d\tsquare y1 = %d\n", square_x, square_y);
+	square_x = (square_x + 0.0) /100;
+	square_y = (square_y + 0.0) /100;
+	//printf("square x2 = %d\tsquare y2 = %d\n", square_x, square_y);
+	// printf("width = %d\n", data->mdata->map_width);
+	// printf("squarex = %d\n", square_x);
+	// printf("hieght = %d\n", data->mdata->map_height);
+	// printf("squarey = %d\n", square_y);
+
+
+	if (square_x < 0 || square_y < 0 || square_x > data->mdata->map_width - 1
+		|| square_y > data->mdata->map_height - 1)
+		return (0);
+	else if (data->mdata->map[square_y][square_x] == 0
+		|| data->mdata->map[square_y][square_x] == 9)
+		return (0);
+	else if (data->mdata->map[square_y][square_x] == 1)
+		return (encode_rgb(255, 0, 255));
+	else if (data->mdata->map[square_y][square_x] == 'D')
+		return (encode_rgb(245, 241, 0));
+	else if (data->mdata->map[square_y][square_x] == 'd')
+		return (encode_rgb(150, 150, 0));
+	else
+	{
+		//printf("%d\n", data->mdata->map[square_x][square_y]);
+		return (encode_rgb(0, 255, 0));
+	}
+}
+
+static int	get_map_color2(int pixel_x, int pixel_y, t_data *data)
+{
+	
+}
+
 void	minimap(t_data *data)
 {
 	int	pixel_x;
 	int	pixel_y;
-	int	x_square_size;
-	int	y_square_size;
-	int	first_x_square_pos;
-	int	first_y_square_pos;
+	int	square_x;
+	int	square_y;
+	int	sx;
+	int	sy;
+	int	square_color;
 
-	x_square_size = MINIMAP_W / MINIMAP_SIZE_X;
-	y_square_size = MINIMAP_H / MINIMAP_SIZE_Y;
-	first_x_square_pos = 
-
-	//x_map_start = 
 	pixel_y = -1;
-	while (++pixel_y < MINIMAP_H)
+	square_y = (int)(data->player->posy * 100) - (MINIMAP_SIZE_Y * 50);
+	
+	
+	
+	
+	square_x = (int)(data->player->posx * 100) - (MINIMAP_SIZE_X * 50);
+	//printf("square init x = %d\t y = %d\n", square_x, square_y);
+
+
+	sy = square_y;
+	while (++pixel_y < MINIMAP_H + 1)
 	{
 		pixel_x = -1;
-		while (++pixel_x < MINIMAP_W)
+		square_x = (int)(data->player->posx * 100) - (MINIMAP_SIZE_X * 50);
+		sx = square_x;
+		while (++pixel_x < MINIMAP_W + 1)
 		{
-
+			//printf("square x before = %f\tsquare y before = %f\n", square_x, square_y);
+			square_color = get_map_color(sx, sy, data);
+			pixel_put_in_image(&data->img, pixel_x, pixel_y, square_color);
+			sx = square_x + pixel_x * MINIMAP_SIZE_X / MINIMAP_W * 100;
+			// printf("pixel_x = %d\tsx = %f\n", pixel_x, sx);
 		}
+		sy = square_y + pixel_y * MINIMAP_SIZE_Y / MINIMAP_H * 100;
 	}
-	put_minimap_borders(data);
-	put_player_in_minimap(data);
+	//printf("square end x = %d\t y = %d\n", sx, sy);
+	draw_borders(data);
+	draw_player(data);
 }

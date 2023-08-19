@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/18 16:35:19 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/19 16:13:28 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 
 # define MINIMAP_SIZE_X	16
 # define MINIMAP_SIZE_Y	12
+
+# define MINIMAP_PLAYER_FACTOR 0.25
 
 # define MOVE_SPEED		0.05
 # define ROTATE_SPEED	0.03

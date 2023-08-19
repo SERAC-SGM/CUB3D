@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:55:49 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/18 14:41:29 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/19 11:53:28 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ typedef enum e_states
 
 typedef struct s_coord
 {
-	double	x;
-	double	y;
+	int	x;
+	int	y;
 }			t_coord;
 
 typedef struct s_player
