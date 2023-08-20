@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 16:40:32 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/18 11:29:28 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/20 13:27:56 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	get_sprite_pos(int x, int y, t_data *data)
 		ft_lstclear(&data->mdata->top, free);
 		exit_error(E_SPRITE, "Too many sprites", data);
 	}
-	data->fire[data->sprite_number].pos[0] = x + 0.5;
-	data->fire[data->sprite_number].pos[1] = y + 0.5;
+	data->fire[data->sprite_number].pos[0] = y + 0.5;
+	data->fire[data->sprite_number].pos[1] = x + 0.5;
 	data->sprite_number++;
 	return (MAP_FLOOR);
 }

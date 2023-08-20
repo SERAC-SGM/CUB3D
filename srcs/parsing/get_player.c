@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:56:28 by mdorr             #+#    #+#             */
-/*   Updated: 2023/08/20 12:44:35 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/20 13:27:41 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@ static int	get_player_data_sides(t_data *data, char c)
 // 	return (EXIT_FAILURE);
 // }
 
-int	get_player_data(t_data *data, char c, int height, int width)
+int	get_player_data(t_data *data, char c, int x, int y)
 {
 	// char	d;
 
 	// if (get_door_data(c, &d) == EXIT_SUCCESS)
 	// 	return (d);
-	printf("width2 = %d height2 = %d\n", width, height);
-	data->player->posx = width + 0.5;
-	data->player->posy = height + 0.5;
+	printf("player x = %d player y = %d\n", x, y);
+	data->player->posx = y + 0.5;
+	data->player->posy = x + 0.5;
 	data->player->planex = 0;
 	data->player->planey = 0.66;
 	if (c == 'N')

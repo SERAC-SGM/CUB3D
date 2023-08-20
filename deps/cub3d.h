@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/20 12:20:06 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/20 13:23:23 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 # define MINIMAP_SIZE_Y	12
 
 //number of squares from the player to the sides of the minimap
-# define X_SQUARE_NB 4
-# define Y_SQUARE_NB 3
+# define X_SQUARE_NB 6
+# define Y_SQUARE_NB 4
 
 # define MINIMAP_PLAYER_FACTOR 0.25
 

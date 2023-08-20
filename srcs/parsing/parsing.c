@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:51:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/08/20 12:47:54 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/20 12:58:22 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	init_map(t_map_data *mdata)
 	}
 }
 
-static void	fill_map_case(char c, int y, int x, t_data *data)
+static void	fill_map_case(char c, int x, int y, t_data *data)
 {
 	if (c == ' ')
 		data->mdata->map[y][x] = MAP_VOID;
@@ -39,20 +39,20 @@ static void	fill_map_case(char c, int y, int x, t_data *data)
 	else if (c == '1')
 		data->mdata->map[y][x] = MAP_WALL;
 	else if (c == '+')
-		data->mdata->map[y][x] = get_sprite_pos(y, x, data);
+		data->mdata->map[y][x] = get_sprite_pos(x, y, data);
 	else if (c == 'D')
 		data->mdata->map[y][x] = CLOSED_DOOR;
 	else if (c == 'd')
 		data->mdata->map[y][x] = OPEN_DOOR;
 	else
 		data->mdata->map[y][x] = get_player_data(data,
-				data->mdata->map_strs->str[x], y, x);
+				data->mdata->map_strs->str[x], x, y);
 }
 
 static void	fill_map(t_data *data)
 {
-	size_t	y;
 	size_t	x;
+	size_t	y;
 
 	y = 0;
 	init_map(data->mdata);
@@ -61,7 +61,7 @@ static void	fill_map(t_data *data)
 		x = -1;
 		while (data->mdata->map_strs->str[++x] != '\n'
 			&& data->mdata->map_strs->str[x] != 0)
-			fill_map_case(data->mdata->map_strs->str[x], y, x, data);
+			fill_map_case(data->mdata->map_strs->str[x], x, y, data);
 		data->mdata->map_strs = data->mdata->map_strs->next;
 		y++;
 	}

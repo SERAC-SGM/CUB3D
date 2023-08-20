@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 16:49:07 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/20 12:07:33 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/20 14:54:42 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,20 +166,20 @@ static int	get_map_color2(int pixel_x, int pixel_y, t_data *data)
 {
 	int	square_size_x;
 	int	square_size_y;
-	int	square_pos_x;
-	int	square_pos_y;
+	// int	square_pos_x;
+	// int	square_pos_y;
 	int	square_x;
 	int	square_y;
 
-	square_size_x = MINIMAP_W / (X_SQUARE_NB * 2);
+	square_size_x = MINIMAP_W / (X_SQUARE_NB * 2); //* 2);
 	//printf("square size x = %d\n", square_size_x);
 	//printf("player x = %f\n", data->player->posx);
 	//printf("player y = %f\n", data->player->posy);
-	square_size_y = MINIMAP_H / (Y_SQUARE_NB * 2);
-	square_pos_x = (data->player->posx * 100) + (pixel_x / 2);
-	square_pos_y = (data->player->posy * 100) + (pixel_y / 2);
-	square_x = (((pixel_x - (MINIMAP_W / 2)) / square_size_x) + (data->player->posx * 100)) / 100;
-	square_y = ((((MINIMAP_H / 2) - pixel_y) / square_size_y) + (data->player->posy * 100)) / 100;
+	square_size_y = MINIMAP_H / (Y_SQUARE_NB * 2);// * 2);
+	// square_pos_y = (data->player->posx * 100) + (pixel_x / 2) * Y_SQUARE_NB;
+	// square_pos_x = (data->player->posy * 100) + (pixel_y / 2) * X_SQUARE_NB;
+	square_y = ((((pixel_x - (MINIMAP_W / 2)) / square_size_x) * 100) + (data->player->posx * 100)) / 100 + 1;
+	square_x = ((((pixel_y - (MINIMAP_H / 2)) / square_size_y) * 100) + (data->player->posy * 100)) / 100 - 1;
 	if (square_x < 0 || square_y < 0 || square_x > data->mdata->map_width - 1
 		|| square_y > data->mdata->map_height - 1)
 		return (encode_rgb(255, 255, 255));
@@ -187,7 +187,7 @@ static int	get_map_color2(int pixel_x, int pixel_y, t_data *data)
 		|| data->mdata->map[square_y][square_x] == 9)
 		return (0);
 	else if (data->mdata->map[square_y][square_x] == 1)
-		return (encode_rgb(255, 0, 255));
+		return (encode_rgb(0, 0, 255));
 	else if (data->mdata->map[square_y][square_x] == 'D')
 		return (encode_rgb(245, 241, 0));
 	else if (data->mdata->map[square_y][square_x] == 'd')
@@ -208,7 +208,7 @@ void	minimap(t_data *data)
 		pixel_x = -1;
 		while (++pixel_x < MINIMAP_W + 1)
 		{
-			square_color = get_map_color2(pixel_x, pixel_y, data);
+			square_color = get_map_color2(pixel_y, pixel_x, data);
 			pixel_put_in_image(&data->img, pixel_x, pixel_y, square_color);
 		}
 	}
