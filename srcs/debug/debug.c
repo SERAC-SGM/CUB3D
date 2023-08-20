@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 14:16:27 by mdorr             #+#    #+#             */
-/*   Updated: 2023/08/19 16:31:08 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/20 11:52:58 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,5 @@ void	print_map(t_map_data *mdata)
 		}
 		printf("\n");
 	}
+	printf("width = %d height = %d\n", mdata->map_width, mdata->map_height);
 }

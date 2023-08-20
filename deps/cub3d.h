@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/19 16:13:28 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/20 12:00:26 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@
 
 # define MINIMAP_SIZE_X	16
 # define MINIMAP_SIZE_Y	12
+
+//number of squares from the player to the sides of the minimap
+# define X_SQUARE_NB 4
+# define Y_SQUARE_NB 3
 
 # define MINIMAP_PLAYER_FACTOR 0.25
 
@@ -133,6 +137,7 @@ int			handle_key_press(int keycode, t_data *data);
 int			handle_key_release(int keycode, t_data *data);
 int			quit_window(t_data *data);
 int			handle_mouse(int x, int y, t_data *data);
+
 
 // Parsing
 

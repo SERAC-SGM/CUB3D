@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 16:49:07 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/19 16:49:11 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/20 12:01:15 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,23 +129,59 @@ static void	draw_player(t_data *data)
 // 	return (square);
 // }
 
-static int	get_map_color(int square_x, int square_y, t_data *data)
+// static int	get_map_color(int square_x, int square_y, t_data *data)
+// {
+// 	// if (square_x < 0 || square_y < 0)
+// 	// 	return (0);
+// //printf("square x1 = %d\tsquare y1 = %d\n", square_x, square_y);
+// 	square_x = (square_x + 0.0) / 100;
+// 	square_y = (square_y + 0.0) / 100;
+// 	//printf("square x2 = %d\tsquare y2 = %d\n", square_x, square_y);
+// 	// printf("width = %d\n", data->mdata->map_width);
+// 	// printf("squarex = %d\n", square_x);
+// 	// printf("hieght = %d\n", data->mdata->map_height);
+// 	// printf("squarey = %d\n", square_y);
+
+
+// 	if (square_x < 0 || square_y < 0 || square_x > data->mdata->map_width - 1
+// 		|| square_y > data->mdata->map_height - 1)
+// 		return (0);
+// 	else if (data->mdata->map[square_y][square_x] == 0
+// 		|| data->mdata->map[square_y][square_x] == 9)
+// 		return (0);
+// 	else if (data->mdata->map[square_y][square_x] == 1)
+// 		return (encode_rgb(255, 0, 255));
+// 	else if (data->mdata->map[square_y][square_x] == 'D')
+// 		return (encode_rgb(245, 241, 0));
+// 	else if (data->mdata->map[square_y][square_x] == 'd')
+// 		return (encode_rgb(150, 150, 0));
+// 	else
+// 	{
+// 		//printf("%d\n", data->mdata->map[square_x][square_y]);
+// 		return (encode_rgb(0, 255, 0));
+// 	}
+// }
+
+static int	get_map_color2(int pixel_x, int pixel_y, t_data *data)
 {
-	// if (square_x < 0 || square_y < 0)
-	// 	return (0);
-//printf("square x1 = %d\tsquare y1 = %d\n", square_x, square_y);
-	square_x = (square_x + 0.0) /100;
-	square_y = (square_y + 0.0) /100;
-	//printf("square x2 = %d\tsquare y2 = %d\n", square_x, square_y);
-	// printf("width = %d\n", data->mdata->map_width);
-	// printf("squarex = %d\n", square_x);
-	// printf("hieght = %d\n", data->mdata->map_height);
-	// printf("squarey = %d\n", square_y);
+	int	square_size_x;
+	int	square_size_y;
+	int	square_pos_x;
+	int	square_pos_y;
+	int	square_x;
+	int	square_y;
 
-
+	square_size_x = MINIMAP_W / (X_SQUARE_NB * 2);
+	printf("square size x = %d\n", square_size_x);
+	printf("player x = %f\n", data->player->posx);
+	square_size_y = MINIMAP_H / (Y_SQUARE_NB * 2);
+	square_pos_x = (data->player->posx * 100) + (pixel_x / 2);
+	square_pos_y = (data->player->posy * 100) + (pixel_y / 2);
+	square_x = (((pixel_x - (MINIMAP_W / 2)) / square_size_x) + (data->player->posx * 100)) / 100;
+	square_y = ((((MINIMAP_H / 2) - pixel_y) / square_size_y) + (data->player->posy * 100)) / 100;
 	if (square_x < 0 || square_y < 0 || square_x > data->mdata->map_width - 1
 		|| square_y > data->mdata->map_height - 1)
-		return (0);
+		return (encode_rgb(255, 255, 255));
 	else if (data->mdata->map[square_y][square_x] == 0
 		|| data->mdata->map[square_y][square_x] == 9)
 		return (0);
@@ -156,54 +192,25 @@ static int	get_map_color(int square_x, int square_y, t_data *data)
 	else if (data->mdata->map[square_y][square_x] == 'd')
 		return (encode_rgb(150, 150, 0));
 	else
-	{
-		//printf("%d\n", data->mdata->map[square_x][square_y]);
 		return (encode_rgb(0, 255, 0));
-	}
-}
-
-static int	get_map_color2(int pixel_x, int pixel_y, t_data *data)
-{
-	
 }
 
 void	minimap(t_data *data)
 {
 	int	pixel_x;
 	int	pixel_y;
-	int	square_x;
-	int	square_y;
-	int	sx;
-	int	sy;
 	int	square_color;
 
 	pixel_y = -1;
-	square_y = (int)(data->player->posy * 100) - (MINIMAP_SIZE_Y * 50);
-	
-	
-	
-	
-	square_x = (int)(data->player->posx * 100) - (MINIMAP_SIZE_X * 50);
-	//printf("square init x = %d\t y = %d\n", square_x, square_y);
-
-
-	sy = square_y;
 	while (++pixel_y < MINIMAP_H + 1)
 	{
 		pixel_x = -1;
-		square_x = (int)(data->player->posx * 100) - (MINIMAP_SIZE_X * 50);
-		sx = square_x;
 		while (++pixel_x < MINIMAP_W + 1)
 		{
-			//printf("square x before = %f\tsquare y before = %f\n", square_x, square_y);
-			square_color = get_map_color(sx, sy, data);
+			square_color = get_map_color2(pixel_x, pixel_y, data);
 			pixel_put_in_image(&data->img, pixel_x, pixel_y, square_color);
-			sx = square_x + pixel_x * MINIMAP_SIZE_X / MINIMAP_W * 100;
-			// printf("pixel_x = %d\tsx = %f\n", pixel_x, sx);
 		}
-		sy = square_y + pixel_y * MINIMAP_SIZE_Y / MINIMAP_H * 100;
 	}
-	//printf("square end x = %d\t y = %d\n", sx, sy);
 	draw_borders(data);
 	draw_player(data);
 }
