@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 16:49:07 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/20 12:01:15 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/20 12:07:33 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,8 +172,9 @@ static int	get_map_color2(int pixel_x, int pixel_y, t_data *data)
 	int	square_y;
 
 	square_size_x = MINIMAP_W / (X_SQUARE_NB * 2);
-	printf("square size x = %d\n", square_size_x);
-	printf("player x = %f\n", data->player->posx);
+	//printf("square size x = %d\n", square_size_x);
+	//printf("player x = %f\n", data->player->posx);
+	//printf("player y = %f\n", data->player->posy);
 	square_size_y = MINIMAP_H / (Y_SQUARE_NB * 2);
 	square_pos_x = (data->player->posx * 100) + (pixel_x / 2);
 	square_pos_y = (data->player->posy * 100) + (pixel_y / 2);

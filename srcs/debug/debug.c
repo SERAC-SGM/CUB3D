@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 14:16:27 by mdorr             #+#    #+#             */
-/*   Updated: 2023/08/20 11:52:58 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/20 12:47:32 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,19 @@ void	print_strs(t_strlst *lst)
 
 void	print_map(t_map_data *mdata)
 {
-	int	i;
-	int	j;
+	int	x;
+	int	y;
 
-	i = -1;
-	while (++i < mdata->map_height)
+	x = -1;
+	while (++x < mdata->map_height)
 	{
-		j = -1;
-		while (++j < mdata->map_width)
+		y = -1;
+		while (++y < mdata->map_width)
 		{
-			if (mdata->map[i][j] < 10)
-				printf("%d", mdata->map[i][j]);
+			if (mdata->map[x][y] < 10)
+				printf("%d", mdata->map[x][y]);
 			else
-				printf("%c", mdata->map[i][j]);
+				printf("%c", mdata->map[x][y]);
 		}
 		printf("\n");
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 13:51:08 by mdorr             #+#    #+#             */
-/*   Updated: 2023/08/18 12:19:43 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/08/20 12:47:54 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,52 +14,56 @@
 
 static void	init_map(t_map_data *mdata)
 {
-	int	i;
-	int	j;
+	int	y;
+	int	x;
 
-	i = 0;
-	while (i < mdata->map_height)
+	y = 0;
+	while (y < mdata->map_height)
 	{
-		j = 0;
-		while (j < mdata->map_width)
+		x = 0;
+		while (x < mdata->map_width)
 		{
-			mdata->map[i][j] = 9;
-			j++;
+			mdata->map[y][x] = 9;
+			x++;
 		}
-		i++;
+		y++;
 	}
 }
 
-static void	fill_map_case(char c, int i, int j, t_data *data)
+static void	fill_map_case(char c, int y, int x, t_data *data)
 {
 	if (c == ' ')
-		data->mdata->map[i][j] = MAP_VOID;
+		data->mdata->map[y][x] = MAP_VOID;
 	else if (c == '0')
-		data->mdata->map[i][j] = MAP_FLOOR;
+		data->mdata->map[y][x] = MAP_FLOOR;
 	else if (c == '1')
-		data->mdata->map[i][j] = MAP_WALL;
+		data->mdata->map[y][x] = MAP_WALL;
 	else if (c == '+')
-		data->mdata->map[i][j] = get_sprite_pos(i, j, data);
+		data->mdata->map[y][x] = get_sprite_pos(y, x, data);
+	else if (c == 'D')
+		data->mdata->map[y][x] = CLOSED_DOOR;
+	else if (c == 'd')
+		data->mdata->map[y][x] = OPEN_DOOR;
 	else
-		data->mdata->map[i][j] = get_player_and_door_data(data,
-				data->mdata->map_strs->str[j], i, j);
+		data->mdata->map[y][x] = get_player_data(data,
+				data->mdata->map_strs->str[x], y, x);
 }
 
 static void	fill_map(t_data *data)
 {
-	size_t	i;
-	size_t	j;
+	size_t	y;
+	size_t	x;
 
-	i = 0;
+	y = 0;
 	init_map(data->mdata);
 	while (data->mdata->map_strs != NULL)
 	{
-		j = -1;
-		while (data->mdata->map_strs->str[++j] != '\n'
-			&& data->mdata->map_strs->str[j] != 0)
-			fill_map_case(data->mdata->map_strs->str[j], i, j, data);
+		x = -1;
+		while (data->mdata->map_strs->str[++x] != '\n'
+			&& data->mdata->map_strs->str[x] != 0)
+			fill_map_case(data->mdata->map_strs->str[x], y, x, data);
 		data->mdata->map_strs = data->mdata->map_strs->next;
-		i++;
+		y++;
 	}
 }
 

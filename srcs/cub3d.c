@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/20 11:48:42 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/20 12:05:40 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	render(t_data *data)
 {
-	//printf("player pos = %f %f\n", data->player->posx, data->player->posy);
 	raycasting(data);
 	minimap(data);
 	move_player(data);

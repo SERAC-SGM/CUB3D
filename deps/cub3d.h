@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/20 12:00:26 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/20 12:20:06 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@
 # define MAP_FLOOR		0
 # define MAP_WALL		1
 # define MAP_SPRITE		'+'
-# define PLAYER_NORTH	2
-# define PLAYER_SOUTH	3
-# define PLAYER_EAST	4
-# define PLAYER_WEST	5
+// # define PLAYER_NORTH	2
+// # define PLAYER_SOUTH	3
+// # define PLAYER_EAST	4
+// # define PLAYER_WEST	5
 # define OPEN_DOOR		'd'
 # define CLOSED_DOOR	'D'
 
@@ -157,7 +157,7 @@ int			get_texture_path(t_map_data *mdata);
 
 // Get player
 
-int			get_player_and_door_data(t_data *data, char c, int i, int j);
+int			get_player_data(t_data *data, char c, int i, int j);
 
 // Parsing utils
 
@@ -235,5 +235,8 @@ void		init_malloc(t_data *data);
 // Print error
 
 int			print_error(char *message);
+
+int	get_door_data(char c, char *d);
+
 
 #endif
