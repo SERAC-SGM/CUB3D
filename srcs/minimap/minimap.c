@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 16:49:07 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/21 11:27:33 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/21 11:33:04 by mdorr            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,15 @@ static void	draw_player(t_data *data)
 	int	pixel_x;
 	int	pixel_y;
 
-	pixel_x = (MINIMAP_W / 2) - (MINIMAP_W / MINIMAP_SIZE_X * MINIMAP_PLAYER_FACTOR);
-	while (pixel_x < (MINIMAP_W / 2) + (MINIMAP_W / MINIMAP_SIZE_X * MINIMAP_PLAYER_FACTOR))
+	pixel_x = (MINIMAP_W / 2) - (MINIMAP_W / MINIMAP_SIZE_X
+			* MINIMAP_PLAYER_FACTOR);
+	while (pixel_x < (MINIMAP_W / 2) + (MINIMAP_W / MINIMAP_SIZE_X
+			* MINIMAP_PLAYER_FACTOR))
 	{
-		pixel_y = (MINIMAP_H / 2) - (MINIMAP_H / MINIMAP_SIZE_Y * MINIMAP_PLAYER_FACTOR);
-		while (pixel_y < (MINIMAP_H / 2) + (MINIMAP_H / MINIMAP_SIZE_Y * MINIMAP_PLAYER_FACTOR))
+		pixel_y = (MINIMAP_H / 2) - (MINIMAP_H / MINIMAP_SIZE_Y
+				* MINIMAP_PLAYER_FACTOR);
+		while (pixel_y < (MINIMAP_H / 2)
+			+ (MINIMAP_H / MINIMAP_SIZE_Y * MINIMAP_PLAYER_FACTOR))
 		{
 			pixel_put_in_image(&data->img, pixel_x,
 				pixel_y, encode_rgb(255, 0, 0));
@@ -69,9 +73,11 @@ static int	get_map_color2(int pixel_x, int pixel_y, t_data *data)
 	square_size_y = MINIMAP_H / (Y_SQUARE_NB * 2);
 	square_y = pixel_x / square_size_x + data->player->posx - X_SQUARE_NB;
 	square_x = pixel_y / square_size_y + data->player->posy - Y_SQUARE_NB;
-	if (square_x < 0 || square_y < 0 || square_x > data->mdata->map_width - 1 || square_y > data->mdata->map_height - 1)
+	if (square_x < 0 || square_y < 0 || square_x > data->mdata->map_width - 1
+		|| square_y > data->mdata->map_height - 1)
 		return (encode_rgb(0, 0, 255));
-	else if (data->mdata->map[square_y][square_x] == 0 || data->mdata->map[square_y][square_x] == 9)
+	else if (data->mdata->map[square_y][square_x] == 0
+		|| data->mdata->map[square_y][square_x] == 9)
 		return (0);
 	else if (data->mdata->map[square_y][square_x] == 1)
 		return (encode_rgb(0, 0, 255));
@@ -99,7 +105,8 @@ void	minimap(t_data *data)
 		pixel_x = -1;
 		while (++pixel_x < MINIMAP_W + 1)
 		{
-			square_color = get_map_color2(pixel_y + 5 * square_size_y / 2, pixel_x - square_size_x * 3 / 2, data);
+			square_color = get_map_color2(pixel_y + 5 * square_size_y / 2,
+					pixel_x - square_size_x * 3 / 2, data);
 			pixel_put_in_image(&data->img, pixel_x, pixel_y, square_color);
 		}
 	}
