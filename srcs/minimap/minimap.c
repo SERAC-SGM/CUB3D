@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 16:49:07 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/21 11:33:04 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/08/21 11:38:06 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	draw_borders(t_data *data)
 	int	y;
 	int	color_border;
 
-	color_border = encode_rgb(255, 255, 255);
+	color_border = data->mdata->color_ceiling * 3;
 	x = 0;
 	y = 0;
 	while (y < MINIMAP_W + 3)
@@ -75,12 +75,12 @@ static int	get_map_color2(int pixel_x, int pixel_y, t_data *data)
 	square_x = pixel_y / square_size_y + data->player->posy - Y_SQUARE_NB;
 	if (square_x < 0 || square_y < 0 || square_x > data->mdata->map_width - 1
 		|| square_y > data->mdata->map_height - 1)
-		return (encode_rgb(0, 0, 255));
-	else if (data->mdata->map[square_y][square_x] == 0
+		return (data->mdata->color_ceiling * 2);
+	else if (data->mdata->map[square_y][square_x] == 1
 		|| data->mdata->map[square_y][square_x] == 9)
+		return (data->mdata->color_ceiling * 2);
+	else if (data->mdata->map[square_y][square_x] == 0)
 		return (0);
-	else if (data->mdata->map[square_y][square_x] == 1)
-		return (encode_rgb(0, 0, 255));
 	else if (data->mdata->map[square_y][square_x] == 'D')
 		return (encode_rgb(245, 241, 0));
 	else if (data->mdata->map[square_y][square_x] == 'd')
