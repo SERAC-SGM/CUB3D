@@ -1,18 +1,18 @@
-NO ./textures/north.xpm
-SO ./textures/south.xpm
-WE ./textures/west.xpm
-EA ./textures/east.xpm
+C 100,100,100
+F 120,122,104
 
-F 127,127,127
-C 50,50,55
+NO ./textures/lab/tile040.xpm
+SO ./textures/lab/tile043.xpm
+WE ./textures/lab/tile044.xpm
+EA ./textures/lab/tile101.xpm
 
     111111111111
     100000000001
-    111111111111
-    101010101011
+    101010101001
+    101+1d101001
     100000000001
     100000001001
 1111100000000001
-10000000000000001111
-11111000000000N00001
+1+000000000000001111
+11111000000000N00+01
     1111111111111111
