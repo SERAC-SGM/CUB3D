@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/20 13:23:23 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/21 11:27:29 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 # define MINIMAP_SIZE_Y	12
 
 //number of squares from the player to the sides of the minimap
-# define X_SQUARE_NB 6
-# define Y_SQUARE_NB 4
+# define X_SQUARE_NB 8
+# define Y_SQUARE_NB 6
 
 # define MINIMAP_PLAYER_FACTOR 0.25
 
@@ -138,7 +138,6 @@ int			handle_key_release(int keycode, t_data *data);
 int			quit_window(t_data *data);
 int			handle_mouse(int x, int y, t_data *data);
 
-
 // Parsing
 
 int			parsing(t_data *data);
@@ -236,7 +235,6 @@ void		init_malloc(t_data *data);
 
 int			print_error(char *message);
 
-int	get_door_data(char c, char *d);
-
+int			get_door_data(char c, char *d);
 
 #endif

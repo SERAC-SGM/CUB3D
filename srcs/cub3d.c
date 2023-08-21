@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:39:56 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/20 12:05:40 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/21 11:19:48 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int	main(int argc, char **argv)
 			ft_lstclear(&data.mdata->top, free);
 		exit_parsing(&data);
 	}
-	print_map(data.mdata);
 	init_window(&data);
 	init_image(&data);
 	init_walls_sprites(&data);
