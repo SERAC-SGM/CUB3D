@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:13:59 by mat               #+#    #+#             */
-/*   Updated: 2023/08/26 15:26:35 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/26 15:28:42 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ static int	is_valid_param(char *line)
 		return (1);
 	return (0);
 }
-
 
 int	get_texture_path(t_map_data *mdata)
 {

@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:52:53 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/26 15:17:56 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/26 15:28:38 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 
 # define WIN_WIDTH 1024
 # define WIN_HEIGHT 768
-
 
 # define MINIMAP_W	160
 # define MINIMAP_H	120
@@ -53,7 +52,6 @@
 # define FRAME_UPDATE	15
 # define SPRITE_NB		4
 
-
 # define E_MLX			"MiniLibX : "
 # define E_TEXTURE		"Unable to load texture : "
 # define E_COLOR		"Referenced colors in wrong format\nUse R, G, B Format\n"
@@ -63,7 +61,6 @@
 # define E_INVALID_CHAR	"Invalid map\n"
 # define E_NOMAP		"Empty map\n"
 # define E_MISSING_TXT	"A texture or color is missing\n"
-
 
 # include <math.h>
 # include <stdbool.h>
