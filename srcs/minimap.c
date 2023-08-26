@@ -6,7 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 16:49:07 by lletourn          #+#    #+#             */
-/*   Updated: 2023/08/21 11:40:15 by lletourn         ###   ########.fr       */
+/*   Updated: 2023/08/26 15:15:05 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,12 @@ static int	get_map_color2(int pixel_x, int pixel_y, t_data *data)
 	int	square_x;
 	int	square_y;
 
-	square_size_x = MINIMAP_W / (X_SQUARE_NB * 2);
-	square_size_y = MINIMAP_H / (Y_SQUARE_NB * 2);
-	square_y = pixel_x / square_size_x + data->player->posx - X_SQUARE_NB;
-	square_x = pixel_y / square_size_y + data->player->posy - Y_SQUARE_NB;
+	square_size_x = MINIMAP_W / (MINIMAP_SIZE_X);
+	square_size_y = MINIMAP_H / (MINIMAP_SIZE_Y);
+	square_y = pixel_x / square_size_x + data->player->posx
+		- MINIMAP_SIZE_X / 2;
+	square_x = pixel_y / square_size_y + data->player->posy
+		- MINIMAP_SIZE_Y / 2;
 	if (square_x < 0 || square_y < 0 || square_x > data->mdata->map_width - 1
 		|| square_y > data->mdata->map_height - 1)
 		return (data->mdata->color_ceiling * 2);
@@ -97,8 +99,8 @@ void	minimap(t_data *data)
 	int	pixel_y;
 	int	square_color;
 
-	square_size_x = MINIMAP_W / (X_SQUARE_NB * 2);
-	square_size_y = MINIMAP_H / (Y_SQUARE_NB * 2);
+	square_size_x = MINIMAP_W / (MINIMAP_SIZE_X);
+	square_size_y = MINIMAP_H / (MINIMAP_SIZE_Y);
 	pixel_y = -1;
 	while (++pixel_y < MINIMAP_H + 1)
 	{

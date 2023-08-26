@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:13:59 by mat               #+#    #+#             */
-/*   Updated: 2023/08/18 12:49:10 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/08/26 15:21:23 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,33 +36,60 @@ static char	*trim_path(char *line)
 	return (path);
 }
 
-static void	store_texture(t_map_data *mdata, char *line, int *counter)
+static int	store_texture(t_map_data *mdata, char *line)
 {
-	if (ft_strncmp(line, "NO ", 3) == 0)
+	if (!mdata->texture[0] && ft_strncmp(line, "NO ", 3) == 0)
 	{
-		(*counter)++;
 		mdata->texture[0] = trim_path(line);
+		return (1);
 	}
-	else if (ft_strncmp(line, "SO ", 3) == 0)
+	else if (!mdata->texture[2] && ft_strncmp(line, "SO ", 3) == 0)
 	{
-		(*counter)++;
 		mdata->texture[2] = trim_path(line);
+		return (1);
 	}
-	else if (ft_strncmp(line, "WE ", 3) == 0)
+	else if (!mdata->texture[1] && ft_strncmp(line, "WE ", 3) == 0)
 	{
-		(*counter)++;
 		mdata->texture[1] = trim_path(line);
+		return (1);
 	}
-	else if (ft_strncmp(line, "EA ", 3) == 0)
+	else if (!mdata->texture[3] && ft_strncmp(line, "EA ", 3) == 0)
 	{
-		(*counter)++;
 		mdata->texture[3] = trim_path(line);
+		return (1);
 	}
 	else
-	{
-		test_colors(mdata, line, counter);
-	}
+		return (test_colors(mdata, line));
 }
+
+static int	all_params_set(t_map_data *mdata)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (mdata->texture[i] == NULL)
+			return (0);
+		i++;
+	}
+	if (mdata->color_ceiling == -1 || mdata->color_floor == -1)
+		return (0);
+	return (1);
+}
+
+static int	is_valid_param(char *line)
+{
+	if (ft_strncmp(line, "NO ", 3) == 0
+		|| ft_strncmp(line, "EA ", 3) == 0
+		|| ft_strncmp(line, "SO ", 3) == 0
+		|| ft_strncmp(line, "WE ", 3) == 0
+		|| ft_strncmp(line, "F ", 2) == 0
+		|| ft_strncmp(line, "C ", 2) == 0)
+		return (1);
+	return (0);
+}
+
 
 int	get_texture_path(t_map_data *mdata)
 {
@@ -70,17 +97,21 @@ int	get_texture_path(t_map_data *mdata)
 	int		counter;
 
 	counter = 0;
-	while (counter < 6)
+	while (!all_params_set(mdata))
 	{
 		line = get_next_line(mdata->map_fd);
 		if (line == NULL)
 			break ;
-		while (line[0] == '\n')
+		while (line && line[0] == '\n')
 		{
 			free(line);
 			line = get_next_line(mdata->map_fd);
 		}
-		store_texture(mdata, line, &counter);
+		if (line && is_valid_param(line))
+		{
+			if (store_texture(mdata, line))
+				counter++;
+		}
 		free(line);
 	}
 	if (counter != 6)

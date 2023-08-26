@@ -92,8 +92,6 @@ SRCS_DIR += ./srcs
 SRCS_DIR += ./srcs/parsing
 SRCS_DIR += ./srcs/raycasting
 SRCS_DIR += ./srcs/inputs
-SRCS_DIR += ./srcs/minimap
-SRCS_DIR += ./srcs/debug
 
 PATH_SRCS = $(SRCS_DIR)
 
@@ -101,7 +99,14 @@ PATH_SRCS = $(SRCS_DIR)
 ############################### Sources ########################################
 #‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾#
 
+#inputs
+SRCS += door.c
+SRCS += hooks.c
+SRCS += movement.c
+
 # parsing
+SRCS += check_map_char.c
+SRCS += check_map.c
 SRCS += get_color.c
 SRCS += get_player.c
 SRCS += get_textures.c
@@ -109,27 +114,22 @@ SRCS += init_sprite.c
 SRCS += mallocs.c
 SRCS += parsing_utils.c
 SRCS += parsing.c
+SRCS += print_error.c
 SRCS += state_machine.c
-SRCS += check_map.c
 
-SRCS += cub3d.c
-SRCS += door.c
-SRCS += exit_and_free.c
-SRCS += hooks.c
-SRCS += movement.c
+#raycasting
 SRCS += raycasting_utils.c
 SRCS += raycasting.c
 SRCS += sprite.c
 SRCS += texture.c
-SRCS += window.c
+
+SRCS += cub3d.c
+SRCS += exit_and_free.c
 SRCS += init.c
 SRCS += minimap.c
-SRCS += minimap_utils.c
-SRCS += print_error.c
-SRCS += check_map_char.c
+SRCS += window.c
 
 # debug
-SRCS += debug.c
 #______________________________________________________________________________#
 ############################### Attribution ####################################
 #‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾#

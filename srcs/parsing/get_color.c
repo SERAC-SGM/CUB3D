@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdorr <mdorr@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 10:44:16 by mat               #+#    #+#             */
-/*   Updated: 2023/08/18 12:48:56 by mdorr            ###   ########.fr       */
+/*   Updated: 2023/08/26 14:18:02 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,18 @@ static int	get_color(char *line)
 	return (get_rgb_colors(r, g, b));
 }
 
-void	test_colors(t_map_data *mdata, char *line, int *counter)
+int	test_colors(t_map_data *mdata, char *line)
 {
 	if (ft_strncmp(line, "F ", 2) == 0 && mdata->color_floor == -1)
 	{
-		(*counter)++;
 		mdata->color_floor = get_color(line);
+		return (1);
 	}
 	else if (ft_strncmp(line, "C ", 2) == 0 && mdata->color_ceiling == -1)
 	{
-		(*counter)++;
 		mdata->color_ceiling = get_color(line);
+		return (1);
 	}
+	else
+		return (0);
 }
