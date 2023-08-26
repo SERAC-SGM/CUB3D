@@ -14,7 +14,7 @@ PROJECT_NAME = cub3d
 CC = cc
 
 # Compiler Flags
-CFLAGS = -Wall -Wextra -Werror -O3
+CFLAGS = -Wall -Wextra -Werror -g
 
 #______________________________________________________________________________#
 ############################### Libraries ######################################
