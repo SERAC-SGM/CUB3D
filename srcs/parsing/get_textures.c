@@ -6,11 +6,7 @@
 /*   By: lletourn <lletourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 12:13:59 by mat               #+#    #+#             */
-<<<<<<< Updated upstream
-/*   Updated: 2023/08/26 15:21:23 by lletourn         ###   ########.fr       */
-=======
-/*   Updated: 2023/08/26 13:20:31 by lletourn         ###   ########.fr       */
->>>>>>> Stashed changes
+/*   Updated: 2023/08/26 15:26:35 by lletourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,11 +102,7 @@ int	get_texture_path(t_map_data *mdata)
 		line = get_next_line(mdata->map_fd);
 		if (line == NULL)
 			break ;
-<<<<<<< Updated upstream
 		while (line && line[0] == '\n')
-=======
-		while (line && *line == '\n')
->>>>>>> Stashed changes
 		{
 			free(line);
 			line = get_next_line(mdata->map_fd);
